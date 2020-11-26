@@ -36,12 +36,14 @@ class CompraController extends Controller{
 
         $num_documento = $this->compra->formatoDocumento($this->compra->ultimoDocumento());
         $proveedores = $this->proveedor->getAll('proveedores', "estatus = 'ACTIVO'");
+        $categorias = $this->proveedor->getAll('categorias', "estatus = 'ACTIVO'");
         $productos = $this->producto->getAll('v_inventario', "estatus = 'ACTIVO'");
 
         return View::getView('Compra.create', 
             [ 
                 'productos' => $productos, 
                 'proveedores' => $proveedores,
+                'categorias' => $categorias,
                 'numeroDocumento' => $num_documento
             ]);
     }
@@ -226,5 +228,24 @@ class CompraController extends Controller{
 
         $this->crearPDF($html);
 
+    }
+
+    public function productosPorCategoria(){
+        if( $_SERVER['REQUEST_METHOD'] != 'POST'){
+            http_response_code(404);
+            return false;
+        }
+        if($_POST['categoria']!=0){
+            $productos = $this->producto->getAll('v_inventario', "estatus = 'ACTIVO' AND stock > 0 AND precio_venta != 'null' AND id IN (SELECT id FROM productos WHERE categoria_id = $_POST[categoria])");
+        }
+        else{
+            $productos = $this->producto->getAll('v_inventario', "estatus = 'ACTIVO' AND stock > 0 AND precio_venta != 'null'");
+        }
+       
+        http_response_code(200);
+
+        echo json_encode([
+        'data' => $productos
+        ]);
     }
 }

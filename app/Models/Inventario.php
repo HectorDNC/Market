@@ -12,7 +12,7 @@ class Inventario extends Model{
         $conexion = parent::connect();
 
         try {
-            $query = $conexion->query("SELECT * FROM v_inventario");
+            $query = $conexion->query("SELECT * FROM v_inventario1");
             
             return $query->fetchAll(PDO::FETCH_OBJ);
 

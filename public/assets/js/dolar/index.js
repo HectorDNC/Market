@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    
+
 /**
  * DataTable
  */
@@ -10,12 +10,11 @@ let table = $('#datatable').DataTable({
     searching: true,
     ajax: {
         method: 'POST',
-        url: '/WorldComputer/cliente/listar'
+        url: '/WorldComputer/dolar/listar'
     },
     columns: [
-        { data: 'documento' },
-        { data: "nombre" },
-        { data: 'telefono' },
+        { data: 'nombre' },
+        { data: "precio" },
         { data: 'button' }
     ],
 
@@ -51,7 +50,7 @@ let table = $('#datatable').DataTable({
  * FUNCIONES
  */
 
-const mostrarCliente = (href, formulario, modal) => {
+const mostrarDolar = (href, formulario, modal) => {
 
     $.ajax({
         type: "POST",
@@ -59,27 +58,13 @@ const mostrarCliente = (href, formulario, modal) => {
         success: function (response) {
             let json = JSON.parse(response);
 
-            if(modal == '#modalActualizarCliente'){
-                let doc = json.data.documento.split('-');
-                let inicial = doc[0];
-                let documento = doc[1];
-
-                console.log(doc);
-                $(formulario).find('input#documento').val(documento);
-                $(formulario).find('select#inicial_documento').val(inicial);
-
-            }else{
-                $(formulario).find('input#documento').val(json.data.documento);
-
-            }
-
+            console.log(json);
 
             $(formulario).find('input#id').val(json.data.id);
             $(formulario).find('input#nombre').val(json.data.nombre);
-            $(formulario).find('input#apellido').val(json.data.apellido);
-            $(formulario).find('input#telefono').val(json.data.telefono);
-            $(formulario).find('input#correo').val(json.data.email);
-            $(formulario).find('input#direccion').val(json.data.direccion);
+            $(formulario).find('textarea#precio').val(json.data.precio);
+
+ 
 
             $(modal).modal('show');
             
@@ -91,11 +76,11 @@ const mostrarCliente = (href, formulario, modal) => {
     });
 }
 
-const registrarCliente = (datos) => {
+const registrarDolar = (datos) => {
 
     $.ajax({
         type: "POST",
-        url: "/WorldComputer/cliente/guardar",
+        url: "/WorldComputer/dolar/guardar",
         data: datos,
         cache: false,
         contentType: false,
@@ -112,11 +97,9 @@ const registrarCliente = (datos) => {
                 );
     
                 table.ajax.reload();
-                
-     
-                $('#modalRegistroCliente').modal('hide');
-                $('#formularioRegistrarCliente').trigger('reset');
-                location.reload();
+    
+                $('#modalRegistroDolar').modal('hide');
+                $('#formularioRegistrarDolar').trigger('reset');
             }else{
                 Swal.fire(
                     json.titulo,
@@ -134,7 +117,7 @@ const registrarCliente = (datos) => {
 
 
 
-    // fetch('/WorldComputer/cliente/guardar', { method: 'POST', body: datos })
+    // fetch('/WorldComputer/categoria/guardar', { method: 'POST', body: datos })
     // .then((response) => {
     //     console.log(response);
     //     return response.json();
@@ -153,11 +136,11 @@ const registrarCliente = (datos) => {
     //     console.log(response);
     // });
 }
-
-const actualizarCliente = (datos) => {
+ 
+const actualizarDolar = (datos) => {
     $.ajax({
         type: "POST",
-        url: "/WorldComputer/cliente/actualizar",
+        url: "/WorldComputer/dolar/actualizar",
         data: datos,
         cache: false,
         contentType: false,
@@ -175,7 +158,7 @@ const actualizarCliente = (datos) => {
     
                 table.ajax.reload();
     
-                $('#modalActualizarCliente').modal('hide');
+                $('#modalActualizarDolar').modal('hide');
             }else{
                 Swal.fire(
                     json.titulo,
@@ -190,10 +173,10 @@ const actualizarCliente = (datos) => {
     });
 }
 
-const eliminarCliente = (id) => {
+const eliminarDolar = (id) => {
     $.ajax({
         type: "DELETE",
-        url: "/WorldComputer/cliente/eliminar/" + id,
+        url: "/WorldComputer/dolar/eliminarTotal/" + id,
         success: function (response) {
             const json = JSON.parse(response);
             if(json.tipo == 'success'){
@@ -201,7 +184,7 @@ const eliminarCliente = (id) => {
                     'Eliminado!',
                     'El registro ha sido eliminado!',
                     'success'
-                  )
+                    )
 
                 table.ajax.reload();
             }
@@ -216,63 +199,61 @@ const eliminarCliente = (id) => {
  * Eventos
  */
 
-$('#formularioRegistrarCliente').submit(function (e) { 
-     e.preventDefault();
+$('#formularioRegistrarDolar').submit(function (e) { 
+        e.preventDefault();
 
-     let datos = new FormData(document.querySelector('#formularioRegistrarCliente'));
-
+        let datos = new FormData(document.querySelector('#formularioRegistrarDolar'));
     //  console.log(datos.get('documento'));
 
-     registrarCliente(datos);   
+        registrarDolar(datos);   
 });
 
-// Mostrar Cliente
+// Mostrar Categoria
 $('body').on('click', '.mostrar', function (e) { 
     e.preventDefault();
 
-    mostrarCliente($(this).attr('href'),'form#formularioMostrarCliente','#modalMostrarCliente');
+    mostrarDolar($(this).attr('href'),'form#formularioMostrarDolar','#modalMostrarDolar');
 });
 
-// Editar Cliente
+// Editar Categoria
 
 $('body').on('click', '.editar', function (e) {
     e.preventDefault();
     console.log($(this).attr('href'));
 
-    mostrarCliente($(this).attr('href'), 'form#formularioActualizarCliente', '#modalActualizarCliente');
+    mostrarDolar($(this).attr('href'), 'form#formularioActualizarDolar', '#modalActualizarDolar');
 });
 
-$('#formularioActualizarCliente').submit(function (e) {
+$('#formularioActualizarDolar').submit(function (e) {
     e.preventDefault();
 
-    const datos = new FormData(document.querySelector('#formularioActualizarCliente'));
+    const datos = new FormData(document.querySelector('#formularioActualizarDolar'));
 
-    console.log(datos.get('id'));
-
-    actualizarCliente(datos);
+    // console.log(datos.get('id'));
+    actualizarDolar(datos);
 });
 
 
-// Eliminar Cliente
+// Eliminar Dolar
 $('body').on('click', '.eliminar', function (e) {
     e.preventDefault();
 
     Swal.fire({
         title: 'Esta Seguro?',
-        text: "El cliente sera eliminado del sistema!",
+        text: "El categoria sera eliminado del sistema!",
         type: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         cancelButtonText: 'Cancelar',
         confirmButtonText: 'Si, eliminar!'
-      }).then((result) => {
+        }).then((result) => {
         if (result.value) {
 
-            eliminarCliente($(this).attr('href'));
-          
+            eliminarDolar($(this).attr('href'));
+            
         }
-      })
+        })
     console.log($(this).attr('href'));
 });
 

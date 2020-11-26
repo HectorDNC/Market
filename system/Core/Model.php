@@ -89,6 +89,17 @@ class Model extends Database{
             die("Error: ". $ex->getMessage());
         }
     }
+    public function eliminarTotal($tabla, $id){    //Metodo elimina logicamente un registro
+        try{
+            $consulta = parent::connect()->prepare("DELETE FROM $tabla WHERE id=$id");
+
+            return $consulta->execute();
+
+        } catch (Exception $ex) {
+            
+            die("Error: ". $ex->getMessage());
+        }
+    }
     public function habilitar($tabla, $id){    //Metodo habilita un registro
         try{
             $consulta = parent::connect()->prepare("UPDATE $tabla SET estatus='ACTIVO' WHERE id=$id");

@@ -14,7 +14,8 @@
                 <th>Codigo</th>
                 <th>Producto</th>
                 <th>Categoria</th>
-                <th>Precio</th>
+                <th>Precio $</th>
+                <th>Precio BSS</th>
                 <th>Stock</th>
                 <th>Estatus</th>
                 <th>Acciones</th>
@@ -57,7 +58,7 @@
 
                         <div class="form-group col-md-6">
                             <i class="fas fa-tag"></i> <label for="categoria">Categoria</label>
-                            <select name="categoria" id="categoria" class="form-control" required>
+                            <select name="categoria" id="categoria" class="form-control  " required>
                                 <option value="" selected>-</option>
                             </select>
                         </div>
@@ -108,7 +109,7 @@
                         <div class="form-group col-md-6">
                             <i class="fas fa-angle-double-down"></i> <label for="stock_min">Stock Minimo</label>
                             <input class="form-control" type="number" name="stock_min" id="stock_min" placeholder="Ej. 5" required >
-                        </div>
+                        </dixv>
 
                         <div class="form-group col-md-6">
                             <i class="fas fa-angle-double-up"></i> <label for="stock_max">Stock Maximo</label>

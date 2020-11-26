@@ -1,4 +1,76 @@
+
 <div class="content p-42">
+
+      <!-- Modal Registro -->
+    <div class="modal fade" id="modalRegistroCliente" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+                <div class="card">
+                    <div class="card-header">
+                            <h2 class="text-center">Registrar Cliente</h2>
+                    </div>
+                    <div class="card-body">
+                        <form action="#" method="POST" enctype="multipart/form-data" id="formularioRegistrarCliente">
+                            <div class="row form-group">
+                                <input  name="id" id="id" hidden>
+                                <label for="nombre" class="col-form-label col-md-2">Nombre:</label>
+                                <div class="col-md-4 ">
+                                    <input type="text" name="nombre" id="nombre" pattern="[A-Za-z ]+" title="Ingrese solo letras" maxlength="30" required="required" class="form-control" placeholder="Nombre">
+                                </div> 
+
+                                <label for="apellido" class="col-form-label col-md-2">Apellido:</label>
+                                <div class="col-md-4 ">
+                                    <input type="text" name="apellido" id="apellido" pattern="[A-Za-z ]+" title="Ingrese solo letras" maxlength="30"  class="form-control" placeholder="Apellido">
+                                </div>
+                            </div>
+
+                            <div class="row form-group">
+                                <label for="cedula_cliente" class="col-form-label col-md-2">Cedula/RIF:</label>
+                                <div class="col-md-1 ">
+                                    <select class="form-control pl-0 pr-0" name="inicial_documento" id="inicial_documento" required="">
+                                        <option value="" selected="">-</option>
+                                        <option value="V">V</option>
+                                        <option value="E">E</option>
+                                        <option value="J">J</option>
+                                        <option value="G">G</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="text" pattern="[0-9]{6,8}" name="documento" id="documento" minlength="6" maxlength="8" title="Ingrese entre 6 y 8 digitos" class="form-control" placeholder="Identificaion" required="">
+                                </div>
+                                <label for="telefono" class="col-form-label col-md-2">Telefono:</label>
+                                <div class="col-md-4 ">
+                                    <input type="tel" name="telefono" id="telefono" title="Debe Contener minimo 11 Caracteres numericos" minlength="10"  maxlength="12" pattern="[0-9-]+"  class="form-control" placeholder="Telefono">
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <label for="correo" class="col-form-label col-md-2">Correo:</label>
+                                <div class="col-md-4 ">
+                                    <input type="email" name="correo" id="correo"  class="form-control" placeholder="Correo Electronico">
+                                </div>
+
+                                <label for="direccion" class="col-form-label col-md-2">Direccion:</label>
+                                <div class="col-md-4">
+                                    <input type="text" name="direccion" id="direccion" pattern="[A-Za-z0-9/ ]+" required maxlength="150" class="form-control" placeholder="Direccion" >
+                                </div>
+                            </div>
+
+                            <hr class="bg-secondary">
+
+                            <div class="row form-group justify-content-md-center">
+                                <a href="#" class="btn btn-secondary m-2" data-dismiss="modal"><i class="fas fa-arrow-circle-left"></i> Cerrar</a>
+                                <button type="submit"  class="btn btn-success m-2">Enviar</button>
+                                <button type="reset" class="btn btn-danger m-2">Limpiar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
     <form action="<?= ROOT;?>Venta/guardar" method="post" id="formularioCompra">
  
         <div class="card">
@@ -32,9 +104,14 @@
                 <div class="row">
                     <div class="col">
                         <div class="card">
+
                             <div class="card-header">
                                 <h4>Cliente</h4>
                             </div>
+         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalRegistroCliente">
+            <i class="fas fa-plus-square"></i> Agregar Cliente
+          </button>
+
                             <div class="card-body">
                                 <div class="row">
                                     <label for="cliente" class=" col-form-label col-md-2">
@@ -42,8 +119,9 @@
                                         <span> <strong>Cliente</strong></span>
                                     </label>
     
+
                                     <div class="col-md-6 form-group">
-                                        <select name="cliente" id="listadoClientes" class="form-control select2">
+                                        <select name="cliente" id="listadoClientes" class="form-control js-example-basic-single">
                                             <option value="">-</option>
 
                                             <?php 
@@ -58,7 +136,7 @@
 
                                         </select>
                                     </div>
-            
+           
                 
                                     <div class="col-md-4 form-group">
                                         <button type="button" class="btn btn-block btn-success" id="agregarCliente" ><i class="fas fa-plus-circle"></i></button>
@@ -97,10 +175,33 @@
                             </div>
                             <div class="card-body">
                                 <div class="row form-row">
+                                    <label for="categorias" class="col-form-label col-lg-2"><strong>Categoría</strong> </label>
+                                    <div class="col-lg-8 form-group">
+                                
+                                        <select id="listadoCategorias" class="form-control js-example-basic-single">
+                                            <option value="0">TODAS</option>
+
+                                            <?php 
+                                                foreach($categorias as $categoria): 
+                                            ?>
+
+                                                <option value="<?= $categoria->id; ?>"><?= $categoria->nombre; ?></option>
+
+                                            <?php 
+                                                endforeach; 
+                                            ?>
+
+                                        </select>
+                                    </div>
+    
+                                
+                                </div>
+                                <!-- Productos -->
+                                <div class="row form-row">
                                     <label for="Nombre" class="col-form-label col-lg-2"><strong>Producto</strong> </label>
                                     <div class="col-lg-8 form-group">
                                 
-                                        <select id="listadoProductos" class="form-control select2">
+                                        <select id="listadoProductos" class="form-control js-example-basic-single">
                                             <option value="">-</option>
 
                                             <?php 
@@ -215,11 +316,23 @@
     </form>
 </div>
 
+
+
+<script type="text/javascript">
+    $(document).ready(function() {
+    $('.js-example-basic-single').select2();
+});
+</script>
 <script>
+
+// In your Javascript (external .js resource or <script> tag)
+
+
     let clientes = <?= json_encode($clientes) ?>;
     let productos = <?= json_encode($productos) ?>; 
     let iva = parseFloat(<?= json_encode($iva) ?>);    
 
 </script>
+<script src="<?= ROOT; ?>public/assets/js/cliente/index.js"></script>
 
 <script src="<?= ROOT; ?>public/assets/js/venta/create.js"></script>

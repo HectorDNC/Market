@@ -43,7 +43,7 @@
                                     </label>
     
                                     <div class="col-md-6 form-group">
-                                        <select name="proveedor" id="listadoProveedores" class="form-control select2">
+                                        <select name="proveedor" id="listadoProveedores" class="form-control js-example-basic-single">
                                             <option value="">-</option>
 
                                             <?php 
@@ -98,7 +98,7 @@
                 </div>
 
                 <hr class="bg-secondary">
-
+ 
                 <div class="row">
                     <div class="col">
                         <div class="card">
@@ -107,10 +107,33 @@
                             </div>
                             <div class="card-body">
                                 <div class="row form-row">
+                                    <label for="categorias" class="col-form-label col-lg-2"><strong>Categoría</strong> </label>
+                                    <div class="col-lg-8 form-group">
+                                
+                                        <select id="listadoCategorias" class="form-control js-example-basic-single">
+                                            <option value="0">TODAS</option>
+
+                                            <?php 
+                                                foreach($categorias as $categoria): 
+                                            ?>
+
+                                                <option value="<?= $categoria->id; ?>"><?= $categoria->nombre; ?></option>
+
+                                            <?php 
+                                                endforeach; 
+                                            ?>
+
+                                        </select>
+                                    </div>
+    
+                                
+                                </div>
+                                <!-- Productos -->
+                                <div class="row form-row">
                                     <label for="Nombre" class="col-form-label col-lg-2"><strong>Producto</strong> </label>
                                     <div class="col-lg-8 form-group">
                                 
-                                        <select id="listadoProductos" class="form-control select2">
+                                        <select id="listadoProductos" class="form-control js-example-basic-single">
                                             <option value="">-</option>
 
                                             <?php 
@@ -125,7 +148,7 @@
 
                                         </select>
                                     </div>
-    
+       
                                     <div class="col-lg-2">
                                         <button class="btn btn-info" id="agregarProducto">
                                             <i class="fas fa-shopping-cart"></i> Agregar

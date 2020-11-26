@@ -1,8 +1,10 @@
 <div class="content p-4 dataTables_wrapper">
     <h2 class="mb-4">Gestion de Ventas</h2>
 
+
     <div class="card mb-4">
         <div class="card-header bg-white">
+    
           <a class="btn btn-primary" href="<?= ROOT;?>Venta/crear">
             <i class="fas fa-plus-square"></i> Agregar Venta
           </a>
@@ -39,7 +41,7 @@
                     <h2 class="card-tittle text-center">Detalle Venta</h2>
                 </div>
             </div>
-
+            
             <div class="card-body">
                 <div class="row justify-content-end">
                     <label for="" class="col-form-label col-2"><strong>Nro Venta:</strong> </label>

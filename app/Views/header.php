@@ -31,7 +31,7 @@
 <body class="bg-light">
 <nav class="navbar navbar-expand navbar-dark bg-primary">
     <a class="sidebar-toggle mr-3" href="#"><i class="fa fa-bars"></i></a>
-    <a class="navbar-brand" href="<?= ROOT;?>"><i class="fas fa-desktop"></i> World & Computer</a>
+    <a class="navbar-brand" href="<?= ROOT;?>"><i class="fas fa-desktop"></i> MARCKET</a>
     <div class="navbar-collapse collapse">
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
@@ -61,6 +61,7 @@
 	<div class="sidebar sidebar-dark bg-dark">
     <ul class="list-unstyled">
         <li><a href="<?= ROOT;?>Usuario"><i class="fa fa-fw fa-user"></i> Usuarios</a></li>
+        <li><a href="<?= ROOT;?>Dolar"><i class="fa fa-fw fa-user"></i> Dolar</a></li>
         <li><a href="<?= ROOT;?>Empleado"><i class="fa fa-fw fa-wrench"></i> Empleados</a></li>
         <li><a href="<?= ROOT;?>Cliente"><i class="fa fa-fw fa-users"></i> Clientes</a></li>
         <li><a href="<?= ROOT;?>Proveedor"><i class="fa fa-fw fa-truck"></i> Proveedores</a></li>

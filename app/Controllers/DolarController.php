@@ -2,34 +2,34 @@
 
 namespace App\Controllers;
 
-use App\Models\Categoria;
+use App\Models\Dolar;
 use App\Traits\Utility;
 use System\Core\Controller;
 use System\Core\View;
 
-class CategoriaController extends Controller{
-    private $categoria;
+class DolarController extends Controller{
+    private $dolar;
 
     use Utility;
 
     public function __construct(){
-        $this->categoria = new Categoria;
+        $this->dolar = new Dolar;
     }
 
     public function index(){
-        return View::getView('Categoria.index');
+        return View::getView('Dolar.index');
     }
 
     public function mostrar($param){
 
         $param = $this->desencriptar($param);
         
-        $categoria = $this->categoria->getOne('categorias', $param);
+        $dolar = $this->dolar->getOne('dolar', $param);
 
         http_response_code(200);
 
         echo json_encode([
-            'data' => $categoria
+            'data' => $dolar
         ]);
     }
 
@@ -42,21 +42,21 @@ class CategoriaController extends Controller{
             return false;
             }
 
-            $categorias = $this->categoria->listar();
+            $dolares = $this->dolar->listar();
 
-            foreach($categorias as $categoria){
+            foreach($dolares as $dolar){
 
-            $categoria->button = 
-            "<a href='/WorldComputer/categoria/mostrar/". $this->encriptar($categoria->id) ."' class='mostrar btn btn-info'><i class='fas fa-search'></i></a>".
-            "<a href='/WorldComputer/categoria/mostrar/". $this->encriptar($categoria->id) ."' class='editar btn btn-warning m-1'><i class='fas fa-pencil-alt'></i></a>".
-            "<a href='". $this->encriptar($categoria->id) ."' class='eliminar btn btn-danger'><i class='fas fa-trash-alt'></i></a>";
+            $dolar->button = 
+            "<a href='/WorldComputer/dolar/mostrar/". $this->encriptar($dolar->id) ."' class='mostrar btn btn-info'><i class='fas fa-search'></i></a>".
+            "<a href='/WorldComputer/dolar/mostrar/". $this->encriptar($dolar->id) ."' class='editar btn btn-warning m-1'><i class='fas fa-pencil-alt'></i></a>".
+            "<a href='". $this->encriptar($dolar->id) ."' class='eliminar btn btn-danger'><i class='fas fa-trash-alt'></i></a>";
 
         }
 
         http_response_code(200);
 
         echo json_encode([
-        'data' => $categorias
+        'data' => $dolares
         ]);
 
     }
@@ -70,20 +70,20 @@ class CategoriaController extends Controller{
           return false;
         }
     
-        $categoria = new Categoria();
+        $dolar = new Dolar();
     
-        $categoria->setNombre(strtoupper($this->limpiaCadena($_POST['nombre'])));
+        $dolar->setNombre(strtoupper($this->limpiaCadena($_POST['nombre'])));
 
-        if($_POST['descripcion'] != ''){
-            $categoria->setDescripcion(strtoupper($this->limpiaCadena($_POST['descripcion'])));
+        if($_POST['precio'] != ''){
+            $dolar->setPrecio(strtoupper($this->limpiaCadena($_POST['precio'])));
         }else{
-            $categoria->setDescripcion('N/A');
+            $dolar->setDescripcion(0);
         }
     
 
-        $nombre = $categoria->getNombre();
+        $nombre = $dolar->getNombre();
 
-        $consulta = $this->categoria->query("SELECT * FROM categorias WHERE nombre='$nombre'" ); // Verifica inexistencia de cedula, sies igual a la actual no la toma en cuenta puesto que si registramos un cambio en el nombre se mantiene la misma cedula y afectaria la consulta.
+        $consulta = $this->dolar->query("SELECT * FROM dolar WHERE nombre='$nombre'" ); // Verifica inexistencia de cedula, sies igual a la actual no la toma en cuenta puesto que si registramos un cambio en el nombre se mantiene la misma cedula y afectaria la consulta.
     
         if ($consulta->rowCount() >= 1) {
     
@@ -99,7 +99,7 @@ class CategoriaController extends Controller{
     
         }
     
-        if($this->categoria->registrar($categoria)){
+        if($this->dolar->registrar($dolar)){
             http_response_code(200);
         
             echo json_encode([
@@ -130,21 +130,21 @@ class CategoriaController extends Controller{
           return false;
         }
     
-        $categoria = new Categoria();
-        $categoria->setId($_POST['id']);
+        $dolar = new Dolar();
+        $dolar->setId($_POST['id']);
     
-        $categoria->setNombre(strtoupper($this->limpiaCadena($_POST['nombre'])));
+        $dolar->setNombre(strtoupper($this->limpiaCadena($_POST['nombre'])));
 
-        if($_POST['descripcion'] != ''){
-            $categoria->setDescripcion(strtoupper($this->limpiaCadena($_POST['descripcion'])));
+        if($_POST['precio'] != ''){
+            $dolar->setPrecio(strtoupper($this->limpiaCadena($_POST['precio'])));
         }else{
-            $categoria->setDescripcion('N/A');
+            $dolar->setPrecio(0);
         }
 
-        $id = $categoria->getId(); 
-        $nombre = $categoria->getNombre();
+        $id = $dolar->getId(); 
+        $nombre = $dolar->getNombre();
     
-        $consulta = $this->categoria->query("SELECT * FROM categorias WHERE nombre='$nombre' AND id<>$id");
+        $consulta = $this->dolar->query("SELECT * FROM dolar WHERE nombre='$nombre' AND id<>$id");
 
         if( $consulta->rowCount() >= 1 ){
           http_response_code(200);
@@ -158,7 +158,7 @@ class CategoriaController extends Controller{
           return false;
         }
 
-        if($this->categoria->actualizar($categoria)){
+        if($this->dolar->actualizar($dolar)){
           http_response_code(200);
     
           echo json_encode([
@@ -177,7 +177,7 @@ class CategoriaController extends Controller{
         }
     
     }
- 
+
     public function eliminar($id){
 
       $method = $_SERVER['REQUEST_METHOD'];
@@ -189,7 +189,7 @@ class CategoriaController extends Controller{
   
       $id = $this->desencriptar($id);
   
-      if($this->categoria->eliminar("categorias", $id)){
+      if($this->dolar->eliminar("dolar", $id)){
   
         http_response_code(200);
   
@@ -207,19 +207,50 @@ class CategoriaController extends Controller{
           'tipo' => 'error'
         ]);
       }
-    } 
+    }
+
+    public function eliminarTotal($id){
+
+      $method = $_SERVER['REQUEST_METHOD'];
+  
+      if( $method != 'DELETE'){
+        http_response_code(404);
+        return false;
+      }
+  
+      $id = $this->desencriptar($id);
+  
+      if($this->dolar->eliminarTotal("dolar", $id)){
+  
+        http_response_code(200);
+  
+        echo json_encode([
+          'titulo' => 'Registro eliminado!',
+          'mensaje' => 'Registro eliminado en nuestro sistema',
+          'tipo' => 'success'
+        ]);
+      }else{
+        http_response_code(404);
+  
+        echo json_encode([
+          'titulo' => 'Ocurio un error!',
+          'mensaje' => 'No se pudo eliminar el registro',
+          'tipo' => 'error'
+        ]);
+      }
+    }
 
 
     /**
      * API
      */
 
-    public function listarCategorias(){
+    public function listarDolar(){
 
-      $categorias = $this->categoria->getAll('categorias',"estatus= 'ACTIVO'");
+      $dolar = $this->dolar->getAll('dolar');
   
       echo json_encode([
-        'data' => $categorias
+        'data' => $dolar
       ]);
   
       exit();

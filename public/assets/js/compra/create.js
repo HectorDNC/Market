@@ -25,7 +25,7 @@ $(document).ready(function () {
      * Eventos
      */
 
-    $('#listadoProductos').change(function (e) { 
+       $('#listadoProductos').change(function (e) { 
         e.preventDefault();
         
         let producto = buscarProducto($(this).val());
@@ -33,7 +33,36 @@ $(document).ready(function () {
         $('#nombreProducto').val(producto.nombre);
         $('#stockProducto').val(producto.stock);
     });
+    $('#listadoCategorias').change(function (e) { 
+        // e.preventDefault();
+        
+        $.ajax({
+            type: "POST",
+            url: "/WorldComputer/compra/productosPorCategoria",
+            data: {'categoria': this.value},
+            success: function (response) {
+                console.log(response);
+                json = JSON.parse(response);
+                categ = json.data;
+                console.log(json);
+                let select = document.querySelector('#listadoProductos');
+                select.innerHTML = "";
+                categ.forEach((element) => {
+                    option = document.createElement('option');
+                    option.value = element.codigo;
+                    option.innerHTML = element.codigo + " - " + element.nombre;
+                    select.append(option);
+                });
+            },
+            error: function (response) {
+                console.log(response);
+            }
+        });
+    });
 
+
+
+ 
 
 
     $('#agregarProducto').click(function (e) { 

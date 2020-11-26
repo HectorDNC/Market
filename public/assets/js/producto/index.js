@@ -14,7 +14,8 @@ $(document).ready(function () {
             { data: 'codigo' },
             { data: "nombre" },
             { data: 'categoria' },
-            { data: 'precio_venta' },
+            { data: 'precio_dolar' },
+            { data: 'precio_Bolivares' },
             { data: 'stock' },
             { data: 'estatus' },
             { data: 'button' }
@@ -117,6 +118,7 @@ $(document).ready(function () {
             type: "POST",
             url: href,
             success: function (response) {
+                console.log(response);
                 let json = JSON.parse(response);
     
                 if(modal == '#modalActualizarProducto'){

@@ -14,10 +14,10 @@ use System\Core\View;
 
 class VentaController extends Controller{
 
-    private Cliente $cliente;
-    private Producto $producto;
-    private Venta $venta;
-    private DetalleVenta $detalleVenta;
+    private $cliente;
+    private $producto;
+    private $venta;
+    private $detalleVenta;
     // private Salida $salida;
 
     use Utility;
@@ -38,6 +38,7 @@ class VentaController extends Controller{
 
         $num_documento = $this->venta->formatoDocumento($this->venta->ultimoDocumento());
         $clientes = $this->cliente->getAll('clientes', "estatus = 'ACTIVO'");
+        $categorias = $this->cliente->getAll('categorias', "estatus = 'ACTIVO'");
         $productos = $this->producto->getAll('v_inventario', "estatus = 'ACTIVO' AND stock > 0 AND precio_venta != 'null'");
         $iva = $this->producto->getValorColumna('impuestos','valor','id = 2');
 
@@ -45,6 +46,7 @@ class VentaController extends Controller{
             [ 
                 'productos' => $productos, 
                 'clientes' => $clientes,
+                'categorias' => $categorias,
                 'numeroDocumento' => $num_documento,
                 'iva' => $iva
             ]);
@@ -230,4 +232,24 @@ class VentaController extends Controller{
         $this->crearPDF($html);
 
     }
+
+    public function productosPorCategoria(){
+        if( $_SERVER['REQUEST_METHOD'] != 'POST'){
+            http_response_code(404);
+            return false;
+        }
+        if($_POST['categoria']!=0){
+            $productos = $this->producto->getAll('v_inventario', "estatus = 'ACTIVO' AND stock > 0 AND precio_venta != 'null' AND id IN (SELECT id FROM productos WHERE categoria_id = $_POST[categoria])");
+        }
+        else{
+            $productos = $this->producto->getAll('v_inventario', "estatus = 'ACTIVO' AND stock > 0 AND precio_venta != 'null'");
+        }
+       
+        http_response_code(200);
+
+        echo json_encode([
+        'data' => $productos
+        ]);
+    }
+
 }
