@@ -15,10 +15,15 @@ class EmpleadoController extends Controller{
   private $empleado;
 
   public function __construct() {
+    if($_SESSION['rol'] != 1){
+      header("Location: ".ROOT);
+      return false;
+    }
       $this->empleado = new Empleado;
   }
 
   public function index(){
+    
     return View::getView('Empleado.index');
   }
   

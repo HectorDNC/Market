@@ -17,6 +17,10 @@ class ReporteController extends Controller {
 	use Utility;
 
 	public function __construct(){
+        if($_SESSION['rol'] != 1){
+            header("Location: ".ROOT);
+            return false;
+        }
         $this->compra = new Compra;
         $this->venta = new Venta;
     }

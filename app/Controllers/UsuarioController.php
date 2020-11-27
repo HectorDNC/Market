@@ -17,12 +17,16 @@ class UsuarioController extends Controller{
     private $rol;
     
     public function __construct() {
+        if($_SESSION['rol'] != 1){
+            header("Location: ".ROOT);
+            return false;
+        }
         $this->usuario = new Usuario;
         $this->rol = new Rol();
     }
 
     public function index(){
-
+        
         $roles = $this->rol->listar();
         
         return View::getView('Usuario.index', 'roles', $roles);

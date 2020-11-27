@@ -22,6 +22,10 @@ class CompraController extends Controller{
     use Utility;
 
     public function __construct(){
+        if($_SESSION['rol'] != 1){
+            header("Location: ".ROOT);
+            return false;
+        }
         $this->producto = new Producto;
         $this->proveedor = new Proveedor;
         $this->compra = new Compra;
@@ -29,6 +33,7 @@ class CompraController extends Controller{
     }
 
     public function index(){
+        
         return View::getView('Compra.index');
     }
 

@@ -13,6 +13,10 @@ class ProveedorController extends Controller{
     use Utility;
 
     public function __construct(){
+      if($_SESSION['rol'] != 1){
+        header("Location: ".ROOT);
+        return false;
+      }
         $this->proveedor = new Proveedor;
     }
 
