@@ -259,5 +259,9 @@ $(document).ready(function () {
             }
         });
     })
-
+    // setTimeout(function(){
+    //     // location.reload();
+    //     location = '/Marcket/';
+    //     location.reload();
+    // },2000);
 });

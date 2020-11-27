@@ -1,10 +1,10 @@
 <div class="content p-4 dataTables_wrapper">
-    <h2 class="mb-4">Gestion de Categorias</h2>
+    <h2 class="mb-4">Gestión de Categorías</h2>
 
     <div class="card mb-4">
         <div class="card-header bg-white">
           <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalRegistroCategoria">
-            <i class="fas fa-plus-square"></i> Agregar Categoria
+            <i class="fas fa-plus-square"></i> Agregar Categoría
           </button>
         </div>
         <div class="card-body">

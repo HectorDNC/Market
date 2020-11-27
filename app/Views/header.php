@@ -59,36 +59,45 @@
 	<!-- MENU -->
 <div class="d-flex">
 	<div class="sidebar sidebar-dark bg-dark">
+    <?php if($_SESSION['rol']==1){ ?>
+
     <ul class="list-unstyled">
+        <li><a href="<?= ROOT;?>"><i class="fa fa-fw fa-home"></i> Inicio</a></li>
         <li><a href="<?= ROOT;?>Usuario"><i class="fa fa-fw fa-user"></i> Usuarios</a></li>
         <li><a href="<?= ROOT;?>Dolar"><i class="fas fa-money-bill-alt"></i> Dolar</a></li>
         <!-- <li><a href="<?= ROOT;?>Empleado"><i class="fa fa-fw fa-wrench"></i> Empleados</a></li> -->
         <li><a href="<?= ROOT;?>Cliente"><i class="fa fa-fw fa-users"></i> Clientes</a></li>
         <li><a href="<?= ROOT;?>Proveedor"><i class="fa fa-fw fa-truck"></i> Proveedores</a></li>
-        <li>
-            <a href="#inventory_collapse" data-toggle="collapse">
-                <i class="fa fa-fw fa-chart-area"></i> Inventario
-            </a>
-
-            <ul id="inventory_collapse" class="list-unstyled collapse">
-                <li><a href="<?= ROOT;?>Inventario"><i class="fa fa-fw fa-bookmark"></i> Resumen</a></li>
-                <!-- <li><a href="<?= ROOT;?>Inventario"><i class="fa fa-fw fa-arrow-alt-circle-down"></i> Cargos de Inventario</a></li>
-                <li><a href="<?= ROOT;?>Inventario"><i class="fa fa-fw fa-arrow-alt-circle-up"></i> Descargos de Inventario</a></li> -->
-
-            </ul>
-        </li>
+        <li><a href="<?= ROOT;?>Inventario"><i class="fa fa-fw fa-chart-area"></i> Inventario</a></li>
+     
         <li>
             <a href="#sm_expand_1" data-toggle="collapse">
-                <i class="fa fa-fw fa-sitemap"></i> Gestion de Productos
+                <i class="fa fa-fw fa-sitemap"></i> Gestión de Productos
             </a>
             <ul id="sm_expand_1" class="list-unstyled collapse">
                 <li><a href="<?= ROOT;?>Producto"><i class="fa fa-fw fa-bookmark"></i> Resumen</a></li>
                 <li><a href="<?= ROOT;?>Categoria"><i class="fa fa-fw fa-tag"></i> Categoría</a></li>
             </ul>
         </li>
-        <li><a href="<?= ROOT;?>Compra"><i class="fa fa-fw fa-shopping-cart"></i> Compras</a></li>
-        <li><a href="<?= ROOT;?>Venta"><i class="fa fa-fw fa-dollar-sign"></i> Ventas</a></li>
-        <!-- <li><a href="<?= ROOT;?>Venta/Crear"><i class="fa fa-fw fa-shopping-basket"></i> Caja</a></li> -->
+        <li>
+            <a href="#compra_collapse" data-toggle="collapse">
+                <i class="fa fa-fw fa-shopping-cart"></i> Compras
+            </a>
+            <ul id="compra_collapse" class="list-unstyled collapse">
+                <li><a href="<?= ROOT;?>Compra"><i class="fa fa-fw fa-bookmark"></i> Resumen</a></li>
+                <li><a href="<?= ROOT;?>Compra/create"><i class="fa fa-fw fa-plus-square"></i> Agregar Compra</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#venta_collapse" data-toggle="collapse">
+                <i class="fa fa-fw fa-dollar-sign"></i> Ventas
+            </a>
+            <ul id="venta_collapse" class="list-unstyled collapse">
+                <li><a href="<?= ROOT;?>Venta"><i class="fa fa-fw fa-bookmark"></i> Resumen</a></li>
+                <li><a href="<?= ROOT;?>Venta/crear"><i class="fa fa-fw fa-plus-square"></i> Agregar Venta</a></li>
+            </ul>
+        </li>
+        
         <li><a href="<?= ROOT;?>Reporte"><i class="fa fa-fw fa-calendar"></i> Reportes</a></li>
         
         <!-- <li>
@@ -100,4 +109,20 @@
             </ul>
         </li> -->
     </ul>
+    <?php } else{ ?>
+        <ul class="list-unstyled">
+            <li><a href="<?= ROOT;?>"><i class="fa fa-fw fa-home"></i> Inicio</a></li>
+            <li><a href="<?= ROOT;?>Cliente"><i class="fa fa-fw fa-users"></i> Clientes</a></li>
+            <li><a href="<?= ROOT;?>Inventario"><i class="fa fa-fw fa-chart-area"></i> Inventario</a></li>
+            <li>
+                <a href="#venta_collapse" data-toggle="collapse">
+                    <i class="fa fa-fw fa-dollar-sign"></i> Ventas
+                </a>
+                <ul id="venta_collapse" class="list-unstyled collapse">
+                    <li><a href="<?= ROOT;?>Venta"><i class="fa fa-fw fa-bookmark"></i> Resumen</a></li>
+                    <li><a href="<?= ROOT;?>Venta/crear"><i class="fa fa-fw fa-plus-square"></i> Agregar Venta</a></li>
+                </ul>
+            </li>
+        </ul>
+    <?php } ?>
 </div>

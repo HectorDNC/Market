@@ -48,9 +48,7 @@ class LoginController extends Controller{
             // echo $response->documento;
 
             $_SESSION['usuario'] = $response->usuario;
-            $_SESSION['nombre'] = $response->nombre;
-            $_SESSION['apellido'] = $response->apellido;
-            $_SESSION['email'] = $response->email;
+            $_SESSION['rol'] = $response->rol_id;
             $_SESSION['estatus'] = $response->estatus;
 
             header('Content-Type: application/json');

@@ -139,7 +139,7 @@ class Usuario extends Persona{
     
     public function checkUser(Usuario $user) {
         try {
-            $query = parent::connect()->prepare("SELECT documento, nombre, apellido, email, usuario, estatus FROM usuarios WHERE usuario=:usuario AND password=:password");
+            $query = parent::connect()->prepare("SELECT documento, nombre, apellido, email, usuario, estatus, rol_id FROM usuarios WHERE usuario=:usuario AND password=:password");
             
             $query->bindParam(":usuario", $user->usuario);
             $query->bindParam(":password", $user->password);
