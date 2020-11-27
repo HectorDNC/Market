@@ -67,7 +67,8 @@ $(document).ready(function () {
                 $('#cuerpo').empty();
                 
                 let subtotal = 0;
-                var total = 0;
+                var total = 0, totalBss = 0;
+                var dolar = json.dolar;
 
                 json.productos.forEach( element => {
                     total += element.cantidad * element.precio;
@@ -90,8 +91,8 @@ $(document).ready(function () {
                 });
 
                 total += (total * 0.16);
-
-                $('#total').val(parseFloat(total).toFixed(2));
+                totalBss = total*dolar;
+                $('#total').html(`${total} $ <br> ${totalBss} BSS`);
 
                 
                 

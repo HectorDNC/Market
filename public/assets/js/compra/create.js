@@ -17,7 +17,7 @@ $(document).ready(function () {
 
         return proveedor;
     }
-// Obtener precio del Dolar
+    // Obtener precio del Dolar
     $.ajax({
         type: "POST",
         url: GLOBAL.URL+"dolar/obtenerDolar",
@@ -113,9 +113,7 @@ $(document).ready(function () {
                 <td>
                     <input type="number" class="form-control-plaintext total" value="0" disabled>
                 </td>
-                <td>
-                    <input type="number" class="form-control-plaintext totalBss" value="0" disabled>
-                </td>
+                
                 <td>
                     <button class="btn btn-danger eliminar"><i class="fas fa-trash-alt text-white"></i></button>
                 </td>
@@ -129,24 +127,23 @@ $(document).ready(function () {
 
     // Cambio en input de labla de productos
     $('#tproductos').on('change', 'input', function(e){
-    e.preventDefault();
-    // alert('funciona');
+        e.preventDefault();
+        // alert('funciona');
 
-    let row = $(this).closest('tr');
-    let total = row.find('.cantidad').val() * row.find('.precio').val();
-    let totalBss = total * dolar;
-    row.find('.total').val(total);
-    row.find('.totalBss').val(totalBss);
+        let row = $(this).closest('tr');
+        let total = row.find('.cantidad').val() * row.find('.precio').val();
+        
+        row.find('.total').val(total);
 
-    let elementos = document.querySelectorAll('.total');
+        let elementos = document.querySelectorAll('.total');
 
-    total = 0;
+        total = 0;
 
-    elementos.forEach(element => {
-        total = parseFloat(total) + parseFloat(element.value);
-    })
-
-    $('#totalVenta').val(total);    
+        elementos.forEach(element => {
+            total = parseFloat(total) + parseFloat(element.value);
+        })
+        totalBss = total*dolar;
+        $('#totalVenta').val(`${total} $ - ${totalBss} BSS`);    
     
     });
 

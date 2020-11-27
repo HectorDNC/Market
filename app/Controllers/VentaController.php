@@ -110,12 +110,13 @@ class VentaController extends Controller{
 
         // Detalles Venta
         $productos = $query2->fetchAll(PDO::FETCH_OBJ);
-
+        $dolar = $this->venta->getAll('dolar');
         http_response_code(200);
 
         echo json_encode([
             'venta' => $venta,
             'productos' => $productos,
+            'dolar' => $dolar[0]->precio
         ]);
 
         exit();
@@ -219,12 +220,13 @@ class VentaController extends Controller{
 
         // Detalles Venta
         $productos = $query2->fetchAll(PDO::FETCH_OBJ);
-
+        $dolar = $this->venta->getAll('dolar');
         ob_start();
 
         View::getViewPDF('FormatosPDF.Venta', [
             'venta' => $venta,
-            'productos' => $productos
+            'productos' => $productos,
+            'dolar' => $dolar[0]->precio
         ]);
 
         $html = ob_get_clean();

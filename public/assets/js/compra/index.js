@@ -63,12 +63,12 @@ $(document).ready(function () {
                 $('#nombre_proveedor').val(json.compra.proveedor);
                 $('#rif_proveedor').val(json.compra.rif_proveedor);
                 $('#direccion_proveedor').val(json.compra.direccion);
-
+               
 
                 $('#cuerpo').empty();
                 
-                var total = 0;
-
+                var total = 0, totalBss = 0;
+                var dolar = json.dolar;
                 json.productos.forEach( element => {
                     
                     total += (element.costo * element.cantidad);
@@ -86,8 +86,8 @@ $(document).ready(function () {
                     $('#cuerpo').append(row);
                     
                 });
-                
-                $('#total').val(total);
+                totalBss = total*dolar;
+                $('#total').html(`${total} $ <br> ${totalBss} BSS`);
                 
                 $('#modalDetalleCompra').modal('show');
 

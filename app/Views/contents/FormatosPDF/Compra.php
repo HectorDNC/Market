@@ -8,7 +8,8 @@
 
         .container{
             padding: 0px 0px;
-            color:lightslategrey;
+            /* color:lightslategrey; */
+            color:black;
         }
 
         .text-center {
@@ -28,7 +29,7 @@
             <tbody>
                 <tr>
                     <td colspan="4" style="width:50%">
-                        <img style="width:375px;height:70px;" src="http://localhost/WorldComputer/public/assets/img/logo.png" alt="">
+                        <!-- <img style="width:375px;height:70px;" src="<?=ROOTC?>public/assets/img/logo.png" alt=""> -->
                     </td>
                     <td colspan="4" style="width:50%">
                             <p class="text-right" style="display:block"><strong>Fecha:</strong> <span><i><?= $compra->fecha; ?></i></span></p>
@@ -112,6 +113,7 @@
                     foreach($productos AS $producto):
 
                         $total += ($producto->cantidad * $producto->costo);
+                        $totalBss = $total * $dolar;
                 ?>
 
                 <tr>
@@ -212,7 +214,7 @@
                         <strong>TOTAL:</strong>
                     </td>
                     <td colspan="2" class="text-center">
-                        <strong><?= $total; ?></strong>
+                        <strong><?= $total." $ <br>".$totalBss." BSS"; ?></strong>
                     </td>
                 </tr>
         </table>

@@ -17,6 +17,21 @@ $(document).ready(function () {
 
         return cliente;
     }
+
+    // Obtener precio del Dolar
+    $.ajax({
+        type: "POST",
+        url: GLOBAL.URL+"dolar/obtenerDolar",
+        success: function (response) {
+            console.log(response);
+            json = JSON.parse(response);
+            dolar = json.data.precio;
+            console.log(json);
+        },
+        error: function (response) {
+            console.log(response);
+        }
+    });
     /**
      * FIN
      */
@@ -84,7 +99,7 @@ $(document).ready(function () {
                     <input type="text" class="form-control-plaintext" value="${producto.nombre}" disabled>
                 </td>
                 <td>
-                    <input type="number" name="cantidades[]" class="form-control cantidad" value="1" min="1" max="${producto.stock}" required>
+                    <input type="number" name="cantidades[]" class="form-control cantidad" value="0" min="1" max="${producto.stock}" required>
                 </td>
                 <td>
                     <input type="text" class="form-control-plaintext" value="${producto.stock}" disabled>
@@ -132,7 +147,9 @@ $(document).ready(function () {
 
         $('#impuesto').val(impuestos.toFixed(2));
         $('#subtotal').val(total.toFixed(2));
-        $('#totalVenta').val((total + impuestos).toFixed(2));    
+        totalNeto = total + impuestos;
+        totalNetoBss = totalNeto*dolar;
+        $('#totalVenta').val(`${totalNeto} $ - ${totalNetoBss} BSS`);    
     
     });
 

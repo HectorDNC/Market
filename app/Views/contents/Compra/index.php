@@ -129,10 +129,10 @@
 
                 </div>
                 <hr>
-                <div class="row justify-content-end">
+                <div class="row justify-content-start">
                     <label for="" class="col-form-label col-2"><strong>TOTAL:</strong> </label>
-                    <div class="col-md-2">
-                        <input type="text" class="form-control-plaintext" id="total" disabled>
+                    <div class="col-md-4">
+                        <p class="form-control-plaintext" id="total"></p>
                     </div>
                 </div>
 

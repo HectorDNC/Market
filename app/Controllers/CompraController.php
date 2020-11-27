@@ -106,12 +106,13 @@ class CompraController extends Controller{
 
         // Detalles Compra
         $productos = $query2->fetchAll(PDO::FETCH_OBJ);
-
+        $dolar = $this->compra->getAll('dolar');
         http_response_code(200);
 
         echo json_encode([
             'compra' => $compra,
             'productos' => $productos,
+            'dolar' => $dolar[0]->precio
         ]);
 
         exit();
@@ -216,12 +217,13 @@ class CompraController extends Controller{
 
         // Detalles Compra
         $productos = $query2->fetchAll(PDO::FETCH_OBJ);
-
+        $dolar = $this->compra->getAll('dolar');
         ob_start();
 
         View::getViewPDF('FormatosPDF.Compra', [
             'compra' => $compra,
-            'productos' => $productos
+            'productos' => $productos,
+            'dolar' => $dolar[0]->precio
         ]);
 
         $html = ob_get_clean();
