@@ -48,6 +48,32 @@ $(document).ready(function () {
         }
     });
 
+    //Obtener Categorías
+    $.ajax({
+        type: "POST",
+        url: GLOBAL.URL+"categoria/listar",
+        success: function (response) {
+            let json = JSON.parse(response);
+
+
+            let select = document.querySelector('#listadoCategorias');
+            let categorias = json.data;
+
+            categorias.forEach( (element) => {
+                
+                let option = document.createElement('option');
+                option.value = element.id;
+                option.innerHTML = element.nombre;
+    
+                select.append(option);
+            });
+
+            
+        },
+        error: function (response) {
+            console.log(response);
+        }
+    });
     const mostrarProducto = (href, formulario, modal) => {
     
         $.ajax({
@@ -143,6 +169,14 @@ $(document).ready(function () {
         mostrarProducto($(this).attr('href'),'form#formularioMostrarProducto','#modalMostrarProducto');
     });
 
+    $("#listadoCategorias").change(function(){
+        
+        table.ajax.url(GLOBAL.URL+"inventario/listar/"+$(this).val());
+        console.log(table.ajax.url());
+        
+        table.ajax.reload();
+
+    });
     // $('body').on('click', '.estatus', function (e) {
     //     e.preventDefault();
     

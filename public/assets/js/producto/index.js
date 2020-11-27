@@ -78,9 +78,6 @@ $(document).ready(function () {
             console.log(response);
         }
     });
-    
-    
-    
 
     const listarUnidades = (idFormulario) => {
         

@@ -21,7 +21,7 @@ class InventarioController extends Controller{
         return View::getView('Inventario.index');
     }
 
-    public function listar(){
+    public function listar($categoria){
         
         $method = $_SERVER['REQUEST_METHOD'];
 
@@ -29,8 +29,12 @@ class InventarioController extends Controller{
         http_response_code(404);
         return false;
         }
-
-        $productos = $this->inventario->listar();
+        if ($categoria!=0) {
+            $productos = $this->inventario->listar($categoria);
+        }
+        else{
+            $productos = $this->inventario->listar();   
+        }
 
         // foreach($productos as $producto){
 

@@ -3,6 +3,12 @@
 
     <div class="card mb-4">
         <div class="card-body">
+          <div class="pb-1">
+            <label for="listadoCategorias">Categorías: &nbsp;</label>
+            <select name="listadoCategorias" id="listadoCategorias" class="js-example-basic-single w-25">
+                <option value="0">TODAS</option>
+            </select>
+          </div>
           <table class="table" id="datatable">
             <thead class="thead-dark">
               <tr>

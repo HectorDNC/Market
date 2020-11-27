@@ -58,13 +58,10 @@ class ProductoController extends Controller{
             return false;
             }
             if ($categoria!=0) {
-                
                 $productos = $this->producto->listar($categoria);
-               
             }
             else{
                 $productos = $this->producto->listar();
-                
             }
 
             foreach($productos as $producto){

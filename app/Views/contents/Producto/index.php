@@ -10,7 +10,7 @@
         <div class="card-body">
           <div class="pb-1">
             <label for="listadoCategorias">Categorías: &nbsp;</label>
-            <select name="listadoCategorias" id="listadoCategorias">
+            <select name="listadoCategorias" id="listadoCategorias" class="js-example-basic-single w-25">
                 <option value="0">TODAS</option>
             </select>
           </div>
