@@ -71,13 +71,14 @@ class ProductoController extends Controller{
             else{
                 $producto->button .= "<a href='". $this->encriptar($producto->id) ."' class='estatusAnulado btn btn-outline-info'><i class='fas fa-trash' title='ACTIVAR'></i></a>";
             }
-
+            $categorias = $this->producto->getAll("categorias");
         }
 
         http_response_code(200);
 
         echo json_encode([
-        'data' => $productos
+        'data' => $productos,
+        'categorias' => $categorias
         ]);
 
     }

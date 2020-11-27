@@ -8,6 +8,13 @@
           </button>
         </div>
         <div class="card-body">
+          <div class="pb-1">
+            <label for="listadoCategorias">Categorías: </label>
+            <select name="listadoCategorias" id="listadoCategorias">
+                <option value="0">TODAS</option>
+            </select>
+          </div>
+          
           <table class="table" id="datatable">
             <thead class="thead-dark">
               <tr>
