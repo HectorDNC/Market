@@ -26,7 +26,7 @@
     <!-- DATATABLE -->
     <link href="<?= ROOT; ?>vendor/datatables/datatables/media/css/dataTables.bootstrap4.css" rel="stylesheet" type="text/css">
 
-    <title><?=TITTLE?></title>
+    <title><?=TITLE?></title>
 </head>
 <body class="bg-light">
 <nav class="navbar navbar-expand navbar-dark bg-primary">

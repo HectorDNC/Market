@@ -2,11 +2,11 @@
     <h2 class="mb-4">Gestion del Dolar del dia</h2>
 
     <div class="card mb-4">
-        <div class="card-header bg-white">
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalRegistroDolar">
+        <!-- <div class="card-header bg-white">
+          <button type="button" class="btn btn-primary" disabled data-toggle="modal" data-target="#modalRegistroDolar">
             <i class="fas fa-plus-square"></i> Agregar Dolar
           </button>
-        </div>
+        </div> -->
         <div class="card-body">
           <table class="table" id="datatable">
             <thead class="thead-dark">

@@ -6,7 +6,7 @@ define('URI', $_SERVER['REQUEST_URI']);
 define('VIEWS', 'app/Views/');
 define('ROOT', '/Marcket/');
 define('ROOTC', 'localhost/Marcket/');
-define('TITTLE', 'MARCKET');
+define('TITLE', 'MARCKET');
 
 /**
  * Encriptado
