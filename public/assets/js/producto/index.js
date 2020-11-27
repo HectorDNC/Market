@@ -8,7 +8,8 @@ $(document).ready(function () {
         searching: true,
         ajax: {
             method: 'POST',
-            url: GLOBAL.URL+"producto/listar"
+            url: GLOBAL.URL+"producto/listar",
+            data: {'categoria':0}
         },
         columns: [
             { data: 'codigo' },
@@ -47,41 +48,40 @@ $(document).ready(function () {
     });
 
 
-    // table.ajax.data = {'categoria': 1};
+
     /**
      * FUNCIONES
      */
     //Obtener Categorías
-    // $.ajax({
-    //     type: "POST",
-    //     url: GLOBAL.URL+"categoria/listar",
-    //     success: function (response) {
-    //         let json = JSON.parse(response);
+    $.ajax({
+        type: "POST",
+        url: GLOBAL.URL+"categoria/listar",
+        success: function (response) {
+            let json = JSON.parse(response);
 
 
-    //         let select = document.querySelector('#listadoCategorias');
-    //         let categorias = json.data;
+            let select = document.querySelector('#listadoCategorias');
+            let categorias = json.data;
 
-    //         categorias.forEach( (element) => {
+            categorias.forEach( (element) => {
                 
-    //             let option = document.createElement('option');
-    //             option.value = element.id;
-    //             option.innerHTML = element.nombre;
+                let option = document.createElement('option');
+                option.value = element.id;
+                option.innerHTML = element.nombre;
     
-    //             select.append(option);
-    //         });
+                select.append(option);
+            });
 
             
-    //     },
-    //     error: function (response) {
-    //         console.log(response);
-    //     }
-    // });
+        },
+        error: function (response) {
+            console.log(response);
+        }
+    });
+    
+    
+    
 
-    // $("#listadoCategorias").change(function(){
-    //     // table.ajax.data = {'categoria': $(this).val()};
-    //     table.ajax.reload();
-    // });
     const listarUnidades = (idFormulario) => {
         
         $.ajax({
@@ -151,29 +151,29 @@ $(document).ready(function () {
     
                 if(modal == '#modalActualizarProducto'){
 
-                    // $(formulario).find('input#id').val(json.data.id);
-                    // $(formulario).find('input#codigo').val(json.data.codigo);
-                    // $(formulario).find('input#nombre').val(json.data.nombre);
-                    // $(formulario).find('input#precio').val(json.data.precio);
-                    // $(formulario).find('select#categoria').val(json.data.categoria_id);
-                    // $(formulario).find('select#unidad').val(json.data.unidad_id);
-                    // $(formulario).find('input#porcentaje').val(json.data.porcentaje);
-                    // $(formulario).find('textarea#descripcion').val(json.data.descripcion);
-                    // $(formulario).find('input#stock_min').val(json.data.stock_min);
-                    // $(formulario).find('input#stock_max').val(json.data.stock_max);
-                    // $(formulario).find('input#stock').val(json.data.stock);
+                    $(formulario).find('input#id').val(json.data.id);
+                    $(formulario).find('input#codigo').val(json.data.codigo);
+                    $(formulario).find('input#nombre').val(json.data.nombre);
+                    $(formulario).find('input#precio').val(json.data.precio);
+                    $(formulario).find('select#categoria').val(json.data.categoria_id);
+                    $(formulario).find('select#unidad').val(json.data.unidad_id);
+                    $(formulario).find('input#porcentaje').val(json.data.porcentaje);
+                    $(formulario).find('textarea#descripcion').val(json.data.descripcion);
+                    $(formulario).find('input#stock_min').val(json.data.stock_min);
+                    $(formulario).find('input#stock_max').val(json.data.stock_max);
+                    $(formulario).find('input#stock').val(json.data.stock);
                 }else{
                     
-                    // $(formulario).find('input#id').val(json.data.id);
-                    // $(formulario).find('input#codigo').val(json.data.codigo);
-                    // $(formulario).find('input#nombre').val(json.data.nombre);
-                    // $(formulario).find('input#categoria').val(json.data.categoria);
-                    // $(formulario).find('input#unidad').val(json.data.unidad);
-                    // $(formulario).find('input#porcentaje').val(json.data.porcentaje);
-                    // $(formulario).find('textarea#descripcion').val(json.data.descripcion);
-                    // $(formulario).find('input#stock_min').val(json.data.stock_min);
-                    // $(formulario).find('input#stock_max').val(json.data.stock_max);
-                    // $(formulario).find('input#stock').val(json.data.stock);
+                    $(formulario).find('input#id').val(json.data.id);
+                    $(formulario).find('input#codigo').val(json.data.codigo);
+                    $(formulario).find('input#nombre').val(json.data.nombre);
+                    $(formulario).find('input#categoria').val(json.data.categoria);
+                    $(formulario).find('input#unidad').val(json.data.unidad);
+                    $(formulario).find('input#porcentaje').val(json.data.porcentaje);
+                    $(formulario).find('textarea#descripcion').val(json.data.descripcion);
+                    $(formulario).find('input#stock_min').val(json.data.stock_min);
+                    $(formulario).find('input#stock_max').val(json.data.stock_max);
+                    $(formulario).find('input#stock').val(json.data.stock);
                 }
     
                 $(modal).modal('show');
@@ -237,7 +237,6 @@ $(document).ready(function () {
             contentType: false,
             processData: false,
             success: function (response) {
-                debugger
         
                 let json = JSON.parse(response);
                 if( json.tipo == 'success'){
@@ -368,7 +367,15 @@ $(document).ready(function () {
         mostrarProducto($(this).attr('href'),'form#formularioMostrarProducto','#modalMostrarProducto');
     });
     
-
+    $("#listadoCategorias").change(function(){
+        
+            table.ajax.url(GLOBAL.URL+"producto/listar/"+$(this).val());
+            console.log(table.ajax.url());
+            
+            table.ajax.reload();
+   
+       
+    });
 
 
     // Editar Producto

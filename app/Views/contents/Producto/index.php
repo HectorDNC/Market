@@ -9,12 +9,11 @@
         </div>
         <div class="card-body">
           <div class="pb-1">
-            <label for="listadoCategorias">Categorías: </label>
+            <label for="listadoCategorias">Categorías: &nbsp;</label>
             <select name="listadoCategorias" id="listadoCategorias">
                 <option value="0">TODAS</option>
             </select>
           </div>
-          
           <table class="table" id="datatable">
             <thead class="thead-dark">
               <tr>
@@ -65,7 +64,7 @@
 
                         <div class="form-group col-md-6">
                             <i class="fas fa-tag"></i> <label for="categoria">Categoria</label>
-                            <select name="categoria" id="categoria" class="form-control  " required>
+                            <select name="categoria" id="categoria" class="form-control" required>
                                 <option value="" selected>-</option>
                             </select>
                         </div>
@@ -116,7 +115,7 @@
                         <div class="form-group col-md-6">
                             <i class="fas fa-angle-double-down"></i> <label for="stock_min">Stock Minimo</label>
                             <input class="form-control" type="number" name="stock_min" id="stock_min" placeholder="Ej. 5" required >
-                        </dixv>
+                        </div>
 
                         <div class="form-group col-md-6">
                             <i class="fas fa-angle-double-up"></i> <label for="stock_max">Stock Maximo</label>

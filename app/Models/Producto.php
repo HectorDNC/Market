@@ -136,10 +136,17 @@ class Producto extends Model {
    * Metodos
    */
 
-  public function listar(){
+  public function listar($categoria_id = NULL){
     try{
-      $sql = 
+      if (isset($categoria_id)) {
+        $sql = 
+     "SELECT * FROM v_inventario1 WHERE id IN (SELECT id FROM productos WHERE categoria_id = $categoria_id) ORDER BY id DESC";
+      }
+      else{
+        $sql = 
      "SELECT * FROM v_inventario1 ORDER BY id DESC";
+      }
+      
 
         $consulta = parent::connect()->prepare($sql);
         $consulta->execute();

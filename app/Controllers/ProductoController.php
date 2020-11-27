@@ -49,7 +49,7 @@ class ProductoController extends Controller{
         exit();
     }
 
-    public function listar(){
+    public function listar($categoria){
 
         $method = $_SERVER['REQUEST_METHOD'];
 
@@ -57,22 +57,30 @@ class ProductoController extends Controller{
             http_response_code(404);
             return false;
             }
-
-            $productos = $this->producto->listar();
+            if ($categoria!=0) {
+                
+                $productos = $this->producto->listar($categoria);
+               
+            }
+            else{
+                $productos = $this->producto->listar();
+                
+            }
 
             foreach($productos as $producto){
 
-            $producto->button = 
-            "<a href=".ROOT."producto/mostrar/". $this->encriptar($producto->id) ."' class='mostrar btn btn-info'><i class='fas fa-search'></i></a>".
-            "<a href=".ROOT."producto/mostrar/". $this->encriptar($producto->id) ."' class='editar btn btn-warning m-1'><i class='fas fa-pencil-alt'></i></a>";
-            if($producto->estatus == "ACTIVO"){
-                $producto->button .= "<a href='". $this->encriptar($producto->id) ."' class='eliminar btn btn-danger'><i class='fas fa-trash-alt'></i></a>";
-            }
-            else{
-                $producto->button .= "<a href='". $this->encriptar($producto->id) ."' class='estatusAnulado btn btn-outline-info'><i class='fas fa-trash' title='ACTIVAR'></i></a>";
+                $producto->button = 
+                "<a href=".ROOT."producto/mostrar/". $this->encriptar($producto->id) ."' class='mostrar btn btn-info'><i class='fas fa-search'></i></a>".
+                "<a href=".ROOT."producto/mostrar/". $this->encriptar($producto->id) ."' class='editar btn btn-warning m-1'><i class='fas fa-pencil-alt'></i></a>";
+                if($producto->estatus == "ACTIVO"){
+                    $producto->button .= "<a href='". $this->encriptar($producto->id) ."' class='eliminar btn btn-danger'><i class='fas fa-trash-alt'></i></a>";
+                }
+                else{
+                    $producto->button .= "<a href='". $this->encriptar($producto->id) ."' class='estatusAnulado btn btn-outline-info'><i class='fas fa-trash' title='ACTIVAR'></i></a>";
+                }
+                
             }
             $categorias = $this->producto->getAll("categorias");
-        }
 
         http_response_code(200);
 
@@ -235,8 +243,8 @@ class ProductoController extends Controller{
         } else {
 
             //Actualizacion de precio
-            $consulta3 = $this->producto->query("SELECT e.precio FROM 
-                entradas e
+            $consulta3 = $this->producto->query("SELECT e.costo FROM 
+                detalle_compra e
                     JOIN
                 productos p
                     ON e.producto_id = p.id
