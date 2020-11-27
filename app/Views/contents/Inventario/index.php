@@ -9,8 +9,8 @@
                 <th>Codigo</th>
                 <th>Producto</th>
                 <th>Categoria</th>
-                <th>Precio Venta</th>
-                <th>Precio Dolar</th>
+                <th>Precio $</th>
+                <th>Precio BSS</th>
                 <th>Stock</th>
                 <th>Stock Min</th>
                 <th>Stock Max</th>

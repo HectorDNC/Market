@@ -38,7 +38,7 @@ $(document).ready(function () {
         
         $.ajax({
             type: "POST",
-            url: "/WorldComputer/venta/productosPorCategoria",
+            url: GLOBAL.URL+"venta/productosPorCategoria",
             data: {'categoria': this.value},
             success: function (response) {
                 console.log(response);

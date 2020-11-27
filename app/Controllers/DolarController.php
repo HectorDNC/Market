@@ -47,8 +47,8 @@ class DolarController extends Controller{
             foreach($dolares as $dolar){
 
             $dolar->button = 
-            "<a href='/WorldComputer/dolar/mostrar/". $this->encriptar($dolar->id) ."' class='mostrar btn btn-info'><i class='fas fa-search'></i></a>".
-            "<a href='/WorldComputer/dolar/mostrar/". $this->encriptar($dolar->id) ."' class='editar btn btn-warning m-1'><i class='fas fa-pencil-alt'></i></a>".
+            "<a href=".ROOT."dolar/mostrar/". $this->encriptar($dolar->id) ."' class='mostrar btn btn-info'><i class='fas fa-search'></i></a>".
+            "<a href=".ROOT."dolar/mostrar/". $this->encriptar($dolar->id) ."' class='editar btn btn-warning m-1'><i class='fas fa-pencil-alt'></i></a>".
             "<a href='". $this->encriptar($dolar->id) ."' class='eliminar btn btn-danger'><i class='fas fa-trash-alt'></i></a>";
 
         }
@@ -251,6 +251,17 @@ class DolarController extends Controller{
   
       echo json_encode([
         'data' => $dolar
+      ]);
+  
+      exit();
+      
+    }
+    public function obtenerDolar(){
+
+      $dolar = $this->dolar->getAll('dolar');
+  
+      echo json_encode([
+        'data' => $dolar[0]
       ]);
   
       exit();

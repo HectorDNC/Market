@@ -10,7 +10,7 @@ let table = $('#datatable').DataTable({
     searching: true,
     ajax: {
         method: 'POST',
-        url: '/WorldComputer/dolar/listar'
+        url: GLOBAL.URL+"dolar/listar"
     },
     columns: [
         { data: 'nombre' },
@@ -80,7 +80,7 @@ const registrarDolar = (datos) => {
 
     $.ajax({
         type: "POST",
-        url: "/WorldComputer/dolar/guardar",
+        url: GLOBAL.URL+"dolar/guardar",
         data: datos,
         cache: false,
         contentType: false,
@@ -117,7 +117,7 @@ const registrarDolar = (datos) => {
 
 
 
-    // fetch('/WorldComputer/categoria/guardar', { method: 'POST', body: datos })
+    // fetch(GLOBAL.URL+'categoria/guardar', { method: 'POST', body: datos })
     // .then((response) => {
     //     console.log(response);
     //     return response.json();
@@ -140,7 +140,7 @@ const registrarDolar = (datos) => {
 const actualizarDolar = (datos) => {
     $.ajax({
         type: "POST",
-        url: "/WorldComputer/dolar/actualizar",
+        url: GLOBAL.URL+"dolar/actualizar",
         data: datos,
         cache: false,
         contentType: false,
@@ -176,7 +176,7 @@ const actualizarDolar = (datos) => {
 const eliminarDolar = (id) => {
     $.ajax({
         type: "DELETE",
-        url: "/WorldComputer/dolar/eliminarTotal/" + id,
+        url: GLOBAL.URL+"dolar/eliminarTotal/" + id,
         success: function (response) {
             const json = JSON.parse(response);
             if(json.tipo == 'success'){

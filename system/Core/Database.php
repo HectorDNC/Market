@@ -7,9 +7,9 @@ use PDO;
 class Database {
     private $driver = 'mysql';
     private $host = 'localhost';
-    private $dbname = 'world_computer';
+    private $dbname = 'marcket';
     private $user = 'root';
-    private $password = '';
+    private $password = 'informatica';
 
     public function __construct(){
         $this->connect();

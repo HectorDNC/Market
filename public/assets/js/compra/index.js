@@ -8,7 +8,7 @@ $(document).ready(function () {
         searching: true,
         ajax: {
             method: 'POST',
-            url: '/WorldComputer/compra/listar'
+            url: GLOBAL.URL+"compra/listar"
         },
         columns: [
             { data: 'codigo' },
@@ -101,7 +101,7 @@ $(document).ready(function () {
     const cambiarEstatus = (id) => {
         $.ajax({
             type: "POST",
-            url: "/WorldComputer/compra/cambiarEstatus/" + id,
+            url: GLOBAL.URL+"compra/cambiarEstatus/" + id,
             success: function (response) {
 
                 console.log(response);

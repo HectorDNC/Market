@@ -10,7 +10,7 @@ let table = $('#datatable').DataTable({
     searching: true,
     ajax: {
         method: 'POST',
-        url: '/WorldComputer/cliente/listar'
+        url: GLOBAL.URL+"cliente/listar"
     },
     columns: [
         { data: 'documento' },
@@ -95,7 +95,7 @@ const registrarCliente = (datos) => {
 
     $.ajax({
         type: "POST",
-        url: "/WorldComputer/cliente/guardar",
+        url: GLOBAL.URL+"cliente/guardar",
         data: datos,
         cache: false,
         contentType: false,
@@ -157,7 +157,7 @@ const registrarCliente = (datos) => {
 const actualizarCliente = (datos) => {
     $.ajax({
         type: "POST",
-        url: "/WorldComputer/cliente/actualizar",
+        url: GLOBAL.URL+"cliente/actualizar",
         data: datos,
         cache: false,
         contentType: false,
@@ -193,7 +193,7 @@ const actualizarCliente = (datos) => {
 const eliminarCliente = (id) => {
     $.ajax({
         type: "DELETE",
-        url: "/WorldComputer/cliente/eliminar/" + id,
+        url: GLOBAL.URL+"cliente/eliminar/" + id,
         success: function (response) {
             const json = JSON.parse(response);
             if(json.tipo == 'success'){

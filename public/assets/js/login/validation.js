@@ -7,7 +7,7 @@ $(document).ready(function() {
 
         $.ajax({
             type: "POST",
-            url: "/WorldComputer/login/login",
+            url: GLOBAL.URL+"login/login",
             cache: false,
             data: data,
             contentType: false,

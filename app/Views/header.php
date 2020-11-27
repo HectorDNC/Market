@@ -26,7 +26,7 @@
     <!-- DATATABLE -->
     <link href="<?= ROOT; ?>vendor/datatables/datatables/media/css/dataTables.bootstrap4.css" rel="stylesheet" type="text/css">
 
-    <title>WORLD & COMPUTER</title>
+    <title><?=TITTLE?></title>
 </head>
 <body class="bg-light">
 <nav class="navbar navbar-expand navbar-dark bg-primary">
@@ -62,7 +62,7 @@
     <ul class="list-unstyled">
         <li><a href="<?= ROOT;?>Usuario"><i class="fa fa-fw fa-user"></i> Usuarios</a></li>
         <li><a href="<?= ROOT;?>Dolar"><i class="fa fa-fw fa-user"></i> Dolar</a></li>
-        <li><a href="<?= ROOT;?>Empleado"><i class="fa fa-fw fa-wrench"></i> Empleados</a></li>
+        <!-- <li><a href="<?= ROOT;?>Empleado"><i class="fa fa-fw fa-wrench"></i> Empleados</a></li> -->
         <li><a href="<?= ROOT;?>Cliente"><i class="fa fa-fw fa-users"></i> Clientes</a></li>
         <li><a href="<?= ROOT;?>Proveedor"><i class="fa fa-fw fa-truck"></i> Proveedores</a></li>
         <li>
@@ -77,10 +77,6 @@
 
             </ul>
         </li>
-        <li><a href="<?= ROOT;?>Compra"><i class="fa fa-fw fa-shopping-cart"></i> Compras</a></li>
-        <li><a href="<?= ROOT;?>Venta"><i class="fa fa-fw fa-dollar-sign"></i> Ventas</a></li>
-        <!-- <li><a href="<?= ROOT;?>Venta/Crear"><i class="fa fa-fw fa-shopping-basket"></i> Caja</a></li> -->
-        <li><a href="<?= ROOT;?>Reporte"><i class="fa fa-fw fa-calendar"></i> Reportes</a></li>
         <li>
             <a href="#sm_expand_1" data-toggle="collapse">
                 <i class="fa fa-fw fa-sitemap"></i> Gestion de Productos
@@ -90,13 +86,18 @@
                 <li><a href="<?= ROOT;?>Categoria"><i class="fa fa-fw fa-tag"></i> Categoría</a></li>
             </ul>
         </li>
-        <li>
+        <li><a href="<?= ROOT;?>Compra"><i class="fa fa-fw fa-shopping-cart"></i> Compras</a></li>
+        <li><a href="<?= ROOT;?>Venta"><i class="fa fa-fw fa-dollar-sign"></i> Ventas</a></li>
+        <!-- <li><a href="<?= ROOT;?>Venta/Crear"><i class="fa fa-fw fa-shopping-basket"></i> Caja</a></li> -->
+        <li><a href="<?= ROOT;?>Reporte"><i class="fa fa-fw fa-calendar"></i> Reportes</a></li>
+        
+        <!-- <li>
             <a href="#sm_expand_2" data-toggle="collapse">
                 <i class="fa fa-fw fa-globe"></i> Permisos
             </a>
             <ul id="sm_expand_2" class="list-unstyled collapse">
                 <li><a href="<?= ROOT;?>Rol"><i class="fa fa-fw fa-address-card"></i> Roles</a></li>
             </ul>
-        </li>
+        </li> -->
     </ul>
 </div>

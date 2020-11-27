@@ -17,6 +17,20 @@ $(document).ready(function () {
 
         return proveedor;
     }
+// Obtener precio del Dolar
+    $.ajax({
+        type: "POST",
+        url: GLOBAL.URL+"dolar/obtenerDolar",
+        success: function (response) {
+            console.log(response);
+            json = JSON.parse(response);
+            dolar = json.data.precio;
+            console.log(json);
+        },
+        error: function (response) {
+            console.log(response);
+        }
+    });
     /**
      * FIN
      */
@@ -35,10 +49,10 @@ $(document).ready(function () {
     });
     $('#listadoCategorias').change(function (e) { 
         // e.preventDefault();
-        
+    
         $.ajax({
             type: "POST",
-            url: "/WorldComputer/compra/productosPorCategoria",
+            url: GLOBAL.URL+"compra/productosPorCategoria",
             data: {'categoria': this.value},
             success: function (response) {
                 console.log(response);
@@ -93,10 +107,14 @@ $(document).ready(function () {
                     <input type="text" class="form-control-plaintext" value="${producto.stock}" disabled>
                 </td>
                 <td>
-                    <input type="number" name="precios[]" class="form-control precio" value="0" min="1" required>
+                    <input type="text" name="precios[]" pattern="[0.0-9]{0,3}[1-9]{1}[0-9]{0,16}.{0,1}[0-9]{0,2}" class="form-control precio" required>
                 </td>
+                
                 <td>
                     <input type="number" class="form-control-plaintext total" value="0" disabled>
+                </td>
+                <td>
+                    <input type="number" class="form-control-plaintext totalBss" value="0" disabled>
                 </td>
                 <td>
                     <button class="btn btn-danger eliminar"><i class="fas fa-trash-alt text-white"></i></button>
@@ -116,8 +134,9 @@ $(document).ready(function () {
 
     let row = $(this).closest('tr');
     let total = row.find('.cantidad').val() * row.find('.precio').val();
-
+    let totalBss = total * dolar;
     row.find('.total').val(total);
+    row.find('.totalBss').val(totalBss);
 
     let elementos = document.querySelectorAll('.total');
 

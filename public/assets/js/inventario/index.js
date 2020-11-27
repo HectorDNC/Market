@@ -8,7 +8,7 @@ $(document).ready(function () {
         searching: true,
         ajax: {
             method: 'POST',
-            url: '/WorldComputer/inventario/listar'
+            url: GLOBAL.URL+"inventario/listar"
         },
         columns: [
             { data: 'codigo' },
@@ -96,7 +96,7 @@ $(document).ready(function () {
     const eliminarProducto = (id) => {
         $.ajax({
             type: "DELETE",
-            url: "/WorldComputer/producto/eliminar/" + id,
+            url: GLOBAL.URL+"producto/eliminar/" + id,
             success: function (response) {
                 const json = JSON.parse(response);
                 if(json.tipo == 'success'){
@@ -118,7 +118,7 @@ $(document).ready(function () {
     const habilitarProducto = (id) => {
         $.ajax({
             type: "HABILITAR",
-            url: "/WorldComputer/producto/habilitar/" + id,
+            url: GLOBAL.URL+"producto/habilitar/" + id,
             success: function (response) {
                 const json = JSON.parse(response);
                 if(json.tipo == 'success'){

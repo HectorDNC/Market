@@ -5,7 +5,7 @@ $(document).ready(function() {
 
         $.ajax({
             type: "POST",
-            url: "/WorldComputer/login/logout",
+            url: GLOBAL.URL+"login/logout",
             cache: false,
             contentType: false,
             processData: false,

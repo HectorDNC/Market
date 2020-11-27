@@ -41,8 +41,8 @@ class InventarioController extends Controller{
         //     }
 
         //     $producto->button = 
-        //     "<a href='/WorldComputer/Producto/mostrar/". $this->encriptar($producto->id) ."' class='mostrar btn btn-info'><i class='fas fa-search'></i></a>".
-        //     "<a href='/WorldComputer/Inventario/productoPDF/". $this->encriptar($producto->id) ."' class='pdf btn btn-danger m-1'><i class='fas fa-file-pdf'></i></a>";
+        //     "<a href=".ROOT."Producto/mostrar/". $this->encriptar($producto->id) ."' class='mostrar btn btn-info'><i class='fas fa-search'></i></a>".
+        //     "<a href=".ROOT."Inventario/productoPDF/". $this->encriptar($producto->id) ."' class='pdf btn btn-danger m-1'><i class='fas fa-file-pdf'></i></a>";
         // }
 
         http_response_code(200);

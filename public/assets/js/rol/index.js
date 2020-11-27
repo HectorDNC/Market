@@ -10,7 +10,7 @@ $(document).ready(function () {
         searching: true,
         ajax: {
             method: 'POST',
-            url: '/FrameworkJD/rol/listar'
+            url: GLOBAL.URL+"rol/listar"
         },
         columns: [
             { data: 'numero' },
@@ -133,7 +133,7 @@ $(document).ready(function () {
     
         $.ajax({
             type: "POST",
-            url: "/FrameworkJD/cliente/guardar",
+            url: GLOBAL.URL+"cliente/guardar",
             data: datos,
             cache: false,
             contentType: false,
@@ -193,7 +193,7 @@ $(document).ready(function () {
     const actualizarRol = (datos) => {
         $.ajax({
             type: "POST",
-            url: "/FrameworkJD/cliente/actualizar",
+            url: GLOBAL.URL+"cliente/actualizar",
             data: datos,
             cache: false,
             contentType: false,
@@ -229,7 +229,7 @@ $(document).ready(function () {
     const eliminarRol = (id) => {
         $.ajax({
             type: "DELETE",
-            url: "/FrameworkJD/cliente/eliminar/" + id,
+            url: GLOBAL.URL+"cliente/eliminar/" + id,
             success: function (response) {
                 const json = JSON.parse(response);
                 if(json.tipo == 'success'){

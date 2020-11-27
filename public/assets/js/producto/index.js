@@ -8,7 +8,7 @@ $(document).ready(function () {
         searching: true,
         ajax: {
             method: 'POST',
-            url: '/WorldComputer/producto/listar'
+            url: GLOBAL.URL+"producto/listar"
         },
         columns: [
             { data: 'codigo' },
@@ -58,7 +58,7 @@ $(document).ready(function () {
         
         $.ajax({
             type: "POST",
-            url: "/WorldComputer/unidad/listar",
+            url: GLOBAL.URL+"unidad/listar",
             success: function (response) {
                 json = JSON.parse(response);
 
@@ -86,7 +86,7 @@ $(document).ready(function () {
 
         $.ajax({
             type: "POST",
-            url: "/WorldComputer/categoria/listar",
+            url: GLOBAL.URL+"categoria/listar",
             success: function (response) {
                 let json = JSON.parse(response);
 
@@ -162,7 +162,7 @@ $(document).ready(function () {
         
         $.ajax({
             type: "POST",
-            url: "/WorldComputer/producto/guardar",
+            url: GLOBAL.URL+"producto/guardar",
             data: datos,
             cache: false,
             contentType: false,
@@ -203,7 +203,7 @@ $(document).ready(function () {
     const actualizarProducto = (datos) => {
         $.ajax({
             type: "POST",
-            url: "/WorldComputer/producto/actualizar",
+            url: GLOBAL.URL+"producto/actualizar",
             data: datos,
             cache: false,
             contentType: false,
@@ -240,7 +240,7 @@ $(document).ready(function () {
     const eliminarProducto = (id) => {
         $.ajax({
             type: "DELETE",
-            url: "/WorldComputer/producto/eliminar/" + id,
+            url: GLOBAL.URL+"producto/eliminar/" + id,
             success: function (response) {
                 const json = JSON.parse(response);
                 if(json.tipo == 'success'){
@@ -262,7 +262,7 @@ $(document).ready(function () {
     const habilitarProducto = (id) => {
         $.ajax({
             type: "HABILITAR",
-            url: "/WorldComputer/producto/habilitar/" + id,
+            url: GLOBAL.URL+"producto/habilitar/" + id,
             success: function (response) {
                 const json = JSON.parse(response);
                 if(json.tipo == 'success'){
@@ -285,7 +285,7 @@ $(document).ready(function () {
     const generarCodigo = ( letra, longitud, numeroFinal, elemento) => {  
         $.ajax({
             type: "POST",
-            url: "/WorldComputer/api/generarCodigo",
+            url: GLOBAL.URL+"api/generarCodigo",
             data: { letra: letra, longitud: longitud, numero: numeroFinal},
             success: function (response) {
                 let json = JSON.parse(response);
