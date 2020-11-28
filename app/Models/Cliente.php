@@ -9,7 +9,7 @@ class Cliente extends Persona{
 
     public function listar(){
         try{
-            $consulta = parent::connect()->prepare("SELECT id, documento, CONCAT(nombre, ' ', apellido) AS nombre, telefono, estatus, created_at FROM clientes WHERE estatus='ACTIVO' ORDER BY created_at DESC");
+            $consulta = parent::connect()->prepare("SELECT id, documento, nombre, telefono, estatus, created_at FROM clientes WHERE estatus='ACTIVO' ORDER BY created_at DESC");
             $consulta->execute();
             
             return $consulta->fetchAll(PDO::FETCH_OBJ);
@@ -21,24 +21,18 @@ class Cliente extends Persona{
     
     public function registrar(Cliente $c){
         try{
-            $consulta = parent::connect()->prepare("INSERT INTO clientes(documento, nombre, apellido, direccion, telefono, email, estatus) "
-                . "VALUES (:documento, :nombre, :apellido, :direccion, :telefono, :email, :estatus)");
+            $consulta = parent::connect()->prepare("INSERT INTO clientes(documento, nombre, direccion, estatus) "
+                . "VALUES (:documento, :nombre, :direccion, :estatus)");
         
             //$id = $u->getId();
             $documento= $c->getTipoDocumento()."-".$c->getDocumento();
             $nombre = $c->getNombre();
-            $apellido = $c->getApellido();
             $direccion = $c->getDireccion();
-            $telefono = $c->getTelefono();
-            $email = $c->getEmail();
             $estatus = $c->getEstatus();
             
             $consulta->bindParam(":documento", $documento);
             $consulta->bindParam(":nombre", $nombre);
-            $consulta->bindParam(":apellido", $apellido);
             $consulta->bindParam(":direccion", $direccion);
-            $consulta->bindParam(":telefono", $telefono);
-            $consulta->bindParam(":email", $email);
             $consulta->bindParam(":estatus", $estatus);
 
             $consulta->execute();

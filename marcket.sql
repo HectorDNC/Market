@@ -75,7 +75,7 @@ CREATE TABLE `clientes` (
   `documento` varchar(15) NOT NULL,
   `nombre` varchar(45) DEFAULT NULL,
   `apellido` varchar(45) DEFAULT NULL,
-  `direccion` varchar(45) DEFAULT NULL,
+  `direccion` varchar(150) DEFAULT NULL,
   `telefono` varchar(45) DEFAULT NULL,
   `email` varchar(100) NOT NULL,
   `estatus` varchar(15) DEFAULT 'ACTIVO',
@@ -340,7 +340,7 @@ CREATE TABLE `empleados` (
   `documento` varchar(15) NOT NULL,
   `nombre` varchar(45) DEFAULT NULL,
   `apellido` varchar(45) DEFAULT NULL,
-  `direccion` varchar(45) DEFAULT NULL,
+  `direccion` varchar(150) DEFAULT NULL,
   `telefono` varchar(45) DEFAULT NULL,
   `email` varchar(45) DEFAULT NULL,
   `cargo` varchar(25) DEFAULT NULL,
@@ -593,7 +593,7 @@ CREATE TABLE `proveedores` (
   `id` int(11) NOT NULL,
   `documento` varchar(15) NOT NULL,
   `razon_social` varchar(45) NOT NULL,
-  `direccion` varchar(45) DEFAULT NULL,
+  `direccion` varchar(150) DEFAULT NULL,
   `telefono` varchar(45) DEFAULT NULL,
   `email` varchar(45) DEFAULT NULL,
   `estatus` varchar(15) DEFAULT 'ACTIVO',
@@ -631,8 +631,8 @@ CREATE TABLE `roles` (
 --
 
 INSERT INTO `roles` (`id`, `nombre`, `descripcion`, `estatus`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'todos los permisos del sistema', 'ACTIVO', '2020-11-11 02:03:32', '2020-11-11 02:03:32'),
-(2, 'user', 'Permisos esenciales para inventario, compra y', 'ACTIVO', '2020-11-11 02:03:32', '2020-11-11 02:03:32');
+(1, 'Administrador', 'Todos los permisos del sistema', 'ACTIVO', '2020-11-11 02:03:32', '2020-11-11 02:03:32'),
+(2, 'Cajero', 'Permisos esenciales para inventario y venta', 'ACTIVO', '2020-11-11 02:03:32', '2020-11-11 02:03:32');
 
 -- --------------------------------------------------------
 

@@ -14,8 +14,7 @@ let table = $('#datatable').DataTable({
     },
     columns: [
         { data: 'documento' },
-        { data: "nombre" },
-        { data: 'telefono' },
+        { data: 'nombre' },
         { data: 'button' }
     ],
 
@@ -73,12 +72,8 @@ const mostrarCliente = (href, formulario, modal) => {
 
             }
 
-
             $(formulario).find('input#id').val(json.data.id);
             $(formulario).find('input#nombre').val(json.data.nombre);
-            $(formulario).find('input#apellido').val(json.data.apellido);
-            $(formulario).find('input#telefono').val(json.data.telefono);
-            $(formulario).find('input#correo').val(json.data.email);
             $(formulario).find('input#direccion').val(json.data.direccion);
 
             $(modal).modal('show');
@@ -116,7 +111,6 @@ const registrarCliente = (datos) => {
      
                 $('#modalRegistroCliente').modal('hide');
                 $('#formularioRegistrarCliente').trigger('reset');
-                location.reload();
             }else{
                 Swal.fire(
                     json.titulo,

@@ -65,10 +65,7 @@ class ClienteController extends Controller{
     $cliente->setTipoDocumento($_POST['inicial_documento']);
     $cliente->setDocumento($_POST['documento']);
     $cliente->setNombre(strtoupper($this->limpiaCadena($_POST['nombre'])));
-    $cliente->setApellido(strtoupper($this->limpiaCadena($_POST['apellido'])));
     $cliente->setDireccion(strtoupper($this->limpiaCadena($_POST['direccion'])));
-    $cliente->setTelefono(strtoupper($this->limpiaCadena($_POST['telefono'])));
-    $cliente->setEmail(strtoupper($this->limpiaCadena($_POST['correo'])));
     $cliente->setEstatus("ACTIVO");
 
 
@@ -111,10 +108,7 @@ class ClienteController extends Controller{
     $cliente->setTipoDocumento($_POST['inicial_documento']);
     $cliente->setDocumento($_POST['documento']);
     $cliente->setNombre(strtoupper($this->limpiaCadena($_POST['nombre'])));
-    $cliente->setApellido(strtoupper($this->limpiaCadena($_POST['apellido'])));
     $cliente->setDireccion(strtoupper($this->limpiaCadena($_POST['direccion'])));
-    $cliente->setTelefono(strtoupper($this->limpiaCadena($_POST['telefono'])));
-    $cliente->setEmail(strtoupper($this->limpiaCadena($_POST['correo'])));
     $cliente->setEstatus("ACTIVO");
 
     if($this->cliente->actualizar($cliente)){

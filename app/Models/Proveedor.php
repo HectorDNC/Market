@@ -22,22 +22,20 @@ class Proveedor extends Persona{
 
     public function registrar(Proveedor $proveedor){
         try{
-            $consulta = parent::connect()->prepare("INSERT INTO proveedores(documento, razon_social, direccion, telefono, email, estatus) "
-                . "VALUES (:documento, :razon_social, :direccion, :telefono, :email, :estatus)");
+            $consulta = parent::connect()->prepare("INSERT INTO proveedores(documento, razon_social, direccion, telefono, estatus) "
+                . "VALUES (:documento, :razon_social, :direccion, :telefono, :estatus)");
         
             //$id = $u->getId();
             $documento= $proveedor->getTipoDocumento()."-".$proveedor->getDocumento();
             $razon_social = $proveedor->getNombre();
             $direccion = $proveedor->getDireccion();
             $telefono = $proveedor->getTelefono();
-            $email = $proveedor->getEmail();
             $estatus = $proveedor->getEstatus();
             
             $consulta->bindParam(":documento", $documento);
             $consulta->bindParam(":razon_social", $razon_social);
             $consulta->bindParam(":direccion", $direccion);
             $consulta->bindParam(":telefono", $telefono);
-            $consulta->bindParam(":email", $email);
             $consulta->bindParam(":estatus", $estatus);
 
             return $consulta->execute();
@@ -50,7 +48,7 @@ class Proveedor extends Persona{
 
     public function actualizar(Proveedor $proveedor){
         try{
-            $consulta = parent::connect()->prepare("UPDATE proveedores SET documento=:documento, razon_social=:razon_social, direccion=:direccion, telefono=:telefono, email=:email, estatus=:estatus WHERE id=:id");
+            $consulta = parent::connect()->prepare("UPDATE proveedores SET documento=:documento, razon_social=:razon_social, direccion=:direccion, telefono=:telefono, estatus=:estatus WHERE id=:id");
 
 
             $id = $proveedor->getId();
@@ -58,7 +56,6 @@ class Proveedor extends Persona{
             $razon_social = $proveedor->getNombre();
             $direccion = $proveedor->getDireccion();
             $telefono = $proveedor->getTelefono();
-            $email = $proveedor->getEmail();
             $estatus = "ACTIVO";
             
             $consulta->bindParam(":id", $id);
@@ -66,7 +63,6 @@ class Proveedor extends Persona{
             $consulta->bindParam(":razon_social", $razon_social);
             $consulta->bindParam(":direccion", $direccion);
             $consulta->bindParam(":telefono", $telefono);
-            $consulta->bindParam(":email", $email);
             $consulta->bindParam(":estatus", $estatus);
 
             return $consulta->execute();

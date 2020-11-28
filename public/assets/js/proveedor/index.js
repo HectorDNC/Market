@@ -77,7 +77,6 @@ const mostrarProveedor = (href, formulario, modal) => {
             $(formulario).find('input#id').val(json.data.id);
             $(formulario).find('input#nombre').val(json.data.razon_social);
             $(formulario).find('input#telefono').val(json.data.telefono);
-            $(formulario).find('input#correo').val(json.data.email);
             $(formulario).find('input#direccion').val(json.data.direccion);
 
             $(modal).modal('show');

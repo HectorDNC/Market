@@ -43,7 +43,7 @@
             <div class="form-group">
                 <input  name="id" id="id" hidden>
                 <label for="nombre">Razon Social:</label>
-                <input type="text" name="nombre" id="nombre" pattern="[A-Za-z ]+" title="Ingrese solo letras" maxlength="30" required="required" class="form-control" placeholder="Nombre">
+                <input type="text" name="nombre" id="nombre" pattern="[A-Za-z ]+" title="Ingrese solo letras" maxlength="45" required="required" class="form-control" placeholder="Nombre">
             </div>
 
             <div class="row form-group">
@@ -66,13 +66,9 @@
                 </div>
             </div>
             <div class="row form-group">
-                <label for="correo" class="col-form-label col-md-2">Correo:</label>
-                <div class="col-md-4 ">
-                    <input type="email" name="correo" id="correo" required class="form-control" placeholder="Correo Electronico">
-                </div>
 
                 <label for="direccion" class="col-form-label col-md-2">Direccion:</label>
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <input type="text" name="direccion" id="direccion" pattern="[A-Za-z0-9/ ]+" required maxlength="150" class="form-control" placeholder="Direccion" >
                 </div>
             </div>
@@ -115,11 +111,7 @@
                                     <input type="tel" id="telefono" class="form-control-plaintext" disabled placeholder="Telefono">
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="correo"><strong>Correo:</strong></label>
-                                <input type="email" id="correo" class="form-control-plaintext" disabled placeholder="Correo Electronico">
-                            </div>
-
+        
                             <div class="form-group">
                                 <label for="direccion"><strong>Direccion:</strong></label> 
                                 <input type="text" id="direccion" class="form-control-plaintext" disabled placeholder="Direccion" > 
@@ -152,7 +144,7 @@
                             <div class="form-group">
                                 <input  name="id" id="id" hidden>
                                 <label for="nombre">Nombre:</label>
-                                <input type="text" name="nombre" id="nombre" pattern="[A-Za-z ]+" title="Ingrese solo letras" maxlength="30" required="required" class="form-control" placeholder="Nombre">
+                                <input type="text" name="nombre" id="nombre" pattern="[A-Za-z ]+" title="Ingrese solo letras" maxlength="45" required="required" class="form-control" placeholder="Nombre">
                             </div>
 
                             <div class="row form-group">
@@ -175,13 +167,10 @@
                                 </div>
                             </div>
                             <div class="row form-group">
-                                <label for="correo" class="col-form-label col-md-2">Correo:</label>
-                                <div class="col-md-4 ">
-                                    <input type="email" name="correo" id="correo" required class="form-control" placeholder="Correo Electronico">
-                                </div>
+                                
 
                                 <label for="direccion" class="col-form-label col-md-2">Direccion:</label>
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <input type="text" name="direccion" id="direccion" pattern="[A-Za-z0-9/ ]+" required maxlength="150" class="form-control" placeholder="Direccion" >
                                 </div>
                             </div>

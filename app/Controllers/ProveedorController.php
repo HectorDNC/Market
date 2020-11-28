@@ -82,7 +82,6 @@ class ProveedorController extends Controller{
         $proveedor->setNombre(strtoupper($this->limpiaCadena($_POST['nombre'])));
         $proveedor->setDireccion(strtoupper($this->limpiaCadena($_POST['direccion'])));
         $proveedor->setTelefono(strtoupper($this->limpiaCadena($_POST['telefono'])));
-        $proveedor->setEmail(strtoupper($this->limpiaCadena($_POST['correo'])));
         $proveedor->setEstatus("ACTIVO");
     
     
@@ -127,7 +126,6 @@ class ProveedorController extends Controller{
         $proveedor->setNombre(strtoupper($this->limpiaCadena($_POST['nombre'])));
         $proveedor->setDireccion(strtoupper($this->limpiaCadena($_POST['direccion'])));
         $proveedor->setTelefono(strtoupper($this->limpiaCadena($_POST['telefono'])));
-        $proveedor->setEmail(strtoupper($this->limpiaCadena($_POST['correo'])));
         $proveedor->setEstatus("ACTIVO");
     
         if($this->proveedor->actualizar($proveedor)){
