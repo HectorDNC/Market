@@ -104,6 +104,9 @@ $(document).ready(function () {
                     console.log(doc);
                     $(formulario).find('input#documento').val(documento);
                     $(formulario).find('select#inicial_documento').val(inicial);
+                    $(formulario).find('select#rolUsuario').val(json.data.rol_id);
+                    $(formulario).find('input#contrasena').val("");
+                    $(formulario).find('input#confirmarContrasena').val("");
     
                 }else{
                     $(formulario).find('input#documento').val(json.data.documento);
@@ -117,6 +120,7 @@ $(document).ready(function () {
                 $(formulario).find('input#correo').val(json.data.email);
                 $(formulario).find('input#direccion').val(json.data.direccion);
                 $(formulario).find('input#usuario').val(json.data.usuario);
+                
     
                 $(modal).modal('show');
     
@@ -249,11 +253,21 @@ $(document).ready(function () {
      */
     
     $('#formularioRegistrarUsuario').submit(function (e) { 
-         e.preventDefault();
+        e.preventDefault();
     
-         let datos = new FormData(document.querySelector('#formularioRegistrarUsuario'));
+        let datos = new FormData(document.querySelector('#formularioRegistrarUsuario'));
+        
+        if(datos.get('contrasena')==datos.get('confirmarContrasena')){
+            registrarUsuario(datos); 
+        }
+        else{
+            Swal.fire(
+                "Error",
+                "Las Contraseñas no coinciden",
+                "warning"
+            );
+        }
     
-         registrarUsuario(datos);  
     });
     
     // Mostrar Usuario
@@ -277,8 +291,18 @@ $(document).ready(function () {
     
         const datos = new FormData(document.querySelector('#formularioActualizarUsuario'));
     
-        console.log(datos.get('id'));
-        actualizarUsuario(datos);
+        if(datos.get('contrasena')==datos.get('confirmarContrasena')){
+            console.log(datos.get('contrasena'));
+            actualizarUsuario(datos);
+        }
+        else{
+            Swal.fire(
+                "Error",
+                "Las Contraseñas no coinciden",
+                "warning"
+            );
+        }
+        
     });
     
     

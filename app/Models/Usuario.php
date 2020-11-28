@@ -102,9 +102,6 @@ class Usuario extends Persona{
 
     public function actualizar(Usuario $u){
         try{
-            $consulta = parent::connect()->prepare("UPDATE usuarios SET documento=:documento, nombre=:nombre, apellido=:apellido, direccion=:direccion, telefono=:telefono, email=:email, usuario=:usuario, estatus=:estatus WHERE id=:id");
-
-
             $id = $u->getId();
             $documento= $u->getTipoDocumento()."-".$u->getDocumento();
             $nombre = $u->getNombre();
@@ -113,8 +110,17 @@ class Usuario extends Persona{
             $telefono = $u->getTelefono();
             $email = $u->getEmail(); 
             $usuario = $u->getUsuario(); 
+            $rol_id = $u->getRolId(); 
+            $password = $u->getPassword(); 
             $estatus = "ACTIVO";
-            
+            if($password=="")
+            {
+                $consulta = parent::connect()->prepare("UPDATE usuarios SET documento=:documento, nombre=:nombre, apellido=:apellido, direccion=:direccion, telefono=:telefono, email=:email, usuario=:usuario,rol_id=:rol_id, estatus=:estatus WHERE id=:id");
+            }
+            else{
+                $consulta = parent::connect()->prepare("UPDATE usuarios SET documento=:documento, nombre=:nombre, apellido=:apellido, direccion=:direccion, telefono=:telefono, email=:email, usuario=:usuario,password=:password,rol_id=:rol_id, estatus=:estatus WHERE id=:id");
+                $consulta->bindParam(":password", $password);
+            }
             $consulta->bindParam(":id", $id);
             $consulta->bindParam(":documento", $documento);
             $consulta->bindParam(":nombre", $nombre);
@@ -123,6 +129,7 @@ class Usuario extends Persona{
             $consulta->bindParam(":telefono", $telefono);
             $consulta->bindParam(":email", $email);
             $consulta->bindParam(":usuario", $usuario);
+            $consulta->bindParam(":rol_id", $rol_id);
             $consulta->bindParam(":estatus", $estatus);
 
             return $consulta->execute();

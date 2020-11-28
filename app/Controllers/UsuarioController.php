@@ -128,7 +128,7 @@ class UsuarioController extends Controller{
     public function actualizar(){
 
         $usuario = new Usuario();
-
+        
         $usuario->setId($_POST['id']);
         $usuario->setTipoDocumento($_POST['inicial_documento']);
         $usuario->setDocumento($_POST['documento']);
@@ -139,6 +139,11 @@ class UsuarioController extends Controller{
         $usuario->setEmail(strtoupper($this->limpiaCadena($_POST['correo'])));
         $usuario->setUsuario(strtoupper($this->limpiaCadena($_POST['usuario'])));
         $usuario->setEstatus("ACTIVO");
+        if ($_POST['contrasena']!="") {
+            $contrasena = $this->encriptar(strtoupper($this->limpiaCadena($_POST['contrasena'])));
+            $usuario->setPassword($contrasena);
+        }
+        $usuario->setRolId(strtoupper($this->limpiaCadena($_POST['rolUsuario'])));
 
         if($this->usuario->actualizar($usuario)){
         http_response_code(200);
@@ -205,5 +210,6 @@ class UsuarioController extends Controller{
 
     
     }
+
 
 }
