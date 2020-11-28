@@ -22,30 +22,18 @@
 
     <link href="<?= ROOT; ?>public/assets/css/notifications.css?v=<?php echo time(); ?>" rel="stylesheet" type="text/css">
 
-
     <!-- DATATABLE -->
     <link href="<?= ROOT; ?>vendor/datatables/datatables/media/css/dataTables.bootstrap4.css" rel="stylesheet" type="text/css">
-
+    <link href="<?= ROOT; ?>public/assets/css/style.css" rel="stylesheet" type="text/css">
     <title><?=TITLE?></title>
 </head>
 <body class="bg-light">
-<nav class="navbar navbar-expand navbar-dark bg-primary">
+<nav class="navbar navbar-expand navbar-dark" style="background: #00C853;">
     <a class="sidebar-toggle mr-3" href="#"><i class="fa fa-bars"></i></a>
     <a class="navbar-brand" href="<?= ROOT;?>"><i class="fa fa-shopping-cart"></i> <?=TITLE?></a>
     <div class="navbar-collapse collapse">
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <i class="fas fa-bell nav-link" id="bell"></i>
-                <div class="notifications" id="box">
-                    <h2>Notificaciones <i id="getout" class="fas fa-times"></i></h2>
-                    <!-- <div class="notifications-item"> <img src="https://i.imgur.com/uIgDDDd.jpg" alt="img">
-                        <div class="text">
-                            <h4>Samso aliao</h4>
-                            <p>Samso Nagaro Like your home work</p>
-                        </div>
-                    </div> -->
-                </div>
-            </li>
+            
             <li class="nav-item dropdown">
                 <a href="#" id="dd_user" class="nav-link dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?= empty($_SESSION['usuario']) ? 'Usuario' : $_SESSION['usuario'] ?></a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dd_user">
@@ -58,7 +46,7 @@
 </nav>
 	<!-- MENU -->
 <div class="d-flex">
-	<div class="sidebar sidebar-dark bg-dark">
+	<div class="sidebar sidebar-dark" style="background: #000;">
     <?php if($_SESSION['rol']==1){ ?>
 
     <ul class="list-unstyled">

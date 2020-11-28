@@ -5,14 +5,43 @@
 	<div class="row mb-4">
 		<div class="col-md">
 		  	<div class="d-flex border">
-	            <div class="bg-danger text-light p-4">
+	            <div class="bg-success text-light p-4">
+	                <div class="d-flex align-items-center h-100">
+	                    <i class="fa fa-3x fa-fw fa-dollar-sign"></i>
+	                </div>
+	            </div>
+	            <div class="flex-grow-1 bg-white p-4">
+	                <p class="text-uppercase text-secondary mb-0">Ventas</p>
+	                <h3 class="font-weight-bold mb-0"><?=$ventas?></h3>
+	            </div>
+	    	</div>
+		</div>
+
+		<div class="col-md">
+	        <div class="d-flex border">
+	            <div class="bg-dark text-light p-4">
+	                <div class="d-flex align-items-center h-100">
+	                    <i class="fa fa-3x fa-fw fa-sitemap"></i>
+	                </div>
+	            </div>
+	            <div class="flex-grow-1 bg-white p-4">
+	                <p class="text-uppercase text-secondary mb-0">Productos</p>
+	                <h3 class="font-weight-bold mb-0"><?=$productos?></h3>
+	            </div>
+	        </div>
+		</div>	
+	</div>
+	<div class="row mb-4">
+		<div class="col-md">
+		  	<div class="d-flex border">
+	            <div class="bg-warning text-light p-4">
 	                <div class="d-flex align-items-center h-100">
 	                    <i class="fa fa-3x fa-fw fa-shopping-cart"></i>
 	                </div>
 	            </div>
 	            <div class="flex-grow-1 bg-white p-4">
-	                <p class="text-uppercase text-secondary mb-0">Ventas</p>
-	                <h3 class="font-weight-bold mb-0">392</h3>
+	                <p class="text-uppercase text-secondary mb-0">Compras</p>
+	                <h3 class="font-weight-bold mb-0"><?=$compras?></h3>
 	            </div>
 	    	</div>
 		</div>
@@ -26,7 +55,7 @@
 	            </div>
 	            <div class="flex-grow-1 bg-white p-4">
 	                <p class="text-uppercase text-secondary mb-0">Clientes</p>
-	                <h3 class="font-weight-bold mb-0">320</h3>
+	                <h3 class="font-weight-bold mb-0"><?=$clientes?></h3>
 	            </div>
 	        </div>
 		</div>	
