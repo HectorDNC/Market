@@ -53,7 +53,7 @@ class Usuario extends Persona{
                     JOIN
                 roles r
                     ON r.id = u.rol_id
-                WHERE u.estatus='ACTIVO' AND u.usuario != '$user' ORDER BY u.created_at DESC");
+                WHERE u.usuario != '$user' ORDER BY u.created_at DESC");
 
             $consulta->execute();
             

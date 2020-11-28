@@ -14,11 +14,11 @@ class Inventario extends Model{
         try {
             
             if (isset($categoria_id)) {
-                $query = $conexion->query("SELECT * FROM v_inventario1 WHERE id IN (SELECT id FROM productos WHERE categoria_id = $categoria_id)");
+                $query = $conexion->query("SELECT * FROM v_inventario1 WHERE estatus='ACTIVO' id IN (SELECT id FROM productos WHERE categoria_id = $categoria_id)");
                 
               }
               else{
-                $query = $conexion->query("SELECT * FROM v_inventario1");
+                $query = $conexion->query("SELECT * FROM v_inventario1 WHERE estatus='ACTIVO'");
               }
             
             return $query->fetchAll(PDO::FETCH_OBJ);

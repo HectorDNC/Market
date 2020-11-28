@@ -239,7 +239,7 @@ $(document).ready(function () {
                 );
 
                 setTimeout(function(){
-                    location.reload();
+                    window.location = "./";
                 },2000);
             },
             error: function (response) {

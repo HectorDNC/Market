@@ -58,7 +58,7 @@ class Categoria extends Model{
 
     public function listar(){
         try{
-            $consulta = parent::connect()->prepare("SELECT id, nombre, descripcion, estatus FROM categorias WHERE estatus='ACTIVO' ORDER BY created_at DESC");
+            $consulta = parent::connect()->prepare("SELECT id, nombre, descripcion, estatus FROM categorias ORDER BY created_at DESC");
             $consulta->execute();
             
             return $consulta->fetchAll(PDO::FETCH_OBJ);

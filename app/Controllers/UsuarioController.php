@@ -47,8 +47,13 @@ class UsuarioController extends Controller{
 
             $usuario->button = 
             "<a href=".ROOT."usuario/mostrar/". $this->encriptar($usuario->id) ."' class='mostrar btn btn-info'><i class='fas fa-search'></i></a>".
-            "<a href=".ROOT."usuario/mostrar/". $this->encriptar($usuario->id) ."' class='editar btn btn-warning m-1'><i class='fas fa-pencil-alt'></i></a>".
-            "<a href='". $this->encriptar($usuario->id) ."' class='eliminar btn btn-danger'><i class='fas fa-trash-alt'></i></a>";
+            "<a href=".ROOT."usuario/mostrar/". $this->encriptar($usuario->id) ."' class='editar btn btn-warning m-1'><i class='fas fa-pencil-alt'></i></a>";
+            if($usuario->estatus == "ACTIVO"){
+                $usuario->button .= "<a href='". $this->encriptar($usuario->id) ."' class='eliminar btn btn-danger' title='Eliminar'><i class='fas fa-trash-alt'></i></a>";
+            }
+            else{
+                $usuario->button .= "<a href='". $this->encriptar($usuario->id) ."' class='estatusAnulado btn btn-outline-info' title='Activar'><i class='fas fa-trash'></i></a>";
+            }
 
         }
 
@@ -208,6 +213,39 @@ class UsuarioController extends Controller{
             ]);
         }
 
+    
+    }
+
+    public function habilitar($id){
+
+        $method = $_SERVER['REQUEST_METHOD'];
+    
+        if( $method != 'HABILITAR'){
+          http_response_code(404);
+          return false;
+        }
+    
+        $id = $this->desencriptar($id);
+    
+        if($this->usuario->habilitar("usuarios", $id)){
+    
+          http_response_code(200);
+    
+          echo json_encode([
+            'titulo' => 'Registro eliminado!',
+            'mensaje' => 'Registro eliminado en nuestro sistema',
+            'tipo' => 'success'
+          ]);
+        }else{
+          http_response_code(404);
+    
+          echo json_encode([
+            'titulo' => 'Ocurio un error!',
+            'mensaje' => 'No se pudo eliminar el registro',
+            'tipo' => 'error'
+          ]);
+        }
+        
     
     }
 

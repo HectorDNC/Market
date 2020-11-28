@@ -106,11 +106,13 @@ const registrarCliente = (datos) => {
                     json.tipo
                 );
     
-                table.ajax.reload();
+                // table.ajax.reload();
                 
      
-                $('#modalRegistroCliente').modal('hide');
-                $('#formularioRegistrarCliente').trigger('reset');
+                // $('#modalRegistroCliente').modal('hide');
+                // $('#formularioRegistrarCliente').trigger('reset');
+                window.location = '/';
+                window.location.reload();
             }else{
                 Swal.fire(
                     json.titulo,
@@ -206,6 +208,28 @@ const eliminarCliente = (id) => {
     });
 }
 
+const habilitar = (id) => {
+    $.ajax({
+        type: "HABILITAR",
+        url: GLOBAL.URL+"cliente/habilitar/" + id,
+        success: function (response) {
+            const json = JSON.parse(response);
+            if(json.tipo == 'success'){
+                Swal.fire(
+                    'Activado!',
+                    'El cliente ha sido habilitado!',
+                    'success'
+                    )
+
+                table.ajax.reload();
+            }
+        },
+        error: function (response) {
+            console.log(response);
+        }
+    });
+}
+
 /**
  * Eventos
  */
@@ -253,7 +277,7 @@ $('body').on('click', '.eliminar', function (e) {
 
     Swal.fire({
         title: 'Esta Seguro?',
-        text: "El cliente sera eliminado del sistema!",
+        text: "El cliente será eliminado del sistema!",
         type: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
@@ -269,5 +293,28 @@ $('body').on('click', '.eliminar', function (e) {
       })
     console.log($(this).attr('href'));
 });
+//Activar el registro
+$('body').on('click', '.estatusAnulado', function (e) {
+    e.preventDefault();
+
+    Swal.fire({
+        title: 'Esta Seguro?',
+        text: "El cliente será habilitado en el sistema!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: 'Cancelar',
+        confirmButtonText: 'Si, eliminar!'
+        }).then((result) => {
+        if (result.value) {
+
+            habilitar($(this).attr('href'));
+            
+        }
+        })
+    console.log($(this).attr('href'));
+});
+
 
 });

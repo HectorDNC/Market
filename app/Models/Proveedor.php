@@ -8,7 +8,7 @@ class Proveedor extends Persona{
 
     public function listar(){
         try{
-            $consulta = parent::connect()->prepare("SELECT * FROM proveedores WHERE estatus='ACTIVO' ORDER BY created_at DESC");
+            $consulta = parent::connect()->prepare("SELECT * FROM proveedores ORDER BY created_at DESC");
             $consulta->execute();
 
 

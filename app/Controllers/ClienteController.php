@@ -37,8 +37,13 @@ class ClienteController extends Controller{
 
       $cliente->button = 
       "<a href=".ROOT."cliente/mostrar/". $this->encriptar($cliente->id) ."' class='mostrar btn btn-info'><i class='fas fa-search'></i></a>".
-      "<a href=".ROOT."cliente/mostrar/". $this->encriptar($cliente->id) ."' class='editar btn btn-warning m-1'><i class='fas fa-pencil-alt'></i></a>".
-      "<a href='". $this->encriptar($cliente->id) ."' class='eliminar btn btn-danger'><i class='fas fa-trash-alt'></i></a>";
+      "<a href=".ROOT."cliente/mostrar/". $this->encriptar($cliente->id) ."' class='editar btn btn-warning m-1'><i class='fas fa-pencil-alt'></i></a>";
+      if($cliente->estatus == "ACTIVO"){
+          $cliente->button .= "<a href='". $this->encriptar($cliente->id) ."' class='eliminar btn btn-danger' title='Eliminar'><i class='fas fa-trash-alt'></i></a>";
+      }
+      else{
+          $cliente->button .= "<a href='". $this->encriptar($cliente->id) ."' class='estatusAnulado btn btn-outline-info' title='Activar'><i class='fas fa-trash'></i></a>";
+      }
 
     }
 
@@ -174,7 +179,39 @@ class ClienteController extends Controller{
       ]);
     }
     
-
   }
+
+  public function habilitar($id){
+
+    $method = $_SERVER['REQUEST_METHOD'];
+
+    if( $method != 'HABILITAR'){
+      http_response_code(404);
+      return false;
+    }
+
+    $id = $this->desencriptar($id);
+
+    if($this->cliente->habilitar("clientes", $id)){
+
+      http_response_code(200);
+
+      echo json_encode([
+        'titulo' => 'Registro eliminado!',
+        'mensaje' => 'Registro eliminado en nuestro sistema',
+        'tipo' => 'success'
+      ]);
+    }else{
+      http_response_code(404);
+
+      echo json_encode([
+        'titulo' => 'Ocurio un error!',
+        'mensaje' => 'No se pudo eliminar el registro',
+        'tipo' => 'error'
+      ]);
+    }
+    
+
+}
 
 }

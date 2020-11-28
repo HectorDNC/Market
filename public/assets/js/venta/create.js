@@ -249,9 +249,8 @@ $(document).ready(function () {
                     json.mensaje,
                     json.tipo
                 );
-
                 setTimeout(function(){
-                    location.reload();
+                    window.location = "./";
                 },2000);
             },
             error: function (response) {
@@ -259,9 +258,5 @@ $(document).ready(function () {
             }
         });
     })
-    // setTimeout(function(){
-    //     // location.reload();
-    //     location = '/Marcket/';
-    //     location.reload();
-    // },2000);
+    
 });

@@ -75,10 +75,10 @@ class ProductoController extends Controller{
                 "<a href=".ROOT."producto/mostrar/". $this->encriptar($producto->id) ."' class='mostrar btn btn-info'><i class='fas fa-search'></i></a>".
                 "<a href=".ROOT."producto/mostrar/". $this->encriptar($producto->id) ."' class='editar btn btn-warning m-1'><i class='fas fa-pencil-alt'></i></a>";
                 if($producto->estatus == "ACTIVO"){
-                    $producto->button .= "<a href='". $this->encriptar($producto->id) ."' class='eliminar btn btn-danger'><i class='fas fa-trash-alt'></i></a>";
+                    $producto->button .= "<a href='". $this->encriptar($producto->id) ."' class='eliminar btn btn-danger' title='Eliminar'><i class='fas fa-trash-alt'></i></a>";
                 }
                 else{
-                    $producto->button .= "<a href='". $this->encriptar($producto->id) ."' class='estatusAnulado btn btn-outline-info'><i class='fas fa-trash' title='ACTIVAR'></i></a>";
+                    $producto->button .= "<a href='". $this->encriptar($producto->id) ."' class='estatusAnulado btn btn-outline-info' title='Activar'><i class='fas fa-trash'></i></a>";
                 }
                 
             }

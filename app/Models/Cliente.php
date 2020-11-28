@@ -9,7 +9,7 @@ class Cliente extends Persona{
 
     public function listar(){
         try{
-            $consulta = parent::connect()->prepare("SELECT id, documento, nombre, telefono, estatus, created_at FROM clientes WHERE estatus='ACTIVO' ORDER BY created_at DESC");
+            $consulta = parent::connect()->prepare("SELECT id, documento, nombre, telefono, estatus, created_at FROM clientes ORDER BY created_at DESC");
             $consulta->execute();
             
             return $consulta->fetchAll(PDO::FETCH_OBJ);

@@ -417,7 +417,7 @@ $(document).ready(function () {
             })
         console.log($(this).attr('href'));
     });
-    
+    //Activar el registro
     $('body').on('click', '.estatusAnulado', function (e) {
         e.preventDefault();
     
