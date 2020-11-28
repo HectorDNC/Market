@@ -4,3 +4,6 @@
 .sidebar ul li a:hover{
     background: #212121 !important;
 }
+.card-body{
+    overflow: auto !important;
+}
