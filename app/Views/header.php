@@ -37,7 +37,7 @@
             <li class="nav-item dropdown">
                 <a href="#" id="dd_user" class="nav-link dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?= empty($_SESSION['usuario']) ? 'Usuario' : $_SESSION['usuario'] ?></a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dd_user">
-                    <a href="#" class="dropdown-item">Perfil</a>
+                    <a href="<?=ROOT?>perfil" class="dropdown-item">Perfil</a>
                     <a href="" id="logout" class="dropdown-item">Salir</a>
                 </div>
             </li>
@@ -85,7 +85,7 @@
             </ul>
         </li>
         
-        <li><a href="<?= ROOT;?>Reporte"><i class="fa fa-fw fa-calendar"></i> Reportes</a></li>
+        <!-- <li><a href="<?= ROOT;?>Reporte"><i class="fa fa-fw fa-calendar"></i> Reportes</a></li> -->
         
         <!-- <li>
             <a href="#sm_expand_2" data-toggle="collapse">

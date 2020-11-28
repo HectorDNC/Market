@@ -48,6 +48,7 @@ class LoginController extends Controller{
             // echo $response->documento;
 
             $_SESSION['usuario'] = $response->usuario;
+            $_SESSION['id'] = $response->id;
             $_SESSION['rol'] = $response->rol_id;
             $_SESSION['estatus'] = $response->estatus;
 

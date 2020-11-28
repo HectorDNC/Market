@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>W&C</title>
+    <title><?=TITLE?></title>
 
     <!-- FONTAWESOME -->
     <link href="<?= ROOT; ?>vendor/fortawesome/font-awesome/css/all.min.css" rel="stylesheet" type="text/css">
@@ -37,7 +37,7 @@
 <div class="container-fluid login h-100">
     <div class="row h-100 justify-content-center align-items-center">
         <div class="col-md-4">
-                <h1 class="text-center mb-4">World & Computer</h1>
+                <h1 class="text-center mb-4"><?=TITLE?></h1>
                 <div class="card">
                     <div class="card-body">
                         <form id="loginForm">
@@ -64,7 +64,7 @@
 
                             <div class="row">
                                 <div class="col pr-2">
-                                    <button type="submit" class="btn btn-block btn-primary">Iniciar sesión</button>
+                                    <button type="submit" class="btn btn-block btn-success">Iniciar sesión</button>
                                 </div>
                                 <!-- <div class="col pl-2">
                                     <a class="btn btn-block btn-link" href="#">Recuperar Contraseña</a>

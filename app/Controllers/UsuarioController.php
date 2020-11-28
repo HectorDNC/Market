@@ -149,7 +149,7 @@ class UsuarioController extends Controller{
             $usuario->setPassword($contrasena);
         }
         $usuario->setRolId(strtoupper($this->limpiaCadena($_POST['rolUsuario'])));
-
+        return "LOL";
         if($this->usuario->actualizar($usuario)){
         http_response_code(200);
 
@@ -168,7 +168,7 @@ class UsuarioController extends Controller{
         ]);
         }
 
-        }
+    }
 
     public function mostrar($param){
     
@@ -248,6 +248,8 @@ class UsuarioController extends Controller{
         
     
     }
+
+    
 
 
 }

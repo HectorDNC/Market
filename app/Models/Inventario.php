@@ -14,7 +14,7 @@ class Inventario extends Model{
         try {
             
             if (isset($categoria_id)) {
-                $query = $conexion->query("SELECT * FROM v_inventario1 WHERE estatus='ACTIVO' id IN (SELECT id FROM productos WHERE categoria_id = $categoria_id)");
+                $query = $conexion->query("SELECT * FROM v_inventario1 WHERE estatus='ACTIVO' AND id IN (SELECT id FROM productos WHERE categoria_id = $categoria_id)");
                 
               }
               else{
