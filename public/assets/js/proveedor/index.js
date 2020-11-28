@@ -108,10 +108,7 @@ const registrarProveedor = (datos) => {
                     json.tipo
                 );
     
-                table.ajax.reload();
-    
-                $('#agregarProveedor').modal('hide');
-                $('#formularioRegistrarProveedor').trigger('reset');
+                window.location.reload();
             }else{
                 Swal.fire(
                     json.titulo,
@@ -267,7 +264,6 @@ $('#formularioActualizarProveedor').submit(function (e) {
 
     actualizarProveedor(datos);
 });
-
 
 // Eliminar Proveedor
 $('body').on('click', '.eliminar', function (e) {

@@ -1,7 +1,7 @@
 
 <div class="content p-42">
 
-      <!-- Modal Registro -->
+      <!-- Modal Registro Cliente -->
     <div class="modal fade" id="modalRegistroCliente" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -94,7 +94,7 @@
                             <div class="card-header">
                                 <h4>Cliente</h4>
                             </div>
-         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalRegistroCliente">
+         <button type="button" class="btn btn-primary w-50 mt-1 ml-auto mr-auto" data-toggle="modal" data-target="#modalRegistroCliente">
             <i class="fas fa-plus-square"></i> Agregar Cliente
           </button>
 

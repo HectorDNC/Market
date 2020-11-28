@@ -156,9 +156,17 @@ $(document).ready(function () {
     });
 
     //Agregar Proveedor
-    $('#agregarProveedor').click(function (e) { 
+    $('#agregarProveedorCompra').click(function (e) { 
         e.preventDefault();
-
+        if($('#listadoProveedores').val() == '' || $('#listadoProveedores').val() == null){
+            Swal.fire(
+                'Seleccione un Proveedor',
+                'Debe incluir un proveedor en la compra',
+                'warning'
+            )
+    
+            return false;
+        }
         Swal.fire(
             'Proveedor agregado!',
             'Se ha seleccionado un proveedor correctamente',

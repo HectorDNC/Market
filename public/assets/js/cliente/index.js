@@ -106,12 +106,7 @@ const registrarCliente = (datos) => {
                     json.tipo
                 );
     
-                // table.ajax.reload();
                 
-     
-                // $('#modalRegistroCliente').modal('hide');
-                // $('#formularioRegistrarCliente').trigger('reset');
-                window.location = '/';
                 window.location.reload();
             }else{
                 Swal.fire(

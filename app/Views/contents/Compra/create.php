@@ -1,4 +1,59 @@
 <div class=" container-fluid p-2">
+    <!-- Modal de Registro -->
+    <div class="modal fade " id="agregarProveedor" tabindex="-1" role="dialog" aria-labelledby="agregarProveedorLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="agregarProveedorLabel">Agregar Proveedor</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="#" method="POST" enctype="multipart/form-data" id="formularioRegistrarProveedor">
+                        <div class="form-group">
+                            <input  name="id" id="id" hidden>
+                            <label for="nombre">Razon Social:</label>
+                            <input type="text" name="nombre" id="nombre" pattern="[A-Za-z ]+" title="Ingrese solo letras" maxlength="45" required="required" class="form-control" placeholder="Nombre">
+                        </div>
+
+                        <div class="row form-group">
+                            <label for="cedula_cliente" class="col-form-label col-md-2">Cedula/RIF:</label>
+                            <div class="col-md-1 ">
+                                <select class="form-control pl-0 pr-0" name="inicial_documento" id="inicial_documento" required="">
+                                    <option value="" selected="">-</option>
+                                    <option value="V">V</option>
+                                    <option value="E">E</option>
+                                    <option value="J">J</option>
+                                    <option value="G">G</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <input type="text" pattern="[0-9]{6,8}" name="documento" id="documento" minlength="6" maxlength="8" title="Ingrese entre 6 y 8 digitos" class="form-control" placeholder="Identificaion" required="">
+                            </div>
+                            <label for="telefono" class="col-form-label col-md-2">Telefono:</label>
+                            <div class="col-md-4 ">
+                                <input type="tel" name="telefono" id="telefono" title="Debe Contener minimo 11 Caracteres numericos" minlength="10"  maxlength="12" pattern="[0-9-]+" required class="form-control" placeholder="Telefono">
+                            </div>
+                        </div>
+                        <div class="row form-group">
+
+                            <label for="direccion" class="col-form-label col-md-2">Direccion:</label>
+                            <div class="col-md-6">
+                                <input type="text" name="direccion" id="direccion" pattern="[A-Za-z0-9/ ]+" required maxlength="150" class="form-control" placeholder="Direccion" >
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                        <button type="submit"  class="btn btn-success m-2">Enviar</button>
+                        <button type="reset" class="btn btn-danger m-2">Limpiar</button>
+                        </div>
+                    </form>
+                </div>
+            
+            </div>
+        </div>
+    </div>
+
     <form action="<?= ROOT;?>Compra/guardar" method="post" id="formularioCompra">
  
         <div class="card">
@@ -35,6 +90,9 @@
                             <div class="card-header">
                                 <h4>Proveedor</h4>
                             </div>
+                            <button type="button" class="btn btn-primary w-50 mt-1 ml-auto mr-auto" data-toggle="modal" data-target="#agregarProveedor">
+                                <i class="fas fa-plus-square"></i> Agregar Proveedor
+                            </button>
                             <div class="card-body">
                                 <div class="row">
                                     <label for="cliente" class=" col-form-label col-md-2">
@@ -61,7 +119,7 @@
             
                 
                                     <div class="col-md-4 form-group">
-                                        <button type="button" class="btn btn-block btn-success" id="agregarProveedor" ><i class="fas fa-plus-circle"></i></button>
+                                        <button type="button" class="btn btn-block btn-success" id="agregarProveedorCompra" ><i class="fas fa-plus-circle"></i></button>
                                     </div>
                                 </div>
 
@@ -252,3 +310,4 @@
 </script>
 
 <script src="<?= ROOT; ?>public/assets/js/compra/create.js"></script>
+<script src="<?= ROOT; ?>public/assets/js/proveedor/index.js"></script>

@@ -164,7 +164,15 @@ $(document).ready(function () {
     //Agregar Cliente
     $('#agregarCliente').click(function (e) { 
         e.preventDefault();
-
+        if($('#listadoClientes').val() == '' || $('#listadoClientes').val() == null){
+            Swal.fire(
+                'Seleccione un Cliente',
+                'Debe incluir un cliente en la Venta',
+                'warning'
+            )
+    
+            return false;
+        }
         Swal.fire(
             'Cliente agregado!',
             'Se ha seleccionado un cliente correctamente',
