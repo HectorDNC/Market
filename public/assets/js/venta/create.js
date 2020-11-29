@@ -17,6 +17,17 @@ $(document).ready(function () {
 
         return cliente;
     }
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'bottom-start',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: false,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+      })
 
     // Obtener precio del Dolar
     $.ajax({
@@ -83,7 +94,7 @@ $(document).ready(function () {
         
         let producto = buscarProducto($('#listadoProductos').val());
         
-        Swal.fire(
+        Toast.fire(
             producto.nombre + ' Agregado',
             'Producto Agregado correctamente',
             'success'   
@@ -99,11 +110,12 @@ $(document).ready(function () {
                     <input type="text" class="form-control-plaintext" value="${producto.nombre}" disabled>
                 </td>
                 <td>
-                    <input type="number" name="cantidades[]" class="form-control cantidad" value="0" min="1" max="${producto.stock}" required>
-                </td>
-                <td>
                     <input type="text" class="form-control-plaintext" value="${producto.stock}" disabled>
                 </td>
+                <td>
+                    <input type="number" name="cantidades[]" class="form-control cantidad" value="0" min="1" max="${producto.stock}" required>
+                </td>
+                
                 <td>
                     <input type="number" class="form-control-plaintext" value="${producto.precio_venta}" disabled>
                     <input type="number" name="precios[]" class="form-control precio" value="${producto.precio_venta}" hidden required>
@@ -111,6 +123,9 @@ $(document).ready(function () {
                 </td>
                 <td>
                     <input type="number" class="form-control-plaintext total" value="0" disabled>
+                </td>
+                <td>
+                    <input type="number" class="form-control-plaintext totalBss" value="0" disabled>
                 </td>
                 <td>
                     <button class="btn btn-danger eliminar"><i class="fas fa-trash-alt text-white"></i></button>
@@ -130,8 +145,9 @@ $(document).ready(function () {
 
         let row = $(this).closest('tr');
         let total = row.find('.cantidad').val() * row.find('.precio').val();
-
+        let totalBss = total * dolar;
         row.find('.total').val(total.toFixed(2));
+        row.find('.totalBss').val(totalBss.toFixed(2));
 
         let elementos = document.querySelectorAll('.total');
 
@@ -142,12 +158,9 @@ $(document).ready(function () {
         })
 
         
-        let impuestos = total * (iva/100);
         
-
-        $('#impuesto').val(impuestos.toFixed(2));
         $('#subtotal').val(total.toFixed(2));
-        totalNeto = total + impuestos;
+        totalNeto = total;
         totalNetoBss = totalNeto*dolar;
         $('#totalVenta').val(`${totalNeto} $ - ${totalNetoBss} BSS`);    
     
@@ -160,12 +173,12 @@ $(document).ready(function () {
         $(this).parents('tr').remove();
 
     });
-
+    
     //Agregar Cliente
     $('#agregarCliente').click(function (e) { 
         e.preventDefault();
         if($('#listadoClientes').val() == '' || $('#listadoClientes').val() == null){
-            Swal.fire(
+            Toast.fire(
                 'Seleccione un Cliente',
                 'Debe incluir un cliente en la Venta',
                 'warning'
@@ -173,7 +186,7 @@ $(document).ready(function () {
     
             return false;
         }
-        Swal.fire(
+        Toast.fire(
             'Cliente agregado!',
             'Se ha seleccionado un cliente correctamente',
             'success'
@@ -232,9 +245,7 @@ $(document).ready(function () {
             return false;
         }
 
-        let impuestos = total * (iva/100);
-
-        total = total + impuestos;
+      
     
         $('#total').val(total);
     

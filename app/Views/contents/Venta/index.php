@@ -91,8 +91,9 @@
                                     <th>CANTIDAD</th>
                                     <th>CODIGO</th>
                                     <th>PRODUCTO</th>
-                                    <th>PRECIO VENTA</th>
-                                    <th>IMPORTE</th>
+                                    <th>PRECIO</th>
+                                    <th>TOTAL $</th>
+                                    <th>TOTAL BSS</th>
                                 </tr>
                             </thead>
     
@@ -104,18 +105,7 @@
 
                 </div>
                 <hr>
-                <div class="row justify-content-start">
-                    <label for="" class="col-form-label col-2"><strong>SUB-TOTAL:</strong> </label>
-                    <div class="col-md-2">
-                        <input type="text" class="form-control-plaintext" id="subtotal" disabled>
-                    </div>
-                </div>
-                <div class="row justify-content-start">
-                    <label for="" class="col-form-label col-2"><strong>IVA(16.00%):</strong> </label>
-                    <div class="col-md-2">
-                        <input type="text" class="form-control-plaintext" id="impuesto" disabled>
-                    </div>
-                </div>
+                
                 <div class="row justify-content-start">
                     <label for="" class="col-form-label col-2"><strong>TOTAL:</strong> </label>
                     <div class="col-md-4">

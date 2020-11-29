@@ -19,6 +19,9 @@
         .text-right {
             text-align: right;
         }
+        .centrado{
+            margin: auto;
+        }
 
     </style>
 </head>
@@ -81,170 +84,66 @@
                 </tr>
             </tbody>
         </table>
-        <table style="width:725px;">
-                <tr>
-                    <th colspan="1" style="width:15%" class="text-center">
-                        CANTIDAD
-                    </th>
-                    <th colspan="2" style="width:15%" class="text-center">
-                        CODIGO
-                    </th>
-                    <th colspan="3" style="width:30%" class="text-center">
-                        PRODUCTO
-                    </th>
-                    <th colspan="2" style="width:20%" class="text-center">
-                        PRECIO VENTA
-                    </th>
-                    <th colspan="2" style="width:20%" class="text-center">
-                        IMPORTE
-                    </th>
-                </tr>
-                <tr>
-                    <td colspan="10">
-                        <hr>
-                    </td>
-                </tr>
+        <div class="centrado" style="width=100%;">
+            <div style="width:15.5%; display:inline;" class="text-center">
+                <strong>CANTIDAD</strong>
+            </div>
+            <div style="width:15.5%; display:inline;" class="text-center">
+                <strong>CODIGO</strong>
+            </div>
+            <div style="width:15.5%; display:inline;" class="text-center">
+                <strong>PRODUCTO</strong>
+            </div>
+            <div style="width:15.5%; display:inline;" class="text-center">
+                <strong>PRECIO</strong>
+            </div>
+            <div style="width:15.5%; display:inline;" class="text-center">
+                <strong>TOTAL $</strong>
+            </div>
+            <div style="width:15.5%; display:inline;" class="text-center">
+                <strong>TOTAL BSS</strong>
+            </div>
+            <hr>
+            <?php 
 
-                <?php 
-
-                    $subtotal = 0;
+                    $total = 0;
 
                     foreach($productos AS $producto):
 
-                        $subtotal += $producto->cantidad * $producto->precio;
-                        $total = $subtotal + ($subtotal * 0.16);
-                        $totalBss = $total* $dolar;
-                        
+                        $total += ($producto->cantidad * $producto->precio);
+                        $totalBss = $total * $dolar;
                 ?>
 
-                <tr>
-                    <td colspan="1" class="text-center" >
-                        <?= $producto->cantidad; ?>
-                    </td>
-                    <td colspan="2" class="text-center" >
-                        <?= $producto->codigo; ?>
-                    </td>
-                    <td colspan="3" class="text-center" >
-                        <?= $producto->nombre; ?>
-                    </td>
-                    <td colspan="2" class="text-center" >
-                        <?= $producto->precio; ?>
-                    </td>
-                    <td colspan="2" class="text-center" >
-                        <?= $producto->precio * $producto->cantidad; ?>
-                    </td>
-                </tr>
+              
+                <div style="width:15.5%; display:inline;" class="text-center" >
+                    <?= $producto->cantidad; ?>
+                </div>
+                <div style="width:15.5%; display:inline;" class="text-center" >
+                    <?= $producto->codigo; ?>
+                </div>
+                <div style="width:15.5%; display:inline;" class="text-center" >
+                    <?= $producto->nombre; ?>
+                </div>
+                <div style="width:15.5%; display:inline;" class="text-center" >
+                    <?= $producto->precio; ?>
+                </div>
+                <div style="width:15.5%; display:inline;" class="text-center" >
+                    <?= $producto->precio * $producto->cantidad; ?>
+                </div>
+                <div style="width:15.5%; display:inline;" class="text-center" >
+                    <?= $producto->precio * $producto->cantidad * $dolar; ?>
+                </div>
+                <br><br>
 
                 <?php
                     endforeach;
                 ?>
-
-                <!-- <tr>
-                    <td colspan="1" class="text-center" >
-                        2
-                    </td>
-                    <td colspan="2" class="text-center" >
-                        P135468
-                    </td>
-                    <td colspan="3" class="text-center" >
-                        Caja automatica
-                    </td>
-                    <td colspan="2" class="text-center" >
-                        5000
-                    </td>
-                    <td colspan="2" class="text-center" >
-                        10000
-                    </td>
-                </tr>
-
-                <tr>
-                    <td colspan="1" class="text-center" >
-                        2
-                    </td>
-                    <td colspan="2" class="text-center" >
-                        P135468
-                    </td>
-                    <td colspan="3" class="text-center" >
-                        Caja automatica
-                    </td>
-                    <td colspan="2" class="text-center" >
-                        5000
-                    </td>
-                    <td colspan="2" class="text-center" >
-                        10000
-                    </td>
-                </tr>
-
-                <tr>
-                    <td colspan="1" class="text-center" >
-                        2
-                    </td>
-                    <td colspan="2" class="text-center" >
-                        P135468
-                    </td>
-                    <td colspan="3" class="text-center" >
-                        Caja automatica
-                    </td>
-                    <td colspan="2" class="text-center" >
-                        5000
-                    </td>
-                    <td colspan="2" class="text-center" >
-                        10000
-                    </td>
-                </tr> -->
-
-                <tr>
-                    <td colspan="8"></td>
-                    <td colspan="2">
-                        <hr>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td colspan="10">
-
-                    </td>
-                </tr>
-
-                <tr>
-                    <td colspan="6">
-                        <hr>
-
-                    </td>
-                    <td colspan="2" class="text-center">
-                        <strong>SUB-TOTAL:</strong>
-                    </td>
-                    <td colspan="2" class="text-center">
-                        <strong><?= $subtotal; ?></strong>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td colspan="6">
-
-                    </td>
-                    <td colspan="2" class="text-center">
-                        <strong>IVA(16.00%):</strong>
-                    </td>
-                    <td colspan="2" class="text-center">
-                        <strong><?= $subtotal* 0.16; ?></strong>
-                    </td>
-                </tr>
-                
-                <tr>
-                    <td colspan="6">
-
-                    </td>
-                    <td colspan="2" class="text-center">
-                        <strong>TOTAL:</strong>
-                    </td>
-                    <td colspan="2" class="text-center">
-                        <strong><?= $total." $ <br>".$totalBss." BSS"; ?></strong>
-                    </td>
-                </tr>
-        </table>
-
-   
+                <hr>
+                <div>
+                    
+                  <strong>&nbsp;TOTAL:&nbsp; <?= $total." $ - ".$totalBss." BSS"; ?></strong>
+                </div>
+        </div>  
         
            
             

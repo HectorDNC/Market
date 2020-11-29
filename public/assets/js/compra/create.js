@@ -17,6 +17,17 @@ $(document).ready(function () {
 
         return proveedor;
     }
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'bottom-start',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: false,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+      })
     // Obtener precio del Dolar
     $.ajax({
         type: "POST",
@@ -85,7 +96,7 @@ $(document).ready(function () {
         
         let producto = buscarProducto($('#listadoProductos').val());
         
-        Swal.fire(
+        Toast.fire(
             producto.nombre + ' Agregado',
             'Producto Agregado correctamente',
             'success'   
@@ -113,6 +124,9 @@ $(document).ready(function () {
                 <td>
                     <input type="number" class="form-control-plaintext total" value="0" disabled>
                 </td>
+                <td>
+                    <input type="number" class="form-control-plaintext totalBss" value="0" disabled>
+                </td>
                 
                 <td>
                     <button class="btn btn-danger eliminar"><i class="fas fa-trash-alt text-white"></i></button>
@@ -132,8 +146,10 @@ $(document).ready(function () {
 
         let row = $(this).closest('tr');
         let total = row.find('.cantidad').val() * row.find('.precio').val();
+        let totalBss = total*dolar;
         
         row.find('.total').val(total);
+        row.find('.totalBss').val(totalBss);
 
         let elementos = document.querySelectorAll('.total');
 
@@ -159,7 +175,7 @@ $(document).ready(function () {
     $('#agregarProveedorCompra').click(function (e) { 
         e.preventDefault();
         if($('#listadoProveedores').val() == '' || $('#listadoProveedores').val() == null){
-            Swal.fire(
+            Toast.fire(
                 'Seleccione un Proveedor',
                 'Debe incluir un proveedor en la compra',
                 'warning'
@@ -167,7 +183,7 @@ $(document).ready(function () {
     
             return false;
         }
-        Swal.fire(
+        Toast.fire(
             'Proveedor agregado!',
             'Se ha seleccionado un proveedor correctamente',
             'success'

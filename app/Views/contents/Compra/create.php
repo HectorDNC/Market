@@ -250,10 +250,9 @@
                                     <th>Descripcion</th>    
                                     <th>Cantidad</th>
                                     <th>Stock</th>
-                                    <th>Precio Unitario</th>
-                                    
-                                    <th>Total</th>
-                                    <!-- <th>Total BSS</th> -->
+                                    <th>Precio</th>                                    
+                                    <th>Total $</th>
+                                    <th>Total BSS</th>
                                     <th>Eliminar</th>
                                 </tr>
                             </thead>

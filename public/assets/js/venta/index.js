@@ -81,16 +81,15 @@ $(document).ready(function () {
                             <td>${element.nombre}</td>
                             <td>${element.precio}</td>
                             <td>${parseFloat(element.precio * element.cantidad).toFixed(2)}</td>
+                            <td>${parseFloat(element.precio * element.cantidad * dolar).toFixed(2)}</td>
                         </tr>
                     `;
 
-                    $('#subtotal').val(parseFloat(subtotal).toFixed(2));
-                    $('#impuesto').val(parseFloat(subtotal * 0.16).toFixed(2))
+                    
                     $('#cuerpo').append(row);
                     
                 });
 
-                total += (total * 0.16);
                 totalBss = total*dolar;
                 $('#total').html(`${total} $ <br> ${totalBss} BSS`);
 

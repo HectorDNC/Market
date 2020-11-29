@@ -243,11 +243,12 @@
                             <thead class=" thead-dark">
                                 <tr>
                                     <th scope="col">Codigo</th>
-                                    <th>Descripcion</th>    
-                                    <th>Cantidad</th>
-                                    <th>Stock</th>
-                                    <th>Precio Unitario</th>
-                                    <th>Total</th>
+                                    <th>Descripcion</th>
+                                    <th>Stock</th>    
+                                    <th>Cantidad</th>                                    
+                                    <th>Precio</th>
+                                    <th>Total $</th>
+                                    <th>Total BSS</th>
                                     <th>Eliminar</th>
                                 </tr>
                             </thead>
@@ -264,18 +265,7 @@
                 <div class="row">
                     <table class="table" id="tablaProductos">
                         <tbody>
-                            <tr>
-                                <td>Sub-Total</td>
-                                <td>
-                                    <input type="text" class="form-control-plaintext" disabled id="subtotal">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>IVA(<?= $iva; ?>%)</td>
-                                <td>
-                                    <input type="text" class="form-control-plaintext" disabled id="impuesto">
-                                </td>
-                            </tr> 
+                                                       
                             <tr class="bg-info">
                                 <td><strong class="text-white">Total</strong></td>
                                 <td> 
