@@ -241,6 +241,13 @@ $(document).ready(function () {
     
                     table.ajax.reload();
                 }
+                else{
+                    Swal.fire(
+                        json.titulo,
+                        json.mensaje,
+                        json.tipo
+                      )
+                }
             },
             error: function (response) {
                 console.log(response);

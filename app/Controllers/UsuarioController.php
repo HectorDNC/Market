@@ -155,6 +155,20 @@ class UsuarioController extends Controller{
             $usuario->setRolId(strtoupper($this->limpiaCadena($_POST['rolUsuarioN'])));
         }
        
+        if ($usuario->getRolId()!="1") {
+            $admin = $this->usuario->query("SELECT id FROM usuarios WHERE rol_id=1 AND estatus='ACTIVO'")->rowCount();
+            if($admin == 1){
+                $usu = $this->usuario->getOne("usuarios",$usuario->getId());
+                if($usu->rol_id=="1"){
+                    echo json_encode([
+                        'titulo' => 'Ocurrió un error!',
+                        'mensaje' => "El Sistema debe tener como mínimo un usuario de tipo Administrador",
+                        'tipo' => 'error'
+                    ]);
+                    return false;
+                } 
+            }
+        }
         if($this->usuario->actualizar($usuario)){
             if (isset($_POST['perfil']) && $_POST['perfil']!="") {
                 $_SESSION['usuario'] = $usuario->getUsuario();
@@ -201,8 +215,20 @@ class UsuarioController extends Controller{
         return false;
         }
         $id = $this->desencriptar($id);
-
         
+        $usu = $this->usuario->getOne("usuarios",$id);
+       
+        if ($usu->rol_id=="1") {
+            $admin = $this->usuario->query("SELECT id FROM usuarios WHERE rol_id=1 AND estatus='ACTIVO'")->rowCount();
+            if($admin == 1){
+                echo json_encode([
+                    'titulo' => 'Ocurrió un error!',
+                    'mensaje' => "El Sistema debe tener como mínimo un usuario de tipo Administrador",
+                    'tipo' => 'error'
+                ]);
+                return false;
+            }
+        }
         if($this->usuario->eliminar("usuarios", $id)){
 
             http_response_code(200);
@@ -216,7 +242,7 @@ class UsuarioController extends Controller{
             http_response_code(404);
 
             echo json_encode([
-                'titulo' => 'Ocurio un error!',
+                'titulo' => 'Ocurrió un error!',
                 'mensaje' => 'No se pudo eliminar el registro',
                 'tipo' => 'error'
             ]);
