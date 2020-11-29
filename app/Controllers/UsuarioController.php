@@ -17,16 +17,16 @@ class UsuarioController extends Controller{
     private $rol;
     
     public function __construct() {
-        if($_SESSION['rol'] != 1){
-            header("Location: ".ROOT);
-            return false;
-        }
+        
         $this->usuario = new Usuario;
         $this->rol = new Rol();
     }
 
     public function index(){
-        
+        if($_SESSION['rol'] != 1){
+            header("Location: ".ROOT);
+            return false;
+        }
         $roles = $this->rol->listar();
         
         return View::getView('Usuario.index', 'roles', $roles);
@@ -148,8 +148,13 @@ class UsuarioController extends Controller{
             $contrasena = $this->encriptar(strtoupper($this->limpiaCadena($_POST['contrasena'])));
             $usuario->setPassword($contrasena);
         }
-        $usuario->setRolId(strtoupper($this->limpiaCadena($_POST['rolUsuario'])));
-        return "LOL";
+        if(isset($_POST['rolUsuario']) && $_POST['rolUsuario']!=""){
+            $usuario->setRolId(strtoupper($this->limpiaCadena($_POST['rolUsuario'])));
+        }
+        else{
+            $usuario->setRolId(strtoupper($this->limpiaCadena($_POST['rolUsuarioN'])));
+        }
+       
         if($this->usuario->actualizar($usuario)){
         http_response_code(200);
 
@@ -159,11 +164,10 @@ class UsuarioController extends Controller{
             'tipo' => 'success'
         ]);
         }else{
-        http_response_code(404);
 
         echo json_encode([
             'titulo' => 'Error al Actualizar',
-            'mensaje' => 'Ocurrio un error durante la actualizacion',
+            'mensaje' => $this->usuario->getError(),
             'tipo' => 'error'
         ]);
         }

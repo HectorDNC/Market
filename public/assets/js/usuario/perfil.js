@@ -8,7 +8,7 @@ $(document).ready(function () {
             contentType: false,
             processData: false,
             success: function (response) {
-                console.log(response);
+                console.log("R:"+response);
                 let json = JSON.parse(response);
                 
                 if( json.tipo == 'success'){
@@ -38,7 +38,7 @@ $(document).ready(function () {
         e.preventDefault();
     
         const datos = new FormData(document.querySelector('#formularioActualizarUsuario'));
-    
+        
         if(datos.get('contrasena')==datos.get('confirmarContrasena')){
             console.log(datos.get('contrasena'));
             actualizarUsuario(datos);

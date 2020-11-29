@@ -243,10 +243,10 @@ class CompraController extends Controller{
             return false;
         }
         if($_POST['categoria']!=0){
-            $productos = $this->producto->getAll('v_inventario', "estatus = 'ACTIVO' AND stock > 0 AND precio_venta != 'null' AND id IN (SELECT id FROM productos WHERE categoria_id = $_POST[categoria])");
+            $productos = $this->producto->getAll('v_inventario', "estatus = 'ACTIVO' AND id IN (SELECT id FROM productos WHERE categoria_id = $_POST[categoria])");
         }
         else{
-            $productos = $this->producto->getAll('v_inventario', "estatus = 'ACTIVO' AND stock > 0 AND precio_venta != 'null'");
+            $productos = $this->producto->getAll('v_inventario', "estatus = 'ACTIVO'");
         }
        
         http_response_code(200);

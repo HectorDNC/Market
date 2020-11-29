@@ -15,7 +15,7 @@
                 <hr>
 
                 <div class="row form-group">
-                    <input  name="id" id="id" hidden>
+                    <input  name="id" id="id" value="<?=$usuario->id?>" hidden>
                     <label for="nombre" class="col-form-label col-md-2">Nombre:</label>
                     <div class="col-md-4 ">
                         <input type="text" value="<?=$usuario->nombre?>" name="nombre" id="nombre" pattern="[A-Za-z ]+" title="Ingrese solo letras" maxlength="30" required="required" class="form-control" placeholder="Nombre">
@@ -118,14 +118,14 @@
                     </select>
                 </div>
                 <?php }else{?>
-                    <input type="hidden" value="<?=$usuario->rol_id?>" id="rolUsuario" name="rolUsuario">
+                    <input id="rolUsuarioN" name="rolUsuarioN" value="<?=$usuario->rol_id?>" hidden>
                 <?php }?>
                 <hr>
 
                 <div class="row form-group justify-content-md-center">
-                    <a href="#" class="btn btn-secondary m-2" data-dismiss="modal"><i class="fas fa-arrow-circle-left"></i> Cerrar</a>
+                    <!-- <a href="#" class="btn btn-secondary m-2" data-dismiss="modal"><i class="fas fa-arrow-circle-left"></i> Cerrar</a> -->
                     <button type="submit"  class="btn btn-success m-2">Enviar</button>
-                    <button type="reset" class="btn btn-danger m-2">Limpiar</button>
+                    <!-- <button type="reset" class="btn btn-danger m-2">Limpiar</button> -->
                 </div>
             </form>
         </div>

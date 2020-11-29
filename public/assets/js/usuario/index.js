@@ -313,7 +313,6 @@ $(document).ready(function () {
         const datos = new FormData(document.querySelector('#formularioActualizarUsuario'));
     
         if(datos.get('contrasena')==datos.get('confirmarContrasena')){
-            console.log(datos.get('contrasena'));
             actualizarUsuario(datos);
         }
         else{
