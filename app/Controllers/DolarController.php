@@ -13,16 +13,16 @@ class DolarController extends Controller{
     use Utility;
 
     public function __construct(){
-      if($_SESSION['rol'] != 1){
-        header("Location: ".ROOT);
-        return false;
-      }
+      
         $this->dolar = new Dolar;
         
     }
 
     public function index(){
-      
+      if($_SESSION['rol'] != 1){
+        header("Location: ".ROOT);
+        return false;
+      }
         return View::getView('Dolar.index');
     }
 

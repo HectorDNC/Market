@@ -12,25 +12,8 @@ $(document).ready(function() {
             success: function(response) {
                 console.log(response);
 
-                window.location = '/';
-                window.location.reload();
-
-                // if( json.tipo == 'success'){
-
-                //     Swal.fire(
-                //         json.titulo,
-                //         json.mensaje,
-                //         json.tipo
-                //     );
-
-
-                // }else{
-                //     Swal.fire(
-                //         json.titulo,
-                //         json.mensaje,
-                //         json.tipo
-                //     );
-                // }
+                window.location = GLOBAL.URL;
+                
 
             },
             error: (response) => {
