@@ -38,7 +38,7 @@ $(document).ready(function () {
         e.preventDefault();
     
         const datos = new FormData(document.querySelector('#formularioActualizarUsuario'));
-        
+        console.log(datos.get('perfil'));
         if(datos.get('contrasena')==datos.get('confirmarContrasena')){
             console.log(datos.get('contrasena'));
             actualizarUsuario(datos);

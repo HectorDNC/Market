@@ -156,20 +156,25 @@ class UsuarioController extends Controller{
         }
        
         if($this->usuario->actualizar($usuario)){
-        http_response_code(200);
+            if (isset($_POST['perfil']) && $_POST['perfil']!="") {
+                $_SESSION['usuario'] = $usuario->getUsuario();
+                $_SESSION['id'] = $usuario->getId();
+                $_SESSION['rol'] = $usuario->getRolId();
+            }
+            http_response_code(200);
 
-        echo json_encode([
-            'titulo' => 'Actualizacion Exitosa',
-            'mensaje' => 'Registro actualizado en nuestro sistema',
-            'tipo' => 'success'
-        ]);
+            echo json_encode([
+                'titulo' => 'Actualizacion Exitosa',
+                'mensaje' => 'Registro actualizado en nuestro sistema',
+                'tipo' => 'success'
+            ]);
         }else{
 
-        echo json_encode([
-            'titulo' => 'Error al Actualizar',
-            'mensaje' => $this->usuario->getError(),
-            'tipo' => 'error'
-        ]);
+            echo json_encode([
+                'titulo' => 'Error al Actualizar',
+                'mensaje' => $this->usuario->getError(),
+                'tipo' => 'error'
+            ]);
         }
 
     }

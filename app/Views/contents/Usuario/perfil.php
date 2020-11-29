@@ -15,6 +15,7 @@
                 <hr>
 
                 <div class="row form-group">
+                    <input  name="perfil" id="perfil" value="1" hidden>
                     <input  name="id" id="id" value="<?=$usuario->id?>" hidden>
                     <label for="nombre" class="col-form-label col-md-2">Nombre:</label>
                     <div class="col-md-4 ">
