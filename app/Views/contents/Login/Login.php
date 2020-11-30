@@ -19,7 +19,8 @@
     <script src="<?= ROOT; ?>node_modules/sweetalert2/dist/sweetalert2.js"></script>
 
     <!-- BOOTSTRAP -->
-    <link href="<?= ROOT; ?>vendor/twbs/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="<?= ROOT; ?>vendor/twbs/bootstrap/dist/css/bootstrap-litera.min.css" rel="stylesheet" type="text/css">
+    <!-- <link href="<?= ROOT; ?>vendor/twbs/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css"> -->
 
     <!-- BOOTADMIN -->
     <link href="<?= ROOT; ?>public/assets/css/bootadmin.css?v=<?php echo time(); ?>" rel="stylesheet" type="text/css">
