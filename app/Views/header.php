@@ -11,7 +11,8 @@
     <script src="<?= ROOT; ?>node_modules/jquery/dist/jquery.js"></script>
     
     <!-- SWEETALERT -->
-    <link rel="stylesheet" href="<?= ROOT; ?>node_modules/sweetalert2/dist/sweetalert2.css">
+    <link rel="stylesheet" href="<?= ROOT; ?>node_modules/sweetalert2/dist/bulma.css">
+    <!-- <link rel="stylesheet" href="<?= ROOT; ?>node_modules/sweetalert2/dist/sweetalert2.css"> -->
     <script src="<?= ROOT; ?>node_modules/sweetalert2/dist/sweetalert2.js"></script>
 
     <!-- BOOTSTRAP -->
