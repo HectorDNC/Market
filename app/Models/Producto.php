@@ -140,11 +140,11 @@ class Producto extends Model {
     try{
       if (isset($categoria_id)) {
         $sql = 
-     "SELECT * FROM v_inventario1 WHERE id IN (SELECT id FROM productos WHERE categoria_id = $categoria_id) ORDER BY id DESC";
+     "SELECT * FROM v_inventario1 WHERE id IN (SELECT id FROM productos WHERE categoria_id = $categoria_id) ORDER BY estatus ASC, id DESC";
       }
       else{
         $sql = 
-     "SELECT * FROM v_inventario1 ORDER BY id DESC";
+     "SELECT * FROM v_inventario1 ORDER BY estatus ASC, id DESC";
       }
       
 

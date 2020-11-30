@@ -75,11 +75,12 @@ class ProductoController extends Controller{
                 "<a href=".ROOT."producto/mostrar/". $this->encriptar($producto->id) ."' class='mostrar btn btn-info'><i class='fas fa-search'></i></a>".
                 "<a href=".ROOT."producto/mostrar/". $this->encriptar($producto->id) ."' class='editar btn btn-warning m-1'><i class='fas fa-pencil-alt'></i></a>";
                 if($producto->estatus == "ACTIVO"){
-                    $producto->button .= "<a href='". $this->encriptar($producto->id) ."' class='eliminar btn btn-danger' title='Eliminar'><i class='fas fa-trash-alt'></i></a>";
+                    $producto->button .= "<a href='". $this->encriptar($producto->id) ."' class='eliminar btn btn-danger mr-1' title='Desactivar'><i class='fas fa-trash-alt'></i></a>";
                 }
                 else{
-                    $producto->button .= "<a href='". $this->encriptar($producto->id) ."' class='estatusAnulado btn btn-outline-info' title='Activar'><i class='fas fa-trash'></i></a>";
+                    $producto->button .= "<a href='". $this->encriptar($producto->id) ."' class='estatusAnulado btn btn-outline-info mr-1' title='Activar'><i class='fas fa-trash'></i></a>";
                 }
+                // $producto->button .="<a href=". $this->encriptar($producto->id) ."' class='eliminarCompleto btn btn-dark' title='Eliminar Completamente'><i class='fas fa-times-circle'></i></a>";
                 
             }
             $categorias = $this->producto->getAll("categorias");
@@ -309,12 +310,44 @@ class ProductoController extends Controller{
           http_response_code(200);
     
           echo json_encode([
-            'titulo' => 'Registro eliminado!',
-            'mensaje' => 'Registro eliminado en nuestro sistema',
+            'titulo' => 'Registro desactivado!',
+            'mensaje' => 'Registro desactivado en nuestro sistema',
             'tipo' => 'success'
           ]);
         }else{
           http_response_code(404);
+    
+          echo json_encode([
+            'titulo' => 'Ocurio un error!',
+            'mensaje' => 'No se pudo eliminar el registro',
+            'tipo' => 'error'
+          ]);
+        }
+        
+    
+    }
+    public function eliminarTotal($id){
+
+        $method = $_SERVER['REQUEST_METHOD'];
+    
+        if( $method != 'DELETE'){
+          http_response_code(404);
+          return false;
+        }
+    
+        $id = $this->desencriptar($id);
+    
+        if($this->producto->eliminarTotal("productos", $id)){
+    
+          http_response_code(200);
+    
+          echo json_encode([
+            'titulo' => 'Registro eliminado!',
+            'mensaje' => 'Registro eliminado completamente en nuestro sistema',
+            'tipo' => 'success'
+          ]);
+        }else{
+        //   http_response_code(404);
     
           echo json_encode([
             'titulo' => 'Ocurio un error!',

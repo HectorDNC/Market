@@ -269,8 +269,8 @@ $(document).ready(function () {
                 const json = JSON.parse(response);
                 if(json.tipo == 'success'){
                     Swal.fire(
-                        'Eliminado!',
-                        'El registro ha sido eliminado!',
+                        'Desactivado!',
+                        'El registro ha sido desactivado!',
                         'success'
                         )
     
@@ -294,6 +294,27 @@ $(document).ready(function () {
                         'Activado!',
                         'El producto ha sido habilitado!',
                         'success'
+                        )
+    
+                    table.ajax.reload();
+                }
+            },
+            error: function (response) {
+                console.log(response);
+            }
+        });
+    }
+    const eliminarTotal = (id) => {
+        $.ajax({
+            type: "DELETE",
+            url: GLOBAL.URL+"producto/eliminarTotal/" + id,
+            success: function (response) {
+                const json = JSON.parse(response);
+                if(json.tipo == 'success'){
+                    Swal.fire(
+                        json.titulo,
+                        json.mensaje,
+                        json.tipo
                         )
     
                     table.ajax.reload();
@@ -401,7 +422,7 @@ $(document).ready(function () {
     
         Swal.fire({
             title: 'Esta Seguro?',
-            text: "El producto sera eliminado del sistema!",
+            text: "El producto sera desactivado del sistema!",
             type: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -439,6 +460,27 @@ $(document).ready(function () {
             })
         console.log($(this).attr('href'));
     });
-
+    // Eliminar Producto
+    $('body').on('click', '.eliminarCompleto', function (e) {
+        e.preventDefault();
+    
+        Swal.fire({
+            title: 'Esta Seguro?',
+            text: "El producto sera eliminado completamente del sistema y no se podra recuperar!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Cancelar',
+            confirmButtonText: 'Si, eliminar!'
+            }).then((result) => {
+            if (result.value) {
+    
+                eliminarTotal($(this).attr('href'));
+                
+            }
+            })
+        console.log($(this).attr('href'));
     });
+});
     
