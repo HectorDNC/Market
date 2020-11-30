@@ -80,7 +80,7 @@ class ProductoController extends Controller{
                 else{
                     $producto->button .= "<a href='". $this->encriptar($producto->id) ."' class='estatusAnulado btn btn-outline-info mr-1' title='Activar'><i class='fas fa-trash'></i></a>";
                 }
-                // $producto->button .="<a href=". $this->encriptar($producto->id) ."' class='eliminarCompleto btn btn-dark' title='Eliminar Completamente'><i class='fas fa-times-circle'></i></a>";
+                $producto->button .="<a href=". $this->encriptar($producto->id) ."' class='eliminarCompleto btn btn-dark' title='Eliminar Completamente'><i class='fas fa-times-circle'></i></a>";
                 
             }
             $categorias = $this->producto->getAll("categorias");

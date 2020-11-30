@@ -14,7 +14,7 @@ $(document).ready(function() {
             processData: false,
             success: function(response) {
                 console.log(response);
-
+                // Swal.close();
                 window.location = '/';
                 window.location.reload();
 
@@ -41,8 +41,21 @@ $(document).ready(function() {
                 );
             }
         });
+        Toast.fire({
+            title: 'Espere por favor!',
+            html: 'Los datos están siendo procesados',// add html attribute if you want or remove
+            allowOutsideClick: false,
+            onBeforeOpen: () => {
+                Swal.showLoading()
+            },
+        });
     });
 
-
-
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'bottom-start',
+        showConfirmButton: false,
+        
+      });
+    
 });
