@@ -37,9 +37,9 @@ class LoginController extends Controller{
 
 
         $this->usuario->setUsuario($this->limpiaCadena($_POST['user']));
-        $this->usuario->setPassword($this->encriptar($_POST['password']));
+        $this->usuario->setPassword($this->encriptarPassword(strtoupper($this->limpiaCadena($_POST['password']))));
         
-        
+   
         $response = $this->usuario->checkUser($this->usuario);
         
         if($response) {
@@ -65,7 +65,7 @@ class LoginController extends Controller{
             http_response_code(404); 
             echo json_encode([
                 'error' => 'true',
-                'message' => 'Usuario o contraseña incorrecto'
+                'message' => 'Usuario o contraseña incorrecto '
             ]);
         }
         

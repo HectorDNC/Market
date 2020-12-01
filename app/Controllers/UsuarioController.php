@@ -74,7 +74,7 @@ class UsuarioController extends Controller{
             return false;
         }
 
-        $contrasena = $this->encriptar(strtoupper($this->limpiaCadena($_POST['contrasena'])));
+        $contrasena = $this->encriptarPassword(strtoupper($this->limpiaCadena($_POST['contrasena'])));
 
         $usuario = new Usuario();
 
@@ -145,7 +145,7 @@ class UsuarioController extends Controller{
         $usuario->setUsuario(strtoupper($this->limpiaCadena($_POST['usuario'])));
         $usuario->setEstatus("ACTIVO");
         if ($_POST['contrasena']!="") {
-            $contrasena = $this->encriptar(strtoupper($this->limpiaCadena($_POST['contrasena'])));
+            $contrasena = $this->encriptarPassword(strtoupper($this->limpiaCadena($_POST['contrasena'])));
             $usuario->setPassword($contrasena);
         }
         if(isset($_POST['rolUsuario']) && $_POST['rolUsuario']!=""){

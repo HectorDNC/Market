@@ -30,6 +30,24 @@ trait Utility {
 
         return $salida;
     }
+    public function encriptarPassword($cadena){
+        $password = hash('sha512', 'hola'.$cadena);
+        // $salida=FALSE;
+        // $password=hash('md5', $cadena); //Genera Valor Cifrado en base a un string
+        // $vectorInicializacion=substr(hash('md5', CODIGO_VECTOR), 0, 16);
+        // $salida=openssl_encrypt($cadena, METODO, $password, 0, $vectorInicializacion);
+        // $salida=base64_encode($salida);
+
+        return $password;
+    }
+
+    public function desencriptarPassword($cadena){
+        $password=hash('md5', $cadena);
+        $vectorInicializacion=substr(hash('md5', CODIGO_VECTOR), 0, 16);
+        $salida=openssl_decrypt(base64_decode($cadena), METODO, $password , 0, $vectorInicializacion);
+
+        return $password;
+    }
     
     /**
      * *********************
