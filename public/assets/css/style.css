@@ -7,3 +7,7 @@
 .card-body{
     overflow: auto !important;
 }
+.table{
+    margin: auto;
+    width: 100% !important;
+}
