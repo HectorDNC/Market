@@ -60,43 +60,31 @@
 	        </div>
 		</div>	
 	</div>
-
 	<div class="card">
 		<div class="card-header bg-white font-weight-bold">
-			Ordenes Recientes
+			Ventas Recientes
 		</div>
 		<div class="card-body">
 
             <table class="table table-hover">
                 <thead>
                 <tr>
-                    <th scope="col">ID de la Orden</th>
-                    <th scope="col">Producto</th>
+                    <th scope="col">Código</th>
+                    <th scope="col">Fecha</th>
                     <th scope="col">Cliente</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td><a href="#">00000077</a></td>
-                    <td>Monitor</td>
-                    <td>Jose Rodriguez</td>
-                </tr>
-                <tr>
-                    <td><a href="#">00000078</a></td>
-                    <td>Teclado</td>
-                    <td>Cesar Gonzales</td>
-                </tr>
-                <tr>
-                    <td><a href="#">00000079</a></td>
-                    <td>Raton</td>
-                    <td>Maria Torres</td>
-                </tr>
-                <tr>
-                    <td><a href="#">00000080</a></td>
-                    <td>Monitor</td>
-                    <td>Leonardo Martinez</td>
-                </tr>
-                </tbody>
+					<?php foreach ($ventasD as $venta):?>
+						<tr>
+							<td><?=$venta->codigo?></td>
+							<td><?=$venta->fecha?></td>
+							<td><?=$venta->cliente?></td>
+						</tr>
+
+					<?php endforeach; ?>
+               
+              	</tbody>
             </table>
         </div>
 	</div>
