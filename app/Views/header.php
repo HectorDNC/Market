@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
+    <link rel="shortcut icon" href="<?= ROOT; ?>public/assets/img/favicon.ico" type="image/x-icon">
     <!-- FONTAWESOME -->
     <link href="<?= ROOT; ?>vendor/fortawesome/font-awesome/css/all.min.css" rel="stylesheet" type="text/css">
 
@@ -86,7 +86,7 @@
                 <li><a href="<?= ROOT;?>Venta/crear"><i class="fa fa-fw fa-plus-square"></i> Agregar Venta</a></li>
             </ul>
         </li>
-        <li><a href="<?= ROOT;?>Reportes"><i class="fa fa-fw fa-list-alt"></i> Reportes</a></li>
+        <li><a href="<?= ROOT;?>Reporte"><i class="fa fa-fw fa-list-alt"></i> Reportes</a></li>
         <!-- <li><a href="<?= ROOT;?>Reporte"><i class="fa fa-fw fa-calendar"></i> Reportes</a></li> -->
         
         <!-- <li>

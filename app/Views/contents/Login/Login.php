@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <title><?=TITLE?></title>
-
+    <link rel="shortcut icon" href="<?= ROOT; ?>public/assets/img/favicon.ico" type="image/x-icon">
     <!-- FONTAWESOME -->
     <link href="<?= ROOT; ?>vendor/fortawesome/font-awesome/css/all.min.css" rel="stylesheet" type="text/css">
 

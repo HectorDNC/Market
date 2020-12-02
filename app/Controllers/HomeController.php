@@ -25,7 +25,7 @@ class HomeController extends Controller{
     }
 
     public function index(){
-        $query = $this->venta->connect()->prepare("SELECT v.codigo as codigo, Date_format(v.fecha,'%d/%m/%Y %r') as fecha, c.nombre as cliente FROM ventas v LEFT JOIN clientes c ON v.cliente_id=c.id ORDER BY v.fecha DESC LIMIT 10");
+        $query = $this->venta->connect()->prepare("SELECT v.codigo as codigo, Date_format(v.fecha,'%d/%m/%Y %r') as fecha, c.nombre as cliente FROM ventas v LEFT JOIN clientes c ON v.cliente_id=c.id WHERE v.estatus='ACTIVO' ORDER BY v.fecha DESC LIMIT 10");
         $query->execute();
         $ventas = $query->fetchAll(PDO::FETCH_OBJ);
         return View::getView('Home.index', [

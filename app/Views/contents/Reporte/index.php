@@ -5,7 +5,7 @@
                 <h2>Reporte de Ventas</h2>
             </div>
             <div class="card-body">
-                <form action="#" method="POST" enctype="multipart/form-data" id="formularioReporte">
+                <form action="<?=ROOT;?>Reporte/reporteVenta" method="POST" enctype="multipart/form-data" id="formularioReporte">
                     <div class="row form-group">
                         <label for="vendedor" class="col-form-label col-md-4 font-weight-bold">Vendedor: </label>
                         <div class="col-md-8 d-flex align-items-center">
