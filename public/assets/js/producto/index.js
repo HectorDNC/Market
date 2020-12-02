@@ -156,8 +156,8 @@ $(document).ready(function () {
                     $(formulario).find('select#unidad').val(json.data.unidad_id);
                     $(formulario).find('input#porcentaje').val(json.data.porcentaje);
                     $(formulario).find('textarea#descripcion').val(json.data.descripcion);
-                    $(formulario).find('input#stock_min').val(json.data.stock_min);
-                    $(formulario).find('input#stock_max').val(json.data.stock_max);
+                    // $(formulario).find('input#stock_min').val(json.data.stock_min);
+                    // $(formulario).find('input#stock_max').val(json.data.stock_max);
                     $(formulario).find('input#stock').val(json.data.stock);
                 }else{
                     
@@ -168,8 +168,8 @@ $(document).ready(function () {
                     $(formulario).find('input#unidad').val(json.data.unidad);
                     $(formulario).find('input#porcentaje').val(json.data.porcentaje);
                     $(formulario).find('textarea#descripcion').val(json.data.descripcion);
-                    $(formulario).find('input#stock_min').val(json.data.stock_min);
-                    $(formulario).find('input#stock_max').val(json.data.stock_max);
+                    // $(formulario).find('input#stock_min').val(json.data.stock_min);
+                    // $(formulario).find('input#stock_max').val(json.data.stock_max);
                     $(formulario).find('input#stock').val(json.data.stock);
                 }
     

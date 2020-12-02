@@ -23,15 +23,15 @@ if(!isset($_SESSION)) {
 
 if(!empty($_SESSION['usuario'])) {
     
-    // if( $router->getController() == 'api' ){
-    //     $controller = "App\\Api\\" . $router->getController();
-    //     $method = $router->getMethod();
-    //     $param = $router->getParam();
+    if( $router->getController() == 'api' ){
+        $controller = "App\\Api\\" . $router->getController();
+        $method = $router->getMethod();
+        $param = $router->getParam();
     
-    //     $controller = new $controller();
-    //     $controller->$method($param);
+        $controller = new $controller();
+        $controller->$method($param);
     
-    // }else{
+    }else{
         $controller = "App\\Controllers\\" . $router->getController() . "Controller";
         $file = "App/Controllers/" . $router->getController() . "Controller.php";
         if(file_exists($file)){
@@ -49,10 +49,9 @@ if(!empty($_SESSION['usuario'])) {
         }
         else{
             $view->getView("Error.index");
-        }
+        }       
         
-        
-    // }
+    }
     
 } else {
     

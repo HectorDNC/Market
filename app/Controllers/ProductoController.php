@@ -111,8 +111,8 @@ class ProductoController extends Controller{
         $producto->setNombre(strtoupper($this->limpiaCadena($_POST['nombre'])));
         $producto->setPrecioPorcentaje((strtoupper($this->limpiaCadena($_POST['porcentaje']))));
         $producto->setDescripcion((strtoupper($this->limpiaCadena($_POST['descripcion']))));
-        $producto->setStockMin($this->limpiaCadena($_POST['stock_min']));
-        $producto->setStockMax($this->limpiaCadena($_POST['stock_max']));
+        // $producto->setStockMin($this->limpiaCadena($_POST['stock_min']));
+        // $producto->setStockMax($this->limpiaCadena($_POST['stock_max']));
 
         if($_POST['descripcion'] != ''){
             $producto->setDescripcion(strtoupper($this->limpiaCadena($_POST['descripcion'])));
@@ -203,8 +203,8 @@ class ProductoController extends Controller{
         $producto->setPrecioPorcentaje((strtoupper($this->limpiaCadena($_POST['porcentaje']))));
         $producto->setPrecioVenta($this->limpiaCadena($_POST['precio']));
         $producto->setDescripcion((strtoupper($this->limpiaCadena($_POST['descripcion']))));
-        $producto->setStockMin($this->limpiaCadena($_POST['stock_min']));
-        $producto->setStockMax($this->limpiaCadena($_POST['stock_max']));
+        // $producto->setStockMin($this->limpiaCadena($_POST['stock_min']));
+        // $producto->setStockMax($this->limpiaCadena($_POST['stock_max']));
 
         if($_POST['descripcion'] != ''){
             $producto->setDescripcion(strtoupper($this->limpiaCadena($_POST['descripcion'])));

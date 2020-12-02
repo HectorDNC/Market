@@ -104,9 +104,9 @@
 
            
                     
-                    <hr>
+                    <!-- <hr> -->
 
-                    <h4 class="text-center">Datos de Inventario</h4>
+                    <!-- <h4 class="text-center">Datos de Inventario</h4>
                     
                     <hr class="bg-info">
 
@@ -121,7 +121,7 @@
                             <i class="fas fa-angle-double-up"></i> <label for="stock_max">Stock Maximo</label>
                             <input class="form-control" type="number" name="stock_max" id="stock_max" placeholder="E j. 10" required >
                         </div>
-                    </div>
+                    </div> -->
 
                     <hr>
 
@@ -205,7 +205,7 @@
 
 
                     <div class="form-row">
-                        <div class="form-group col-md-4">
+                        <!-- <div class="form-group col-md-4">
                             <i class="fas fa-angle-double-down"></i> <label for="stock_min"><strong>Stock Minimo</strong></label>
                             <input class="form-control-plaintext" disabled type="number" name="stock_min" id="stock_min" placeholder="Ej. 5" required >
                         </div>
@@ -213,7 +213,7 @@
                         <div class="form-group col-md-4">
                             <i class="fas fa-angle-double-up"></i> <label for="stock_max"><strong>Stock Maximo</strong></label>
                             <input class="form-control-plaintext" disabled type="number" name="stock_max" id="stock_max" placeholder="E j. 10" required >
-                        </div>
+                        </div> -->
 
                         <div class="form-group col-md-4">
                             <i class="fas fa-angle-double-up"></i> <label for="stock"><strong>Stock</strong></label>
@@ -297,7 +297,7 @@
 
            
                     
-                    <hr>
+                    <!-- <hr>
 
                     <h4 class="text-center">Datos de Inventario</h4>
                     
@@ -314,7 +314,7 @@
                             <i class="fas fa-angle-double-up"></i> <label for="stock_max">Stock Maximo</label>
                             <input class="form-control" type="number" name="stock_max" id="stock_max" placeholder="E j. 10" required >
                         </div>
-                    </div>
+                    </div> -->
 
                     <hr>
 
