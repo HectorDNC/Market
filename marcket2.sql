@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-11-2020 a las 00:59:18
+-- Tiempo de generación: 02-12-2020 a las 01:28:56
 -- Versión del servidor: 10.1.26-MariaDB
 -- Versión de PHP: 7.1.8
 
@@ -489,15 +489,18 @@ CREATE TABLE `unidades` (
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
 --
 -- Volcado de datos para la tabla `unidades`
 --
+
 INSERT INTO `unidades` (`id`, `nombre`, `abreviatura`, `estatus`, `created_at`, `updated_at`) VALUES
 (1, 'PIEZA', 'pza', 'activo', '2020-11-11 02:03:32', '2020-11-11 02:03:32'),
 (2, 'METRO', 'm', 'activo', '2020-11-11 02:03:32', '2020-11-11 02:03:32'),
 (3, 'LITRO', 'l', 'activo', '2020-11-11 02:03:32', '2020-11-11 02:03:32'),
 (4, 'KILO', 'kg', 'activo', '2020-11-11 02:40:10', '2020-11-11 02:40:10');
+
+-- --------------------------------------------------------
+
 --
 -- Estructura de tabla para la tabla `usuarios`
 --
@@ -523,10 +526,8 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `documento`, `nombre`, `apellido`, `direccion`, `telefono`, `email`, `usuario`, `password`, `estatus`, `rol_id`, `created_at`, `updated_at`) VALUES
-(1, 'V-00000000', 'ADMINISTRADOR', 'ADMINISTRADOR', 'WORLD', '000-0000000', 'ADMINISTRADOR@EMAIL.COM', 'ADMINISTRADOR', 'ZXRlSml1a1p0akNsbTYwL2hnNEF2UT09', 'ACTIVO', 1, '2020-11-11 02:03:33', '2020-11-11 02:03:33'),
-(2, 'V-10000007', 'USUARIO', 'USUARIO', 'WORLD', '000-0000000', 'USUARIO@EMAIL.COM', 'USUARIO', 'ZXRlSml1a1p0akNsbTYwL2hnNEF2UT09', 'ACTIVO', 2, '2020-11-11 02:03:33', '2020-11-11 02:03:33'),
-(3, 'V-27349264', 'HECTOR', 'NOGUERA', 'POR AHI', '04261587389', 'USUARIO123@GMAIL.COM', 'HECTOR10', 'OEF4NjV6QXMwT0grTTdJZ3BUZWIzUT09', 'ACTIVO', 1, '2020-11-29 01:47:37', '2020-11-29 01:47:37'),
-(4, 'V-27349260', 'USUARIO', 'USERS', 'URB EDUARDO GIMENEZ', '04261587389', 'USUARIO12345@GMAIL.COM', 'USUARIO1', 'OEF4NjV6QXMwT0grTTdJZ3BUZWIzUT09', 'ELIMINADO', 1, '2020-11-29 02:04:40', '2020-11-29 02:04:40');
+(1, 'V-00000000', 'ADMINISTRADOR', 'ADMINISTRADOR', 'WORLD', '000-0000000', 'ADMINISTRADOR@EMAIL.COM', 'ADMINISTRADOR', '572594c28e0bcfc0f0a495ed376b00f0f6de160acfd4616e89bfa5469f6bade43b59652bf126cc32490274675d3f7755a3bc52039945b82f5710ef6d9d77254d', 'ACTIVO', 1, '2020-11-11 02:03:33', '2020-11-11 02:03:33'),
+(2, 'V-10000007', 'USUARIO', 'USUARIO', 'WORLD', '000-0000000', 'USUARIO@EMAIL.COM', 'USUARIO', '572594c28e0bcfc0f0a495ed376b00f0f6de160acfd4616e89bfa5469f6bade43b59652bf126cc32490274675d3f7755a3bc52039945b82f5710ef6d9d77254d', 'ACTIVO', 2, '2020-11-11 02:03:33', '2020-11-11 02:03:33');
 
 -- --------------------------------------------------------
 
@@ -981,7 +982,7 @@ ALTER TABLE `salidas`
 -- AUTO_INCREMENT de la tabla `unidades`
 --
 ALTER TABLE `unidades`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
