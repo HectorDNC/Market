@@ -3,6 +3,7 @@ require_once 'system/Core/Config.php';
 require_once 'vendor/autoload.php';
 
 $router = new \System\Core\Router();
+$view = new \System\Core\View();
 
 
 $whiteList = [
@@ -22,22 +23,36 @@ if(!isset($_SESSION)) {
 
 if(!empty($_SESSION['usuario'])) {
     
-    if( $router->getController() == 'api' ){
-        $controller = "App\\Api\\" . $router->getController();
-        $method = $router->getMethod();
-        $param = $router->getParam();
+    // if( $router->getController() == 'api' ){
+    //     $controller = "App\\Api\\" . $router->getController();
+    //     $method = $router->getMethod();
+    //     $param = $router->getParam();
     
-        $controller = new $controller();
-        $controller->$method($param);
+    //     $controller = new $controller();
+    //     $controller->$method($param);
     
-    }else{
+    // }else{
         $controller = "App\\Controllers\\" . $router->getController() . "Controller";
-        $method = $router->getMethod();
-        $param = $router->getParam();
+        $file = "App/Controllers/" . $router->getController() . "Controller.php";
+        if(file_exists($file)){
+            $method = $router->getMethod();
+            $param = $router->getParam();
+            
+            $controller = new $controller();
+            if(method_exists($controller, $method)){
+                $controller->$method($param);
+            }
+            else{
+                $view->getView("Error.index");
+            }
+            
+        }
+        else{
+            $view->getView("Error.index");
+        }
         
-        $controller = new $controller();
-        $controller->$method($param);
-    }
+        
+    // }
     
 } else {
     

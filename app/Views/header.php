@@ -86,7 +86,7 @@
                 <li><a href="<?= ROOT;?>Venta/crear"><i class="fa fa-fw fa-plus-square"></i> Agregar Venta</a></li>
             </ul>
         </li>
-        
+        <li><a href="<?= ROOT;?>Reportes"><i class="fa fa-fw fa-list-alt"></i> Reportes</a></li>
         <!-- <li><a href="<?= ROOT;?>Reporte"><i class="fa fa-fw fa-calendar"></i> Reportes</a></li> -->
         
         <!-- <li>
