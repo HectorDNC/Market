@@ -4,7 +4,9 @@ namespace App\Controllers;
 
 use App\Models\Compra;
 use App\Models\Venta;
+use App\Models\Usuario;
 use App\Traits\Utility;
+use Exception;
 use PDO;
 use System\Core\Controller;
 use System\Core\View;
@@ -13,6 +15,7 @@ class ReporteController extends Controller {
 
     private $compra;
     private $venta;
+    private $usuario;
 	
 	use Utility;
 
@@ -23,10 +26,17 @@ class ReporteController extends Controller {
         }
         $this->compra = new Compra;
         $this->venta = new Venta;
+        $this->usuario = new Usuario;
     }
     
     public function index(){
-        return View::getView('Reporte.index');
+        $query = $this->usuario->connect()->prepare("SELECT id, CONCAT(nombre,' ', apellido) AS nombre FROM
+                usuarios WHERE estatus='Activo'");
+        $query->execute();
+        $usuarios = $query->fetchAll(PDO::FETCH_OBJ);
+        return View::getView('Reporte.index',[
+            'usuarios' => $usuarios
+        ]);
     }
 
     public function compras($producto){
