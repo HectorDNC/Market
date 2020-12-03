@@ -63,7 +63,7 @@ $(document).ready(function () {
                 $('#rif_cliente').val(json.venta.rif_cliente);
                 $('#direccion_cliente').val(json.venta.direccion);
                 $('#metodoPago').val(json.venta.metodo_pago);
-                $('#montoPago').val(json.venta.monto_pago);
+                $('#montoPago').val(parseFloat(json.venta.monto_pago).toFixed(2));
                 $('#notaPago').html(json.venta.nota_pago);
 
 
@@ -92,8 +92,9 @@ $(document).ready(function () {
                     $('#cuerpo').append(row);
                     
                 });
-
+                total = parseFloat(total).toFixed(2);
                 totalBss = total*dolar;
+            
                 $('#total').html(`${total} $ <br> ${totalBss} BSS`);
 
                 

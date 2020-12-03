@@ -53,7 +53,7 @@ class ReporteController extends Controller {
         $vendedor = NULL;
         if($usuario == 0){
             $query = $this->venta->connect()->prepare("SELECT v.codigo, date_format(v.fecha, '%d-%m-%Y %r') as fecha,
-                c.nombre as cliente, CONCAT(u.nombre, ' ', u.apellido) as vendedor, SUM(d.precio*d.cantidad) as total
+                c.nombre as cliente, CONCAT(u.nombre, ' ', u.apellido) as vendedor, ROUND(SUM(d.precio*d.cantidad),2) as total
                 FROM ventas v INNER JOIN clientes c ON v.cliente_id = c.id 
                 INNER JOIN usuarios u ON v.usuario_id = u.id INNER JOIN detalle_venta d ON d.venta_id=v.id
                 WHERE v.estatus = 'ACTIVO' AND v.fecha BETWEEN
@@ -64,7 +64,7 @@ class ReporteController extends Controller {
         }
         else{
             $query = $this->venta->connect()->prepare("SELECT v.codigo, date_format(v.fecha, '%d-%m-%Y %r') as fecha,
-                c.nombre as cliente, CONCAT(u.nombre, ' ', u.apellido) as vendedor, SUM(d.precio*d.cantidad) as total
+                c.nombre as cliente, CONCAT(u.nombre, ' ', u.apellido) as vendedor, ROUND(SUM(d.precio*d.cantidad),2) as total
                 FROM ventas v INNER JOIN clientes c ON v.cliente_id = c.id 
                 INNER JOIN usuarios u ON v.usuario_id = u.id INNER JOIN detalle_venta d ON d.venta_id=v.id
                 WHERE v.estatus = 'ACTIVO' AND v.usuario_id = :usuario AND v.fecha BETWEEN
