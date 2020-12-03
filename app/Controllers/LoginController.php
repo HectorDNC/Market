@@ -5,6 +5,7 @@ namespace App\Controllers;
 use System\Core\Controller;
 use System\Core\View;
 use App\Models\Usuario;
+use App\Models\Caja;
 use App\Traits\Utility;
 
 class LoginController extends Controller{
@@ -12,6 +13,7 @@ class LoginController extends Controller{
     use Utility;
 
     private $usuario;
+    private $caja;
 
     public function __construct(){
         $this->usuario = new Usuario();
@@ -73,7 +75,12 @@ class LoginController extends Controller{
     }
 
     public function logout() {
-
+        $this->caja = new Caja;
+        $c = $this->caja->estado();
+        
+        if(isset($c->descripcion) && $c->descripcion=="Abierta"){
+            $this->caja->cerrar();
+        }
         if (session_destroy()) {
 
             http_response_code(200);
@@ -93,6 +100,5 @@ class LoginController extends Controller{
                 'message' => 'Error al finalizar la Sesion'
             ]);
         }
-
     }
 }

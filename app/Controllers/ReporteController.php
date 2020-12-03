@@ -20,16 +20,17 @@ class ReporteController extends Controller {
 	use Utility;
 
 	public function __construct(){
-        if($_SESSION['rol'] != 1){
-            header("Location: ".ROOT);
-            return false;
-        }
+        
         $this->compra = new Compra;
         $this->venta = new Venta;
         $this->usuario = new Usuario;
     }
     
     public function index(){
+        if($_SESSION['rol'] != 1){
+            header("Location: ".ROOT);
+            return false;
+        }
         $query = $this->usuario->connect()->prepare("SELECT id, CONCAT(nombre,' ', apellido) AS nombre FROM
                 usuarios WHERE estatus='Activo'");
         $query->execute();
