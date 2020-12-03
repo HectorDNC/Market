@@ -114,7 +114,7 @@ $(document).ready(function () {
                     <input type="text" class="form-control-plaintext" value="${producto.stock}" disabled>
                 </td>
                 <td>
-                    <input type="number" name="cantidades[]" class="form-control pl-1 pr-0 cantidad" value="0" min="1" max="${producto.stock}" required>
+                    <input type="number" step="any" name="cantidades[]" class="form-control pl-1 pr-0 cantidad" value="0" min="1" max="${producto.stock}" required>
                 </td>
                 
                 <td>
