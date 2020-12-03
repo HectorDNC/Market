@@ -99,21 +99,22 @@ $(document).ready(function () {
             'Producto Agregado correctamente',
             'success'   
         )
-
+        // <td>
+        //             <input type="text" name="productos[]" class="form-control-plaintext" value="${producto.id}" hidden>
+        //             <input type="text" name="" class="form-control-plaintext" value="${producto.codigo}" disabled>
+        // </td>
         let fila = `
             <tr>
+                                
                 <td>
                     <input type="text" name="productos[]" class="form-control-plaintext" value="${producto.id}" hidden>
-                    <input type="text" name="" class="form-control-plaintext" value="${producto.codigo}" disabled>
-                </td>
-                <td>
-                    <input type="text" class="form-control-plaintext" value="${producto.nombre}" disabled>
+                    <input type="text" class="form-control-plaintext" value="${producto.nombre}" disabled>     
                 </td>
                 <td>
                     <input type="text" class="form-control-plaintext" value="${producto.stock}" disabled>
                 </td>
                 <td>
-                    <input type="number" name="cantidades[]" class="form-control cantidad" value="0" min="1" max="${producto.stock}" required>
+                    <input type="number" name="cantidades[]" class="form-control pl-1 pr-0 cantidad" value="0" min="1" max="${producto.stock}" required>
                 </td>
                 
                 <td>

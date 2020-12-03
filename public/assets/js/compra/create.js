@@ -101,24 +101,24 @@ $(document).ready(function () {
             'Producto Agregado correctamente',
             'success'   
         )
-
+        // <td>
+        //             <input type="text" name="productos[]" class="form-control-plaintext" value="${producto.id}" hidden>
+        //             <input type="text" name="" class="form-control-plaintext" value="${producto.codigo}" disabled>
+        // </td>
         let fila = `
-            <tr>
+            <tr>                    
                 <td>
                     <input type="text" name="productos[]" class="form-control-plaintext" value="${producto.id}" hidden>
-                    <input type="text" name="" class="form-control-plaintext" value="${producto.codigo}" disabled>
-                </td>
-                <td>
                     <input type="text" class="form-control-plaintext" value="${producto.nombre}" disabled>
                 </td>
                 <td>
-                    <input type="number" name="cantidades[]" class="form-control cantidad" value="1" min="1"" required>
+                    <input type="number" name="cantidades[]" class="form-control cantidad pl-1 pr-0" value="1" min="1"" required>
                 </td>
                 <td>
                     <input type="text" class="form-control-plaintext" value="${producto.stock}" disabled>
                 </td>
                 <td>
-                    <input type="text" name="precios[]" pattern="[0.0-9]{0,3}[1-9]{1}[0-9]{0,16}.{0,1}[0-9]{0,2}" class="form-control precio" required>
+                    <input type="text" name="precios[]" pattern="[0.0-9]{0,3}[1-9]{1}[0-9]{0,16}.{0,1}[0-9]{0,2}" class="form-control precio pl-1 pr-0" required>
                 </td>
                 
                 <td>

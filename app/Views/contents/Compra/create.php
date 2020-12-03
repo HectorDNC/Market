@@ -246,7 +246,7 @@
                         <table class="table table-striped" id="tproductos">
                             <thead class=" thead-dark">
                                 <tr>
-                                    <th scope="col">Codigo</th>
+                                    <!-- <th scope="col">Codigo</th> -->
                                     <th>Descripcion</th>    
                                     <th>Cantidad</th>
                                     <th>Stock</th>

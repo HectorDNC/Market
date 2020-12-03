@@ -94,6 +94,7 @@ $(document).ready(function () {
                 });
                 total = parseFloat(total).toFixed(2);
                 totalBss = total*dolar;
+                totalBss = parseFloat(totalBss).toFixed(2);
             
                 $('#total').html(`${total} $ <br> ${totalBss} BSS`);
 
