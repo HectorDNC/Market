@@ -82,20 +82,22 @@
                 </div>
 
                 <div class="row pl-5">
-                    <label for="" class="col-form-label col-md-2"><strong>RAZON SOCIAL:</strong></label>
-                    <div class="col-md-3">
+                    <label for="" class="col-form-label col-md-3"><strong>RAZON SOCIAL:</strong></label>
+                    <div class="col-md-9">
                         <input type="text" id="nombre_proveedor" class="form-control-plaintext" value="MICROTECH" disabled>
                     </div>
 
-                    <label for="" class="col-form-label col-md-2"><strong>RIF:</strong></label>
-                    <div class="col-md-3">
-                        <input type="text" id="rif_proveedor" class="form-control-plaintext" value="J-26540950" disabled>
+                </div>
+                <div class="row pl-5">
+                    <label for="" class="col-form-label col-md-3"><strong>RIF:</strong></label>
+                    <div class="col-md-9">
+                        <input type="text" id="rif_proveedor" class="form-control-plaintext" value="J-36530950" disabled>
                     </div>
                 </div>
 
                 <div class="row pl-5">
-                    <label for="" class="col-form-label col-md-2"><strong>DIRECCION:</strong></label>
-                    <div class="col-md-3">
+                    <label for="" class="col-form-label col-md-3"><strong>DIRECCION:</strong></label>
+                    <div class="col-md-9">
                         <input type="text" id="direccion_proveedor" class="form-control-plaintext" value="BARQUISIMETO" disabled>
                     </div>
 
@@ -117,7 +119,7 @@
                                     <th>CODIGO</th>
                                     <th>PRODUCTO</th>
                                     <th>COSTO</th>
-                                    <th>IMPORTE</th>
+                                    <th>TOTAL $</th>
                                 </tr>
                             </thead>
     

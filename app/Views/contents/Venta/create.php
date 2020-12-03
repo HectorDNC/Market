@@ -94,9 +94,9 @@
                             <div class="card-header">
                                 <h4>Cliente</h4>
                             </div>
-         <button type="button" class="btn btn-primary w-50 mt-1 ml-auto mr-auto" data-toggle="modal" data-target="#modalRegistroCliente">
-            <i class="fas fa-plus-square"></i> Agregar Cliente
-          </button>
+                    <button type="button" class="btn btn-primary w-50 mt-1 ml-auto mr-auto" data-toggle="modal" data-target="#modalRegistroCliente">
+                        <i class="fas fa-plus-square"></i> Agregar Cliente
+                    </button>
 
                             <div class="card-body">
                                 <div class="row">
@@ -278,7 +278,37 @@
                         </tbody>
                     </table>
                 </div>
-
+                <hr class="bg-secondary">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Datos del Pago</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <label class="col-form-label col-md-2" for="metodoPago"><strong>Método de Pago:</strong> </label>
+                            <div class="col-md-4">
+                                <select class="form-control" name="metodoPago" id="metodoPago" required>
+                                    <option value="EFECTIVO">EFECTIVO</option>
+                                    <option value="TRANSFERENCIA">TRANSFERENCIA</option>
+                                    <option value="PUNTO DE VENTA">PUNTO DE VENTA</option>
+                                    <option value="PAGO MÓVIL">PAGO MÓVIL</option>
+                                </select>
+                            </div>
+                            <label class="col-form-label col-md-2" for="montoPago"><strong>Monto:</strong> </label>
+                            <div class="col-md-4">
+                                <input type="text" class="form-control" name="montoPago" id="montoPago" pattern="[0.0-9]{0,3}[1-9]{1}[0-9]{0,16}.{0,1}[0-9]{0,2}" required placeholder="Monto pagado">
+                            </div>
+                            
+                        </div>
+                        <div class="row">
+                        <label class="col-form-label col-md-2" for="notaPago"><strong>Nota:</strong> </label>
+                            <div class="col-md-8">
+                                <textarea class="form-control" name="notaPago" id="notaPago" maxlength="200" placeholder="Ingrese alguna observación"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
                 <div class="row justify-content-center">
                     <div class="col"></div>
                     <div class="col">

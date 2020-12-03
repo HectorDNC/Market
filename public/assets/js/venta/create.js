@@ -162,7 +162,8 @@ $(document).ready(function () {
         $('#subtotal').val(total.toFixed(2));
         totalNeto = total;
         totalNetoBss = totalNeto*dolar;
-        $('#totalVenta').val(`${totalNeto} $ - ${totalNetoBss} BSS`);    
+        $('#totalVenta').val(`${totalNeto} $ - ${totalNetoBss} BSS`);  
+        $('#montoPago').val(totalNeto);  
     
     });
 

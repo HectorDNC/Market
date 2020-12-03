@@ -225,7 +225,18 @@ INSERT INTO `impuestos` (`id`, `nombre`, `valor`, `estatus`, `created_at`, `upda
 (2, 'iva2', '16.00', 'ACTIVO', '2020-11-11 02:03:32', '2020-11-11 02:03:32');
 
 -- --------------------------------------------------------
+--
+-- Estructura de tabla para la tabla `impuestos`
+--
 
+CREATE TABLE `info_caja` (
+  `id` int(11) NOT NULL,
+  `descripcion` varchar(50) DEFAULT NULL,
+  `usuario_id` int(11) NOT NULL,
+  `fecha` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
 --
 -- Estructura de tabla para la tabla `permisos`
 --
@@ -541,6 +552,9 @@ CREATE TABLE `ventas` (
   `fecha` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `impuesto` varchar(45) DEFAULT '0',
   `estatus` varchar(15) DEFAULT 'ACTIVO',
+  `metodo_pago` varchar(45),
+  `monto_pago` varchar(45),
+  `nota` varchar(200), 
   `cliente_id` int(11) NOT NULL,
   `usuario_id` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
@@ -824,6 +838,13 @@ ALTER TABLE `impuestos`
   ADD UNIQUE KEY `nombre` (`nombre`);
 
 --
+-- Indices de la tabla `info_caja`
+--
+ALTER TABLE `info_caja`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_caja_usuario` (`usuario_id`);
+
+--
 -- Indices de la tabla `permisos`
 --
 ALTER TABLE `permisos`
@@ -954,6 +975,11 @@ ALTER TABLE `entradas`
 ALTER TABLE `impuestos`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
+-- AUTO_INCREMENT de la tabla `info_caja`
+--
+ALTER TABLE `info_caja`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT de la tabla `permisos`
 --
 ALTER TABLE `permisos`
@@ -1030,6 +1056,12 @@ ALTER TABLE `detalle_salida`
 ALTER TABLE `detalle_venta`
   ADD CONSTRAINT `fk_detalle_venta_productos1` FOREIGN KEY (`producto_id`) REFERENCES `productos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_detalle_venta_ventas1` FOREIGN KEY (`venta_id`) REFERENCES `ventas` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `info_caja`
+--
+ALTER TABLE `info_caja`
+  ADD CONSTRAINT `fk_caja_usuario` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `productos`

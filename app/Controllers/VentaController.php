@@ -88,7 +88,9 @@ class VentaController extends Controller{
 
         $idVenta = $this->desencriptar($param);
 
-        $query = $this->venta->query("SELECT v.id, v.codigo, Date_format(v.fecha,'%d/%m/%Y') AS fecha, Date_format(v.fecha,'%H:%i') AS hora, c.documento AS rif_cliente, c.nombre AS cliente, c.direccion, v.estatus FROM
+        $query = $this->venta->query("SELECT v.id, v.codigo, Date_format(v.fecha,'%d/%m/%Y') AS fecha, 
+            Date_format(v.fecha,'%H:%i') AS hora, c.documento AS rif_cliente, c.nombre AS cliente, 
+            c.direccion, v.estatus, v.metodo_pago, v.monto_pago, v.nota as nota_pago FROM
             ventas v
                 LEFT JOIN
             clientes c
@@ -131,6 +133,9 @@ class VentaController extends Controller{
         $venta->setNumeroDocumento($num_documento);
         $venta->setPersonaId($_POST['cliente']);
         $venta->setTotal($_POST['total']);
+        $venta->setMetodoPago($_POST['metodoPago']);
+        $venta->setMontoPago($_POST['montoPago']);
+        $venta->setNotaPago(strtoupper($_POST['notaPago']));
 
         $lastId = $venta->registrar($venta);
 

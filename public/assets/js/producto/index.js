@@ -151,7 +151,7 @@ $(document).ready(function () {
                     $(formulario).find('input#id').val(json.data.id);
                     $(formulario).find('input#codigo').val(json.data.codigo);
                     $(formulario).find('input#nombre').val(json.data.nombre);
-                    $(formulario).find('input#precio').val(json.data.precio);
+                    // $(formulario).find('input#precio').val(json.data.precio);
                     $(formulario).find('select#categoria').val(json.data.categoria_id);
                     $(formulario).find('select#unidad').val(json.data.unidad_id);
                     $(formulario).find('input#porcentaje').val(json.data.porcentaje);

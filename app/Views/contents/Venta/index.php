@@ -57,20 +57,21 @@
                 </div>
 
                 <div class="row pl-5">
-                    <label for="" class="col-form-label col-md-2"><strong>NOMBRE:</strong></label>
-                    <div class="col-md-3">
+                    <label for="" class="col-form-label col-md-3"><strong>NOMBRE:</strong></label>
+                    <div class="col-md-9">
                         <input type="text" id="nombre_cliente" class="form-control-plaintext" value="MICROTECH" disabled>
-                    </div>
-
-                    <label for="" class="col-form-label col-md-2"><strong> CEDULA/RIF:</strong></label>
-                    <div class="col-md-3">
-                        <input type="text" id="rif_cliente" class="form-control-plaintext" value="J-26540950" disabled>
+                    </div>                   
+                </div>
+                <div class="row pl-5">                    
+                    <label for="" class="col-form-label col-md-3"><strong> CEDULA/RIF:</strong></label>
+                    <div class="col-md-9">
+                        <input type="text" id="rif_cliente" class="form-control-plaintext" value="J-36540950" disabled>
                     </div>
                 </div>
 
                 <div class="row pl-5">
-                    <label for="" class="col-form-label col-md-2"><strong>DIRECCION:</strong></label>
-                    <div class="col-md-3">
+                    <label for="" class="col-form-label col-md-3"><strong>DIRECCION:</strong></label>
+                    <div class="col-md-9">
                         <input type="text" id="direccion_cliente" class="form-control-plaintext" value="BARQUISIMETO" disabled>
                     </div>
 
@@ -112,6 +113,32 @@
                         <p class="form-control-plaintext" id="total"></p>
                     </div>
                 </div>
+
+                <hr>
+
+                <div class="row pl-5">
+                    <h4>DATOS DEL PAGO</h4>
+                </div>
+
+                <div class="row pl-5">
+                    <label for="" class="col-form-label col-md-3"><strong>MÉTODO DE PAGO:</strong></label>
+                    <div class="col-md-3">
+                        <input type="text" id="metodoPago" class="form-control-plaintext" value="" disabled>
+                    </div>
+
+                    <label for="" class="col-form-label col-md-3"><strong>MONTO DE PAGO:</strong></label>
+                    <div class="col-md-3">
+                        <input type="text" id="montoPago" class="form-control-plaintext" value="" disabled>
+                    </div>
+                </div>
+
+                <div class="row pl-5">
+                    <label for="" class="col-form-label col-md-2"><strong>NOTA:</strong></label>
+                    <div class="col-md-10">
+                        <span id="notaPago" class="form-control-plaintext" disabled></span>
+                    </div>                    
+                </div>
+                
 
                 <hr>
 

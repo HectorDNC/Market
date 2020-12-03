@@ -62,6 +62,9 @@ $(document).ready(function () {
                 $('#nombre_cliente').val(json.venta.cliente);
                 $('#rif_cliente').val(json.venta.rif_cliente);
                 $('#direccion_cliente').val(json.venta.direccion);
+                $('#metodoPago').val(json.venta.metodo_pago);
+                $('#montoPago').val(json.venta.monto_pago);
+                $('#notaPago').html(json.venta.nota_pago);
 
 
                 $('#cuerpo').empty();
