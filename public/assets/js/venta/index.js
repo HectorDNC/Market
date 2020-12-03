@@ -165,8 +165,14 @@ $(document).ready(function () {
                 $("#formularioReporte").find("#vendedor").val(json.vendedor);
                 $("#modalInfoCaja").modal('show');
                 
+                $("#modalInfoCaja").on('click', function () { 
+                    if(!$("#modalInfoCaja").hasClass('show')){
+                        location.reload();
+                    }
+                 });
                 $("#cerrarInfoCaja").on('click', function(){
                     $("#modalInfoCaja").modal('hide');
+                    location.reload();
                 });
                 $("#reporteCaja").on('click', function(){
                     $("#formularioReporte").submit();
@@ -184,11 +190,7 @@ $(document).ready(function () {
     }
 
     
-    $("#modalInfoCaja").on('click', function () { 
-       if(!$("#modalInfoCaja").hasClass('show')){
-        // location.reload();
-       }
-    });
+   
     /**
      * EVENTOS
      */

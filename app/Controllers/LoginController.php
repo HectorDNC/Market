@@ -50,7 +50,6 @@ class LoginController extends Controller{
             $_SESSION['usuario'] = $response->usuario;
             $_SESSION['id'] = $response->id;
             $_SESSION['rol'] = $response->rol_id;
-            $_SESSION['estatus'] = $response->estatus;
 
             header('Content-Type: application/json');
             http_response_code(200);

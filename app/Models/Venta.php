@@ -42,12 +42,21 @@ class Venta extends Movimiento{
         try{
 
             $conexion->beginTransaction();
-
-            $sql = "SELECT v.id, v.codigo , Date_format(v.fecha,'%d/%m/%Y') AS fecha, Date_format(v.fecha,'%H:%i') AS hora, c.nombre AS cliente, v.estatus FROM
-            ventas v
-                LEFT JOIN
-            clientes c
-                ON v.cliente_id = c.id ORDER BY v.created_at DESC";
+            if($_SESSION['rol']=="1"){
+                $sql = "SELECT v.id, v.codigo , Date_format(v.fecha,'%d/%m/%Y') AS fecha, Date_format(v.fecha,'%H:%i') AS hora, c.nombre AS cliente, v.estatus FROM
+                    ventas v
+                    LEFT JOIN
+                    clientes c
+                    ON v.cliente_id = c.id ORDER BY v.created_at DESC";
+            }
+            else{
+                $sql = "SELECT v.id, v.codigo , Date_format(v.fecha,'%d/%m/%Y') AS fecha, Date_format(v.fecha,'%H:%i') AS hora, c.nombre AS cliente, v.estatus FROM
+                    ventas v
+                    LEFT JOIN
+                    clientes c
+                    ON v.cliente_id = c.id WHERE v.usuario_id = $_SESSION[id] ORDER BY v.created_at DESC";
+            }
+            
     
             $consulta = $conexion->prepare($sql);
             $consulta->execute();

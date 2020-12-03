@@ -85,8 +85,8 @@ class Caja extends Model{
     {
         try{
             $consulta = parent::connect()->prepare("SELECT *, Date_format(fecha, '%d/%m/%Y %r') as fecha_f FROM info_caja 
-                ORDER BY fecha DESC LIMIT 1");
-        
+                WHERE usuario_id = :usuario_id ORDER BY fecha DESC LIMIT 1");
+            $consulta->bindParam(":usuario_id", $_SESSION['id']);
             $consulta->execute();
             $result = $consulta->fetch(PDO::FETCH_OBJ);
             return $result;

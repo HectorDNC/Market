@@ -39,14 +39,15 @@ class VentaController extends Controller{
     }
 
     public function crear(){
+        $caja = $this->caja->estado();
+        if (isset($caja->descripcion) && $caja->descripcion=="Abierta") {
+            $num_documento = $this->venta->formatoDocumento($this->venta->ultimoDocumento());
+            $clientes = $this->cliente->getAll('clientes', "estatus = 'ACTIVO'");
+            $categorias = $this->cliente->getAll('categorias', "estatus = 'ACTIVO'");
+            $productos = $this->producto->getAll('v_inventario', "estatus = 'ACTIVO' AND stock > 0 AND precio_venta != 'null'");
+            $iva = $this->producto->getValorColumna('impuestos','valor','id = 2');
 
-        $num_documento = $this->venta->formatoDocumento($this->venta->ultimoDocumento());
-        $clientes = $this->cliente->getAll('clientes', "estatus = 'ACTIVO'");
-        $categorias = $this->cliente->getAll('categorias', "estatus = 'ACTIVO'");
-        $productos = $this->producto->getAll('v_inventario', "estatus = 'ACTIVO' AND stock > 0 AND precio_venta != 'null'");
-        $iva = $this->producto->getValorColumna('impuestos','valor','id = 2');
-
-        return View::getView('Venta.create', 
+            return View::getView('Venta.create', 
             [ 
                 'productos' => $productos, 
                 'clientes' => $clientes,
@@ -54,6 +55,11 @@ class VentaController extends Controller{
                 'numeroDocumento' => $num_documento,
                 'iva' => $iva
             ]);
+        }
+        else{
+            return View::getView('Venta.cajaCerrada');
+        }
+        
     }
 
     public function listar(){

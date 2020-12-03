@@ -14,11 +14,11 @@
                 <div class="col-md-4 d-flex justify-content-end align-items-center">
                 <?php if($caja->descripcion == "Abierta"){?>
                     <button class="btn btn-warning" id="cerrarCaja">
-                        <i class="fas fa-stop-circle"></i> Cerrar Caja
+                        <i class="fas fa-cash-register"></i> Cerrar Caja
                     </button>
                 <?php }else{?>
                     <button class="btn btn-info" id="abrirCaja">
-                        <i class="fas fa-play-circle"></i> Abrir Caja
+                        <i class="fas fa-cash-register"></i> Abrir Caja
                     </button>
                 <?php }?>                                  
                 </div>

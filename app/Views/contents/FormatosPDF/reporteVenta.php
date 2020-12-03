@@ -58,7 +58,7 @@
         
         <?php if($vendedores){?>
             <div>
-                <div style="width:15.5%; display:inline;" class="text-center">
+                <div style="width:15%; display:inline;" class="text-center">
                     <strong>CÓDIGO</strong>
                 </div>
                 <div style="width:15.5%; display:inline;" class="text-center">
@@ -70,10 +70,10 @@
                 <div style="width:15.5%; display:inline;" class="text-center">
                     <strong>VENDEDOR</strong>
                 </div>
-                <div style="width:15.5%; display:inline;" class="text-center">
+                <div style="width:18%; display:inline;" class="text-center">
                     <strong>TOTAL $</strong>
                 </div>
-                <div style="width:15.5%; display:inline;" class="text-center">
+                <div style="width:18%; display:inline;" class="text-center">
                     <strong>TOTAL BSS</strong>
                 </div>
             </div>
@@ -86,7 +86,7 @@
             ?>
 
             <div>
-                <div style="width:15.5%; display:inline;" class="text-center" >
+                <div style="width:15%; display:inline;" class="text-center" >
                     <span><?= $venta->codigo; ?></span>
                 </div>
                 <div style="width:15.5%; display:inline;" class="text-center" >
@@ -98,10 +98,10 @@
                 <div style="width:15.5%; display:inline;" class="text-center" >
                     <span><?= $venta->vendedor; ?></span>
                 </div>
-                <div style="width:15.5%; display:inline;" class="text-center" >
+                <div style="width:18%; display:inline;" class="text-center" >
                     <span><?= $venta->total ?></span>
                 </div>
-                <div style="width:15.5%; display:inline;" class="text-center" >
+                <div style="width:18%; display:inline;" class="text-center" >
                     <span><?= $venta->total * $dolar; ?></span>
                 </div>
             </div>
