@@ -39,7 +39,7 @@
 
                     <div class="form-group">
                         <label for="nombre"> <i class="fas fa-tag"></i> Nombre Categoria</label>
-                        <input type="text" name="nombre" id="nombre" class="form-control" onkeyup = "this.value=this.value.toUpperCase()" placeholder="ej. cajas">
+                        <input type="text" name="nombre" id="nombre" class="form-control" onkeyup = "this.value=this.value.toUpperCase()" placeholder="ej. lacteos" required>
                     </div>
                     
                     <div class="form-group">
@@ -112,7 +112,7 @@
                 <input type="text" name="id" id="id" hidden>
                 <div class="form-group">
                     <label for="nombre"> <i class="fas fa-tag"></i> Nombre Categoria</label>
-                    <input type="text" name="nombre" id="nombre" class="form-control" onkeyup = "this.value=this.value.toUpperCase()" placeholder="ej. cajas">
+                    <input type="text" name="nombre" id="nombre" class="form-control" onkeyup = "this.value=this.value.toUpperCase()" placeholder="ej. lacteos" required>
                 </div>
                 
                 <div class="form-group">

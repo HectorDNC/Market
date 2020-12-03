@@ -127,8 +127,68 @@ $(document).ready(function () {
             }
         });
     }
+    const abrirCaja = () => {
+        $.ajax({
+            type: "POST",
+            url: GLOBAL.URL+"venta/abrirCaja/",
+            success: function (response) {
+                json = JSON.parse(response);
+                Swal.fire(
+                    json.titulo,
+                    json.mensaje,
+                    json.tipo
+                );
+                
+                location.reload();
+            },
+            error: function (response) {
+                console.log(JSON.parse(response));
+                Swal.fire(
+                    json.titulo,
+                    json.mensaje,
+                    json.tipo
+                );
+            }
+        });
+    }
+    const cerrarCaja = () => {
+        $.ajax({
+            type: "POST",
+            url: GLOBAL.URL+"venta/cerrarCaja/",
+            success: function (response) {
+                json = JSON.parse(response);
+                $("#cuerpoInfoCaja").find("#desde").text(json.desde);
+                $("#cuerpoInfoCaja").find("#hasta").text(json.hasta);
+                $("#cuerpoInfoCaja").find("#total").text(json.total);
+                $("#formularioReporte").find("#desde").val(json.apertura);
+                $("#formularioReporte").find("#hasta").val(json.cierre);
+                $("#formularioReporte").find("#vendedor").val(json.vendedor);
+                $("#modalInfoCaja").modal('show');
+                
+                $("#cerrarInfoCaja").on('click', function(){
+                    $("#modalInfoCaja").modal('hide');
+                });
+                $("#reporteCaja").on('click', function(){
+                    $("#formularioReporte").submit();
+                });
+            },
+            error: function (response) {
+                console.log(JSON.parse(response));
+                Swal.fire(
+                    json.titulo,
+                    json.mensaje,
+                    json.tipo
+                );
+            }
+        });
+    }
 
-
+    
+    $("#modalInfoCaja").on('click', function () { 
+       if(!$("#modalInfoCaja").hasClass('show')){
+        // location.reload();
+       }
+    });
     /**
      * EVENTOS
      */
@@ -163,4 +223,47 @@ $(document).ready(function () {
             })
 
     });
+    $('body').on('click', '#abrirCaja', function (e) {
+        e.preventDefault();
+
+        Swal.fire({
+            title: 'Está Seguro?',
+            text: "Desea abrir la Caja?",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Cancelar',
+            confirmButtonText: 'Si, Abrir!'
+            }).then((result) => {
+                if (result.value) {
+                    abrirCaja();
+                    
+                }
+            });
+
+    });
+    
+    $('body').on('click', '#cerrarCaja', function (e) {
+        e.preventDefault();
+        
+        Swal.fire({
+            title: 'Está Seguro?',
+            text: "Desea cerrar la Caja?",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Cancelar',
+            confirmButtonText: 'Si, Cerrar!'
+            }).then((result) => {
+                if (result.value) {
+                    cerrarCaja();
+                    
+                }
+            });
+
+    });
+    
+    
 });

@@ -7,6 +7,7 @@ use App\Models\Producto;
 use App\Models\Salida;
 use App\Models\Venta;
 use App\Models\DetalleVenta;
+use App\Models\Caja;
 use App\Traits\Utility;
 use PDO;
 use System\Core\Controller;
@@ -18,6 +19,7 @@ class VentaController extends Controller{
     private $producto;
     private $venta;
     private $detalleVenta;
+    private $caja;
     // private Salida $salida;
 
     use Utility;
@@ -27,11 +29,13 @@ class VentaController extends Controller{
         $this->producto = new Producto;
         $this->venta = new Venta;
         $this->detalleVenta = new DetalleVenta;
+        $this->caja = new Caja;
         // $this->salida = new Salida;
     }
 
     public function index(){
-        return View::getView('Venta.index');
+        $caja = $this->caja->estado();
+        return View::getView('Venta.index', 'caja', $caja);
     }
 
     public function crear(){
@@ -257,6 +261,70 @@ class VentaController extends Controller{
         echo json_encode([
         'data' => $productos
         ]);
+    }
+    public function abrirCaja()
+    {
+        $proceso = $this->caja->abrir();
+        if($proceso){
+            http_response_code(200);
+
+            echo json_encode([
+                'titulo' => 'Caja Abierta!',
+                'mensaje' => 'La Caja ha sido abierta',
+                'tipo' => 'success'
+            ]);
+
+            exit();
+        }else {
+            http_response_code(200);
+
+            echo json_encode([
+                'titulo' => 'Error al abrir la Caja',
+                'mensaje' => 'Hubo un problema al abrir la Caja',
+                'tipo' => 'error'
+            ]);
+
+            exit();
+        }
+    }
+    public function cerrarCaja()
+    {
+        $proceso = $this->caja->cerrar();
+        $desde = $this->caja->ultApertura();
+        $hasta = $this->caja->ultCierre();
+        $query = $this->venta->connect()->prepare("SELECT COUNT(id) as total FROM ventas WHERE estatus = 'ACTIVO' AND usuario_id = :usuario AND fecha BETWEEN
+                :desde AND :hasta
+            ");
+        $query->bindParam(':usuario',$_SESSION['id']);
+        $query->bindParam(':desde',$desde->fecha);
+        $query->bindParam(':hasta',$hasta->fecha);
+        $query->execute();
+        $ventas = $query->fetch(PDO::FETCH_OBJ);
+        
+        if($proceso){
+            http_response_code(200);
+
+            echo json_encode([
+                'desde' => $desde->fecha_f,
+                'hasta' => $hasta->fecha_f,
+                'total' => $ventas->total,
+                'vendedor' => $_SESSION['id'],
+                'apertura' => $desde->fecha,
+                'cierre' => $hasta->fecha
+            ]);
+
+            exit();
+        }else {
+            http_response_code(200);
+
+            echo json_encode([
+                'titulo' => 'Error al cerrar la Caja',
+                'mensaje' => 'Hubo un problema al cerrar la Caja',
+                'tipo' => 'error'
+            ]);
+
+            exit();
+        }
     }
 
 }

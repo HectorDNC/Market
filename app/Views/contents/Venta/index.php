@@ -3,12 +3,49 @@
 
 
     <div class="card mb-4">
+        <div class="card-header ">
+            <h3>Caja</h3>
+            <div class="row">
+            <?php if(isset($caja->descripcion)){?>
+                <div class="col-md-8">
+                    <span><b>Estado:</b>  <?=$caja->descripcion?> - <?=$caja->fecha_f?></span><br>
+                    <!-- <span><b>Ventas Realizadas:</b>  20</span> -->
+                </div>
+                <div class="col-md-4 d-flex justify-content-end align-items-center">
+                <?php if($caja->descripcion == "Abierta"){?>
+                    <button class="btn btn-warning" id="cerrarCaja">
+                        <i class="fas fa-stop-circle"></i> Cerrar Caja
+                    </button>
+                <?php }else{?>
+                    <button class="btn btn-info" id="abrirCaja">
+                        <i class="fas fa-play-circle"></i> Abrir Caja
+                    </button>
+                <?php }?>                                  
+                </div>
+            <?php }else{?>
+            
+                <div class="col-md-8">
+                    <span><b>Estado:</b> Cerrada</span><br>
+                    <!-- <span><b>Ventas Realizadas:</b>  20</span> -->
+                </div>
+                <div class="col-md-4 d-flex justify-content-end align-items-center">
+
+                    <utton class="btn btn-info" id="abrirCaja">
+                        <i class="fas fa-play-circle"></i> Abrir Caja
+                    </button>                        
+                </div>
+            <?php }?>         
+            </div>
+        </div>
+        <?php if(isset($caja->descripcion) && $caja->descripcion=="Abierta"){?>
         <div class="card-header bg-white">
     
           <a class="btn btn-primary" href="<?= ROOT;?>Venta/crear">
             <i class="fas fa-plus-square"></i> Agregar Venta
           </a>
         </div>
+        <?php }?>
+        <h2 hidden="true" >LOL</h2>
         <div class="card-body">
           <table class="table" id="datatable">
             <thead class="thead-dark">
@@ -154,7 +191,40 @@
         </div>
     </div>
 </div>
+<!-- Modal Caja -->
+<div class="modal fade" id="modalInfoCaja" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md w-100 h-100 d-flex justify-content-center align-items-center">
+        <div class="modal-content">
 
+        <div class="card">
+        <div class="card-header">
+            <h2 class="card-tittle text-center">Caja Cerrada!</h2>         
+                       
+        </div>
+        <div class="card-body">
+            <div id="cuerpoInfoCaja">
+                <b>Fecha de Apertura: </b><span id="desde"></span><br>
+                <b>Fecha de Cierre: </b><span id="hasta"></span><br>
+                <b>Total de Ventas: </b><span id="total"></span>
+            </div>               
+        </div>
+        <div class="card-footer">
+            <div class="form-row justify-content-center">
+                <button class="btn btn-success m-1" id="cerrarInfoCaja">Continuar</button>
+                <button class="btn btn-warning m-1" id="reporteCaja"><i class="fa fa-fw fa-list-alt"></i>&nbsp;Generar Reporte</button>
+            </div>
+                       
+        </div>
+
+
+    </div>
+    <form action="<?=ROOT;?>Reporte/reporteVenta" method="POST" enctype="multipart/form-data" id="formularioReporte">
+        <input type="hidden" name="vendedor" id="vendedor">
+        <input type="hidden" name="desde" id="desde">
+        <input type="hidden" name="hasta" id="hasta">
+    </form>
+      
+</div>
 
 <script src="<?= ROOT; ?>public/assets/js/venta/index.js"></script>
 

@@ -38,16 +38,16 @@
     </style>
 </head>
 <body>
-    <div class="container centrado" style="width: 95%;">
+    <div class="container centrado" style="width: 98%;">
 
-        <div class="centrado" style="width=98%;">
+        <div class="centrado" style="width=100%;">
             <h1 class="text-center">REPORTE DE VENTAS</h1>
             <hr>
             <div>
             
                 <p>
                 <?php if(!$vendedores){?>
-                    <strong>Vendedor: </strong> <?=$ventas[0]->vendedor?><br>
+                    <strong>Vendedor: </strong> <?=$vendedor?><br>
                 <?php }?>
                  <strong>Desde: </strong> <?=$desde?><br>
                  <strong>Hasta: </strong> <?=$hasta?>

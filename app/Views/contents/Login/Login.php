@@ -36,46 +36,46 @@
         echo $alerta;
     }
 ?>
-<div class="container-fluid login h-100">
-    <div class="row h-100 justify-content-center align-items-center">
+<div class="container-fluid login position-absolute w-100 h-100">
+    <div class="row h-100 d-flex justify-content-center align-items-center">
         <div class="col-md-4">
-                <h1 class="text-center mb-4"><?=TITLE?></h1>
-                <div class="card">
-                    <div class="card-body">
-                        <form id="loginForm">
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fa fa-user"></i></span>
-                                </div>
-                                <input type="text" name="user" class="form-control" placeholder="Usuario" required>
+            <h1 class="text-center mb-4"><?=TITLE?></h1>
+            <div class="card">
+                <div class="card-body">
+                    <form id="loginForm">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-user"></i></span>
                             </div>
+                            <input type="text" name="user" class="form-control" placeholder="Usuario" required>
+                        </div>
 
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fa fa-key"></i></span>
-                                </div>
-                                <input type="password" name="password" class="form-control" placeholder="Contraseña" required>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-key"></i></span>
                             </div>
+                            <input type="password" name="password" class="form-control" placeholder="Contraseña" required>
+                        </div>
 
-                            <div class="form-check mb-3">
-                                <!-- <label class="form-check-label">
-                                    <input type="checkbox" name="remember" class="form-check-input">
-                                    Recuerdame
-                                </label> -->
-                            </div>
+                        <div class="form-check mb-3">
+                            <!-- <label class="form-check-label">
+                                <input type="checkbox" name="remember" class="form-check-input">
+                                Recuerdame
+                            </label> -->
+                        </div>
 
-                            <div class="row">
-                                <div class="col pr-2">
-                                    <button type="submit" class="btn btn-block btn-success">Iniciar sesión</button>
-                                </div>
-                                <!-- <div class="col pl-2">
-                                    <a class="btn btn-block btn-link" href="#">Recuperar Contraseña</a>
-                                </div> -->
+                        <div class="row">
+                            <div class="col pr-2">
+                                <button type="submit" class="btn btn-block btn-success">Iniciar sesión</button>
                             </div>
-                        </form>
-                    </div>
+                            <!-- <div class="col pl-2">
+                                <a class="btn btn-block btn-link" href="#">Recuperar Contraseña</a>
+                            </div> -->
+                        </div>
+                    </form>
                 </div>
             </div>
+        </div>
     </div>
 </div>
 

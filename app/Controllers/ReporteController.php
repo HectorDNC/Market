@@ -49,6 +49,7 @@ class ReporteController extends Controller {
         $usuario = $_POST['vendedor']; 
         $desde = $_POST['desde']; 
         $hasta = $_POST['hasta']; 
+        $vendedor = NULL;
         if($usuario == 0){
             $query = $this->venta->connect()->prepare("SELECT v.codigo, date_format(v.fecha, '%d-%m-%Y %r') as fecha,
                 c.nombre as cliente, CONCAT(u.nombre, ' ', u.apellido) as vendedor, SUM(d.precio*d.cantidad) as total
@@ -71,6 +72,7 @@ class ReporteController extends Controller {
             ");
             $query->bindParam(':usuario',$usuario);
             $vendedores = false;
+            $vendedor = $this->usuario->getOne("usuarios", $usuario);
         }
         $query->bindParam(':desde',$desde);
         $query->bindParam(':hasta',$hasta);
@@ -78,16 +80,28 @@ class ReporteController extends Controller {
         $ventas = $query->fetchAll(PDO::FETCH_OBJ);
         $dolar = $this->venta->getAll('dolar');
         ob_start();
-
-        View::getViewPDF('FormatosPDF.reporteVenta',[
-            'ventas' => $ventas,
-            'desde' => $desde,
-            'hasta' => $hasta,
-            'dolar' => $dolar[0]->precio,
-            'vendedores' => $vendedores,
-            'cantidad' => 0,
-            'usuario' =>$usuario
-        ]);
+        if ($vendedores) {
+            View::getViewPDF('FormatosPDF.reporteVenta',[
+                'ventas' => $ventas,
+                'desde' => $desde,
+                'hasta' => $hasta,
+                'dolar' => $dolar[0]->precio,
+                'vendedores' => $vendedores,
+                'cantidad' => 0
+            ]);
+        }
+        else{
+            View::getViewPDF('FormatosPDF.reporteVenta',[
+                'ventas' => $ventas,
+                'desde' => $desde,
+                'hasta' => $hasta,
+                'dolar' => $dolar[0]->precio,
+                'vendedores' => $vendedores,
+                'cantidad' => 0,
+                'vendedor' =>$vendedor->nombre." ".$vendedor->apellido
+            ]);
+        }
+        
 
         $html = ob_get_clean();
 
