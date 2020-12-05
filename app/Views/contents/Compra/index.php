@@ -106,7 +106,7 @@
 
                 <hr>
 
-                <div class="row justify-content-center pl-5">
+                <div class="row justify-content-center">
                     <h4>PRODUCTOS</h4>
                 </div>
 

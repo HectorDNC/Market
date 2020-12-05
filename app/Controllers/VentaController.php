@@ -7,6 +7,7 @@ use App\Models\Producto;
 use App\Models\Salida;
 use App\Models\Venta;
 use App\Models\DetalleVenta;
+use App\Models\VentaPago;
 use App\Models\Caja;
 use App\Traits\Utility;
 use PDO;
@@ -20,6 +21,7 @@ class VentaController extends Controller{
     private $venta;
     private $detalleVenta;
     private $caja;
+    private $ventaPago;
     // private Salida $salida;
 
     use Utility;
@@ -30,6 +32,7 @@ class VentaController extends Controller{
         $this->venta = new Venta;
         $this->detalleVenta = new DetalleVenta;
         $this->caja = new Caja;
+        $this->ventaPago = new VentaPago;
         // $this->salida = new Salida;
     }
 
@@ -100,7 +103,7 @@ class VentaController extends Controller{
 
         $query = $this->venta->query("SELECT v.id, v.codigo, Date_format(v.fecha,'%d/%m/%Y') AS fecha, 
             Date_format(v.fecha,'%H:%i') AS hora, c.documento AS rif_cliente, c.nombre AS cliente, 
-            c.direccion, v.estatus, v.metodo_pago, v.monto_pago, v.nota as nota_pago FROM
+            c.direccion, v.estatus FROM
             ventas v
                 LEFT JOIN
             clientes c
@@ -116,19 +119,21 @@ class VentaController extends Controller{
             ventas v 
                 ON dv.venta_id = v.id
             WHERE v.id = '$idVenta'");
-            
+        $query3 = $this->venta->query("SELECT * FROM venta_pago WHERE venta_id = '$idVenta'");
         // Encabezado Venta
         $venta = $query->fetch(PDO::FETCH_OBJ);
 
         // Detalles Venta
         $productos = $query2->fetchAll(PDO::FETCH_OBJ);
+        $pagos = $query3->fetchAll(PDO::FETCH_OBJ);
         $dolar = $this->venta->getAll('dolar');
         http_response_code(200);
 
         echo json_encode([
             'venta' => $venta,
             'productos' => $productos,
-            'dolar' => $dolar[0]->precio
+            'dolar' => $dolar[0]->precio,
+            'pagos' => $pagos
         ]);
 
         exit();
@@ -143,16 +148,14 @@ class VentaController extends Controller{
         $venta->setNumeroDocumento($num_documento);
         $venta->setPersonaId($_POST['cliente']);
         $venta->setTotal($_POST['total']);
-        $venta->setMetodoPago($_POST['metodoPago']);
-        $venta->setMontoPago($_POST['montoPago']);
-        $venta->setNotaPago(strtoupper($_POST['notaPago']));
 
         $lastId = $venta->registrar($venta);
 
         $productos = $_POST['productos'];
         $cantidad = $_POST['cantidades'];
         $precio = $_POST['precios'];
-
+        $metodoPago = $_POST['metodoPago'];
+        $montoPago = $_POST['montoPago'];
 
         $contador = 0;
         foreach($productos AS $producto){
@@ -167,6 +170,19 @@ class VentaController extends Controller{
             $this->detalleVenta->registrar($detalleVenta);
 
             $contador++;
+        }
+        $count = 0;
+        foreach($metodoPago AS $metodo){
+
+            $pago = new VentaPago();
+            
+            $pago->setVentaId($lastId);
+            $pago->setMetodoPago($metodoPago[$count]);
+            $pago->setMontoPago($montoPago[$count]);
+
+            $this->ventaPago->registrar($pago);
+
+            $count++;
         }
 
         http_response_code(200);

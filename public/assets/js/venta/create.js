@@ -167,12 +167,21 @@ $(document).ready(function () {
         $('#montoPago').val(totalNeto);  
     
     });
-
     // Eliminar Articulo de la Lista
     $('tbody').on('click', '.eliminar',function (e) { 
         e.preventDefault();
         
         $(this).parents('tr').remove();
+
+    });
+    $('tbody').on('click', '.eliminarPago',function (e) { 
+        e.preventDefault();
+        
+        Swal.fire(
+            'Alerta',
+            'Debe incluir al menos un método de pago',
+            'warning'
+        )
 
     });
     
@@ -204,6 +213,28 @@ $(document).ready(function () {
         
     });
 
+    $("#agregarMetodoPago").click(function (e) {
+        e.preventDefault();
+        let fila = `
+            <tr>
+                <td> 
+                    <select class="form-control" name="metodoPago[]" required>
+                        <option value="EFECTIVO">EFECTIVO</option>
+                        <option value="PUNTO DE VENTA">PUNTO DE VENTA</option>
+                        <option value="TRANSFERENCIA">TRANSFERENCIA</option>
+                        <option value="PAGO MÓVIL">PAGO MÓVIL</option>
+                    </select> 
+                </td>
+                <td> 
+                    <input type="number" step="any" min="0.01" class="form-control" name="montoPago[]" required> 
+                </td>
+                <td>
+                    <button class="btn btn-danger eliminar"><i class="fas fa-trash-alt text-white"></i></button>
+                </td>
+            </tr>
+        `;
+        $("#cuerpoPagos").append(fila);
+    });
     $('#formularioCompra').submit(function (e){
         e.preventDefault();
     

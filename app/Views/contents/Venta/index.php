@@ -117,7 +117,7 @@
 
                 <hr>
 
-                <div class="row justify-content-center pl-5">
+                <div class="row justify-content-center">
                     <h4>PRODUCTOS</h4>
                 </div>
 
@@ -136,7 +136,7 @@
                             </thead>
     
                             <tbody id="cuerpo">
-    
+
                             </tbody>
                         </table>
                     </div>
@@ -145,36 +145,35 @@
                 <hr>
                 
                 <div class="row justify-content-start">
-                    <label for="" class="col-form-label col-2"><strong>TOTAL:</strong> </label>
-                    <div class="col-md-4">
+                    <div class="col-md-12">
+                        <label for="" class="col-form-label"><strong>TOTAL:</strong> </label>
                         <p class="form-control-plaintext" id="total"></p>
                     </div>
                 </div>
 
                 <hr>
 
-                <div class="row pl-5">
+                <div class="row justify-content-center">
                     <h4>DATOS DEL PAGO</h4>
                 </div>
 
-                <div class="row pl-5">
-                    <label for="" class="col-form-label col-md-3"><strong>MÉTODO DE PAGO:</strong></label>
-                    <div class="col-md-3">
-                        <input type="text" id="metodoPago" class="form-control-plaintext" value="" disabled>
-                    </div>
-
-                    <label for="" class="col-form-label col-md-3"><strong>MONTO DE PAGO:</strong></label>
-                    <div class="col-md-3">
-                        <input type="text" id="montoPago" class="form-control-plaintext" value="" disabled>
-                    </div>
-                </div>
-
-                <div class="row pl-5">
-                    <label for="" class="col-form-label col-md-2"><strong>NOTA:</strong></label>
-                    <div class="col-md-10">
-                        <span id="notaPago" class="form-control-plaintext" disabled></span>
-                    </div>                    
-                </div>
+                <div class="row form-row table-responsive w-75 m-auto">
+                            
+                            <table class="table" id="tpagos">
+                                <thead class=" thead-light">
+                                    <tr>
+                                        <!-- <th scope="col">Codigo</th> -->
+                                        <th>Método</th>
+                                        <th>Monto</th>    
+                                    </tr>
+                                </thead>
+                                <tbody id="cuerpoPagos">
+                                
+                                </tbody>
+                                
+                            </table>
+                            
+                        </div>
                 
 
                 <hr>
@@ -218,7 +217,7 @@
 
 
     </div>
-    <form action="<?=ROOT;?>Reporte/reporteVenta" method="POST" enctype="multipart/form-data" id="formularioReporte">
+    <form action="<?=ROOT;?>Reporte/reporteVenta" method="POST" enctype="multipart/form-data" id="formularioReporte" target="_blank">
         <input type="hidden" name="vendedor" id="vendedor">
         <input type="hidden" name="desde" id="desde">
         <input type="hidden" name="hasta" id="hasta">

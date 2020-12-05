@@ -284,27 +284,44 @@
                         <h4>Datos del Pago</h4>
                     </div>
                     <div class="card-body">
-                        <div class="row">
-                            <label class="col-form-label col-md-2" for="metodoPago"><strong>Método de Pago:</strong> </label>
-                            <div class="col-md-4">
-                                <select class="form-control" name="metodoPago" id="metodoPago" required>
-                                    <option value="EFECTIVO">EFECTIVO</option>
-                                    <option value="TRANSFERENCIA">TRANSFERENCIA</option>
-                                    <option value="PUNTO DE VENTA">PUNTO DE VENTA</option>
-                                    <option value="PAGO MÓVIL">PAGO MÓVIL</option>
-                                </select>
-                            </div>
-                            <label class="col-form-label col-md-2" for="montoPago"><strong>Monto:</strong> </label>
-                            <div class="col-md-4">
-                                <input type="text" class="form-control" name="montoPago" id="montoPago" pattern="[0.0-9]{0,3}[1-9]{1}[0-9]{0,16}.{0,1}[0-9]{0,2}" required placeholder="Monto pagado">
-                            </div>
-                            
+                        <div class="row m-1">
+                            <button class="btn btn-info" id="agregarMetodoPago">
+                                <i class="fas fa-plus-square"></i> Agregar Método de Pago
+                            </button>                            
                         </div>
-                        <div class="row">
-                        <label class="col-form-label col-md-2" for="notaPago"><strong>Nota:</strong> </label>
-                            <div class="col-md-8">
-                                <textarea class="form-control" name="notaPago" id="notaPago" maxlength="200" placeholder="Ingrese alguna observación"></textarea>
-                            </div>
+                        <div class="row form-row table-responsive">
+                            
+                            <table class="table " id="tpagos">
+                                <thead class=" thead-light">
+                                    <tr>
+                                        <!-- <th scope="col">Codigo</th> -->
+                                        <th>Método</th>
+                                        <th>Monto</th>    
+                                        <th>Eliminar</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="cuerpoPagos">
+                                    <tr>
+                                        <td> 
+                                            <select class="form-control" name="metodoPago[]" required>
+                                                <option value=""></option>
+                                                <option value="EFECTIVO">EFECTIVO</option>
+                                                <option value="PUNTO DE VENTA">PUNTO DE VENTA</option>
+                                                <option value="TRANSFERENCIA">TRANSFERENCIA</option>
+                                                <option value="PAGO MÓVIL">PAGO MÓVIL</option>
+                                            </select> 
+                                        </td>
+                                        <td> 
+                                            <input type="number" step="any" min="0.01" class="form-control" id="montoPago" name="montoPago[]" required> 
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-danger eliminarPago"><i class="fas fa-trash-alt text-white"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                
+                            </table>
+                            
                         </div>
                     </div>
                 </div>

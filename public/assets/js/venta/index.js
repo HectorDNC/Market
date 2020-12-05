@@ -66,8 +66,8 @@ $(document).ready(function () {
                 $('#montoPago').val(parseFloat(json.venta.monto_pago).toFixed(2));
                 $('#notaPago').html(json.venta.nota_pago);
 
-
                 $('#cuerpo').empty();
+                $('#cuerpoPagos').empty();
                 
                 let subtotal = 0;
                 var total = 0, totalBss = 0;
@@ -90,6 +90,19 @@ $(document).ready(function () {
 
                     
                     $('#cuerpo').append(row);
+                    
+                });
+                json.pagos.forEach( element => {
+
+                    let row = `
+                        <tr>
+                            <td>${element.metodo}</td>
+                            <td>${element.monto}</td>
+                        </tr>
+                    `;
+
+                    
+                    $('#cuerpoPagos').append(row);
                     
                 });
                 total = parseFloat(total).toFixed(2);
