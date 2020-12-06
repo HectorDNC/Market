@@ -1,5 +1,7 @@
 $(document).ready(function () {
     
+    // Variables
+    var total, totalBss, form;
     /**
      * FUNCIONES
      */
@@ -145,8 +147,8 @@ $(document).ready(function () {
         // alert('funciona');
 
         let row = $(this).closest('tr');
-        let total = row.find('.cantidad').val() * row.find('.precio').val();
-        let totalBss = total * dolar;
+        total = row.find('.cantidad').val() * row.find('.precio').val();
+        totalBss = total * dolar;
         row.find('.total').val(total.toFixed(2));
         row.find('.totalBss').val(totalBss.toFixed(2));
 
@@ -226,17 +228,30 @@ $(document).ready(function () {
                     </select> 
                 </td>
                 <td> 
-                    <input type="number" step="any" min="0.01" class="form-control" name="montoPago[]" required> 
+                    <input type="number" step="any" min="0.01" class="form-control montoPago" name="montoPago[]" required> 
                 </td>
                 <td>
                     <button class="btn btn-danger eliminar"><i class="fas fa-trash-alt text-white"></i></button>
                 </td>
             </tr>
         `;
+        
+        var montos=0, restante=0;
+        let elementos = document.querySelectorAll('.montoPago');
+
+        elementos.forEach(element => {
+            montos = parseFloat(montos) + parseFloat(element.value);
+        });
+        
+        total = parseFloat(total).toFixed(2);
+        restante = parseFloat(total-montos).toFixed(2);
         $("#cuerpoPagos").append(fila);
+        $("[name='montoPago[]']:last").val(restante);
     });
+    
     $('#formularioCompra').submit(function (e){
         e.preventDefault();
+              
     
         /**
          * Cliente
@@ -256,10 +271,10 @@ $(document).ready(function () {
          * Total Venta
          */
     
-        let form = $(this)
+        form = $(this)
     
         let totalfilas = document.querySelectorAll('.total');
-        let total = 0;
+        total = 0;
         
     
         totalfilas.forEach(element => {
@@ -282,10 +297,53 @@ $(document).ready(function () {
     
         $('#total').val(total);
     
-        console.log(total)
-    
-    
+        console.log(total);
+        var montos=0;
+        let elementos = document.querySelectorAll('.montoPago');
+
+        elementos.forEach(element => {
+            montos = parseFloat(montos) + parseFloat(element.value);
+        });
         
+        if(montos>total){
+            Swal.fire({
+                title: 'Alerta!',
+                text: "El total de monto de pagos es mayor al total de la venta",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                cancelButtonText: 'Cancelar',
+                confirmButtonText: 'Continuar!'
+                }).then((result) => {
+                    if (result.value) {
+                        enviarForm();                      
+                    }
+                });
+                return false;
+        }
+        if(montos<total){
+            Swal.fire({
+                title: 'Alerta!',
+                text: "El total de monto de pagos es menor al total de la venta",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                cancelButtonText: 'Cancelar',
+                confirmButtonText: 'Continuar!'
+                }).then((result) => {
+                    if (result.value) {
+                        enviarForm();                      
+                    }
+                });
+                return false;
+        }
+        
+        enviarForm();
+        
+    });
+    const enviarForm = () =>{
         $.ajax({
             type: "POST",
             url: form.attr('action'),
@@ -309,6 +367,6 @@ $(document).ready(function () {
                 console.log(response);
             }
         });
-    })
+    };
     
 });

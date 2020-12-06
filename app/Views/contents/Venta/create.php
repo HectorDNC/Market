@@ -312,7 +312,7 @@
                                             </select> 
                                         </td>
                                         <td> 
-                                            <input type="number" step="any" min="0.01" class="form-control" id="montoPago" name="montoPago[]" required> 
+                                            <input type="number" step="any" min="0.01" class="form-control montoPago" id="montoPago" name="montoPago[]" required> 
                                         </td>
                                         <td>
                                             <button class="btn btn-danger eliminarPago"><i class="fas fa-trash-alt text-white"></i></button>
