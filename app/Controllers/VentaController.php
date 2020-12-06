@@ -349,4 +349,30 @@ class VentaController extends Controller{
         }
     }
 
+    public function reabrirCaja()
+    {
+        $proceso = $this->caja->reabrir();
+        if($proceso){
+            http_response_code(200);
+
+            echo json_encode([
+                'titulo' => 'Caja Reabierta!',
+                'mensaje' => 'La Caja ha sido abierta de nuevo',
+                'tipo' => 'success'
+            ]);
+
+            exit();
+        }else {
+            http_response_code(200);
+
+            echo json_encode([
+                'titulo' => 'Error al reabrir la Caja',
+                'mensaje' => 'Hubo un problema al abrir la Caja',
+                'tipo' => 'error'
+            ]);
+
+            exit();
+        }
+    }
+
 }

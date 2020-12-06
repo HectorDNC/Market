@@ -81,6 +81,24 @@ class Caja extends Model{
             return $ex->getMessage();
         }
     }
+    public function reabrir()
+    {
+        try{
+            $consulta = parent::connect()->prepare("SELECT *, Date_format(fecha, '%d/%m/%Y %r') as fecha_f FROM info_caja 
+                WHERE usuario_id = :usuario_id ORDER BY fecha DESC LIMIT 1");
+            $consulta->bindParam(":usuario_id", $_SESSION['id']);
+            $consulta->execute();
+            $result = $consulta->fetch(PDO::FETCH_OBJ);
+            if ($result->descripcion == "Cerrada") {
+                $query = parent::connect()->prepare("DELETE FROM info_caja WHERE id=$result->id");
+                $resultado = $query->execute();
+                return $resultado;
+            }
+            return $resultado;
+        }catch (Exception $ex) {
+            return $ex->getMessage();
+        }
+    }
     public function estado()
     {
         try{

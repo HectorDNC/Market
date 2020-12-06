@@ -166,6 +166,30 @@ $(document).ready(function () {
             }
         });
     }
+    const reabrirCaja = () => {
+        $.ajax({
+            type: "POST",
+            url: GLOBAL.URL+"venta/reabrirCaja/",
+            success: function (response) {
+                json = JSON.parse(response);
+                Swal.fire(
+                    json.titulo,
+                    json.mensaje,
+                    json.tipo
+                );
+                
+                $("#modalInfoCaja").modal('hide');
+            },
+            error: function (response) {
+                console.log(JSON.parse(response));
+                Swal.fire(
+                    json.titulo,
+                    json.mensaje,
+                    json.tipo
+                );
+            }
+        });
+    }
     const cerrarCaja = () => {
         $.ajax({
             type: "POST",
@@ -255,6 +279,26 @@ $(document).ready(function () {
             }).then((result) => {
                 if (result.value) {
                     abrirCaja();
+                    
+                }
+            });
+
+    });
+    $('body').on('click', '#reabrirCaja', function (e) {
+        e.preventDefault();
+
+        Swal.fire({
+            title: 'Está Seguro?',
+            text: "Desea reabrir la Caja?",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Cancelar',
+            confirmButtonText: 'Si, Reabrir!'
+            }).then((result) => {
+                if (result.value) {
+                    reabrirCaja();
                     
                 }
             });

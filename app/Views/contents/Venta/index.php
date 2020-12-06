@@ -211,6 +211,7 @@
             <div class="form-row justify-content-center">
                 <button class="btn btn-success m-1" id="cerrarInfoCaja">Continuar</button>
                 <button class="btn btn-warning m-1" id="reporteCaja"><i class="fa fa-fw fa-list-alt"></i>&nbsp;Generar Reporte</button>
+                <button class="btn btn-info m-1" id="reabrirCaja"><i class="fas fa-cash-register"></i>&nbsp;Reabrir Caja</button>
             </div>
                        
         </div>
