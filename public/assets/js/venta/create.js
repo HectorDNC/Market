@@ -303,7 +303,7 @@ $(document).ready(function () {
                 );
                 setTimeout(function(){
                     window.location = "./";
-                },2000);
+                },1000);
             },
             error: function (response) {
                 console.log(response);

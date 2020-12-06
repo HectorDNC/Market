@@ -1,5 +1,5 @@
 <div class="content p-4 dataTables_wrapper">
-    <h2 class="mb-4">Gestion de Ventas</h2>
+    <h2 class="mb-4">Gestión de Ventas</h2>
 
 
     <div class="card mb-4">

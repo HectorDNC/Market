@@ -1,7 +1,7 @@
     
 <!-- Contenido inicial -->
 <div class="content p-4 dataTables_wrapper">
-    <h2 class="mb-4">Gestion de Proveedores</h2>
+    <h2 class="mb-4">Gestión de Proveedores</h2>
 
     <div class="card mb-4">
         <div class="card-header bg-white">
