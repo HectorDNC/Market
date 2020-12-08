@@ -33,7 +33,7 @@ if(!empty($_SESSION['usuario'])) {
     
     }else{
         $controller = "App\\Controllers\\" . $router->getController() . "Controller";
-        $file = "App/Controllers/" . $router->getController() . "Controller.php";
+        $file = "app/Controllers/" . $router->getController() . "Controller.php";
         if(file_exists($file)){
             $method = $router->getMethod();
             $param = $router->getParam();
