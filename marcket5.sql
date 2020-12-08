@@ -21,8 +21,8 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `marcket`
 --
-CREATE DATABASE IF NOT EXISTS `marcket` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `marcket`;
+-- CREATE DATABASE IF NOT EXISTS `marcket` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+-- USE `marcket`;
 
 -- --------------------------------------------------------
 
@@ -739,7 +739,7 @@ CREATE TABLE `v_salidas_ventas` (
 --
 DROP TABLE IF EXISTS `v_entradas_compras`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_entradas_compras`  AS  select `p`.`id` AS `id`,`p`.`codigo` AS `codigo`,`p`.`nombre` AS `nombre`,sum(`dc`.`cantidad`) AS `total` from ((`productos` `p` left join `detalle_compra` `dc` on((`p`.`id` = `dc`.`producto_id`))) left join `compras` `c` on((`dc`.`compra_id` = `c`.`id`))) where (`c`.`estatus` = 'ACTIVO') group by `p`.`id`,`p`.`codigo`,`p`.`nombre` ;
+CREATE ALGORITHM=UNDEFINED VIEW `v_entradas_compras`  AS  select `p`.`id` AS `id`,`p`.`codigo` AS `codigo`,`p`.`nombre` AS `nombre`,sum(`dc`.`cantidad`) AS `total` from ((`productos` `p` left join `detalle_compra` `dc` on((`p`.`id` = `dc`.`producto_id`))) left join `compras` `c` on((`dc`.`compra_id` = `c`.`id`))) where (`c`.`estatus` = 'ACTIVO') group by `p`.`id`,`p`.`codigo`,`p`.`nombre` ;
 
 -- --------------------------------------------------------
 
@@ -748,7 +748,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_entradas_recargo`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_entradas_recargo`  AS  select `p`.`id` AS `id`,`p`.`codigo` AS `codigo`,`p`.`nombre` AS `nombre`,sum(`de`.`cantidad`) AS `total` from ((`productos` `p` left join `detalle_entrada` `de` on((`p`.`id` = `de`.`producto_id`))) left join `entradas` `e` on((`de`.`entrada_id` = `e`.`id`))) where (`e`.`estatus` = 'ACTIVO') group by `p`.`id`,`p`.`codigo`,`p`.`nombre` ;
+CREATE ALGORITHM=UNDEFINED VIEW `v_entradas_recargo`  AS  select `p`.`id` AS `id`,`p`.`codigo` AS `codigo`,`p`.`nombre` AS `nombre`,sum(`de`.`cantidad`) AS `total` from ((`productos` `p` left join `detalle_entrada` `de` on((`p`.`id` = `de`.`producto_id`))) left join `entradas` `e` on((`de`.`entrada_id` = `e`.`id`))) where (`e`.`estatus` = 'ACTIVO') group by `p`.`id`,`p`.`codigo`,`p`.`nombre` ;
 
 -- --------------------------------------------------------
 
@@ -757,7 +757,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_entradas_totales`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_entradas_totales`  AS  select `p`.`id` AS `id`,`p`.`codigo` AS `codigo`,`p`.`nombre` AS `nombre`,ifnull(`vec`.`total`,0) AS `compras`,ifnull(`ver`.`total`,0) AS `cargos`,(ifnull(`vec`.`total`,0) + ifnull(`ver`.`total`,0)) AS `total` from ((`productos` `p` left join `v_entradas_compras` `vec` on((`vec`.`id` = `p`.`id`))) left join `v_entradas_recargo` `ver` on((`ver`.`id` = `vec`.`id`))) group by `p`.`id`,`p`.`codigo`,`p`.`nombre` ;
+CREATE ALGORITHM=UNDEFINED VIEW `v_entradas_totales`  AS  select `p`.`id` AS `id`,`p`.`codigo` AS `codigo`,`p`.`nombre` AS `nombre`,ifnull(`vec`.`total`,0) AS `compras`,ifnull(`ver`.`total`,0) AS `cargos`,(ifnull(`vec`.`total`,0) + ifnull(`ver`.`total`,0)) AS `total` from ((`productos` `p` left join `v_entradas_compras` `vec` on((`vec`.`id` = `p`.`id`))) left join `v_entradas_recargo` `ver` on((`ver`.`id` = `vec`.`id`))) group by `p`.`id`,`p`.`codigo`,`p`.`nombre` ;
 
 -- --------------------------------------------------------
 
@@ -766,7 +766,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_inventario`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_inventario`  AS  select `p`.`id` AS `id`,`p`.`codigo` AS `codigo`,`p`.`nombre` AS `nombre`,`c`.`nombre` AS `categoria`,`p`.`precio_venta` AS `precio_venta`,ifnull(((`e`.`compras` + `e`.`cargos`) - (`s`.`ventas` + `s`.`descargos`)),0) AS `stock`,`p`.`stock_min` AS `stock_min`,`p`.`stock_max` AS `stock_max`,`p`.`estatus` AS `estatus` from (((`productos` `p` left join `v_entradas_totales` `e` on((`p`.`id` = `e`.`id`))) left join `v_salidas_totales` `s` on((`p`.`id` = `s`.`id`))) join `categorias` `c` on((`p`.`categoria_id` = `c`.`id`))) group by `p`.`id`,`p`.`codigo`,`p`.`nombre`,`p`.`precio_venta`,`p`.`stock_min`,`p`.`stock_max` order by `p`.`id` ;
+CREATE ALGORITHM=UNDEFINED VIEW `v_inventario`  AS  select `p`.`id` AS `id`,`p`.`codigo` AS `codigo`,`p`.`nombre` AS `nombre`,`c`.`nombre` AS `categoria`,`p`.`precio_venta` AS `precio_venta`,ifnull(((`e`.`compras` + `e`.`cargos`) - (`s`.`ventas` + `s`.`descargos`)),0) AS `stock`,`p`.`stock_min` AS `stock_min`,`p`.`stock_max` AS `stock_max`,`p`.`estatus` AS `estatus` from (((`productos` `p` left join `v_entradas_totales` `e` on((`p`.`id` = `e`.`id`))) left join `v_salidas_totales` `s` on((`p`.`id` = `s`.`id`))) join `categorias` `c` on((`p`.`categoria_id` = `c`.`id`))) group by `p`.`id`,`p`.`codigo`,`p`.`nombre`,`p`.`precio_venta`,`p`.`stock_min`,`p`.`stock_max` order by `p`.`id` ;
 
 -- --------------------------------------------------------
 
@@ -775,7 +775,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_inventario1`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_inventario1`  AS  select `p`.`id` AS `id`,`p`.`codigo` AS `codigo`,`p`.`nombre` AS `nombre`,`c`.`nombre` AS `categoria`,`p`.`precio_venta` AS `precio_dolar`,(`p`.`precio_venta` * `d`.`precio`) AS `precio_Bolivares`,ifnull(((`e`.`compras` + `e`.`cargos`) - (`s`.`ventas` + `s`.`descargos`)),0) AS `stock`,`p`.`stock_min` AS `stock_min`,`p`.`stock_max` AS `stock_max`,`p`.`estatus` AS `estatus` from (((`dolar` `d` join (`productos` `p` left join `v_entradas_totales` `e` on((`p`.`id` = `e`.`id`)))) left join `v_salidas_totales` `s` on((`p`.`id` = `s`.`id`))) join `categorias` `c` on((`p`.`categoria_id` = `c`.`id`))) ;
+CREATE ALGORITHM=UNDEFINED VIEW `v_inventario1`  AS  select `p`.`id` AS `id`,`p`.`codigo` AS `codigo`,`p`.`nombre` AS `nombre`,`c`.`nombre` AS `categoria`,`p`.`precio_venta` AS `precio_dolar`,(`p`.`precio_venta` * `d`.`precio`) AS `precio_Bolivares`,ifnull(((`e`.`compras` + `e`.`cargos`) - (`s`.`ventas` + `s`.`descargos`)),0) AS `stock`,`p`.`stock_min` AS `stock_min`,`p`.`stock_max` AS `stock_max`,`p`.`estatus` AS `estatus` from (((`dolar` `d` join (`productos` `p` left join `v_entradas_totales` `e` on((`p`.`id` = `e`.`id`)))) left join `v_salidas_totales` `s` on((`p`.`id` = `s`.`id`))) join `categorias` `c` on((`p`.`categoria_id` = `c`.`id`))) ;
 
 -- --------------------------------------------------------
 
@@ -784,7 +784,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_salidas_descargo`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_salidas_descargo`  AS  select `p`.`id` AS `id`,`p`.`codigo` AS `codigo`,`p`.`nombre` AS `nombre`,sum(`ds`.`cantidad`) AS `total` from ((`productos` `p` left join `detalle_salida` `ds` on((`p`.`id` = `ds`.`producto_id`))) left join `salidas` `s` on((`ds`.`salida_id` = `s`.`id`))) where (`s`.`estatus` = 'ACTIVO') group by `p`.`id`,`p`.`codigo`,`p`.`nombre` ;
+CREATE ALGORITHM=UNDEFINED VIEW `v_salidas_descargo`  AS  select `p`.`id` AS `id`,`p`.`codigo` AS `codigo`,`p`.`nombre` AS `nombre`,sum(`ds`.`cantidad`) AS `total` from ((`productos` `p` left join `detalle_salida` `ds` on((`p`.`id` = `ds`.`producto_id`))) left join `salidas` `s` on((`ds`.`salida_id` = `s`.`id`))) where (`s`.`estatus` = 'ACTIVO') group by `p`.`id`,`p`.`codigo`,`p`.`nombre` ;
 
 -- --------------------------------------------------------
 
@@ -793,7 +793,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_salidas_totales`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_salidas_totales`  AS  select `p`.`id` AS `id`,`p`.`codigo` AS `codigo`,`p`.`nombre` AS `nombre`,ifnull(`vsv`.`total`,0) AS `ventas`,ifnull(`vsd`.`total`,0) AS `descargos`,(ifnull(`vsv`.`total`,0) + ifnull(`vsd`.`total`,0)) AS `total` from ((`productos` `p` left join `v_salidas_ventas` `vsv` on((`vsv`.`id` = `p`.`id`))) left join `v_salidas_descargo` `vsd` on((`vsd`.`id` = `vsv`.`id`))) group by `p`.`id`,`p`.`codigo`,`p`.`nombre` ;
+CREATE ALGORITHM=UNDEFINED VIEW `v_salidas_totales`  AS  select `p`.`id` AS `id`,`p`.`codigo` AS `codigo`,`p`.`nombre` AS `nombre`,ifnull(`vsv`.`total`,0) AS `ventas`,ifnull(`vsd`.`total`,0) AS `descargos`,(ifnull(`vsv`.`total`,0) + ifnull(`vsd`.`total`,0)) AS `total` from ((`productos` `p` left join `v_salidas_ventas` `vsv` on((`vsv`.`id` = `p`.`id`))) left join `v_salidas_descargo` `vsd` on((`vsd`.`id` = `vsv`.`id`))) group by `p`.`id`,`p`.`codigo`,`p`.`nombre` ;
 
 -- --------------------------------------------------------
 
@@ -802,7 +802,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_salidas_ventas`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_salidas_ventas`  AS  select `p`.`id` AS `id`,`p`.`codigo` AS `codigo`,`p`.`nombre` AS `nombre`,sum(`dv`.`cantidad`) AS `total` from ((`productos` `p` left join `detalle_venta` `dv` on((`p`.`id` = `dv`.`producto_id`))) left join `ventas` `v` on((`dv`.`venta_id` = `v`.`id`))) where (`v`.`estatus` = 'ACTIVO') group by `p`.`id`,`p`.`codigo`,`p`.`nombre` ;
+CREATE ALGORITHM=UNDEFINED VIEW `v_salidas_ventas`  AS  select `p`.`id` AS `id`,`p`.`codigo` AS `codigo`,`p`.`nombre` AS `nombre`,sum(`dv`.`cantidad`) AS `total` from ((`productos` `p` left join `detalle_venta` `dv` on((`p`.`id` = `dv`.`producto_id`))) left join `ventas` `v` on((`dv`.`venta_id` = `v`.`id`))) where (`v`.`estatus` = 'ACTIVO') group by `p`.`id`,`p`.`codigo`,`p`.`nombre` ;
 
 --
 -- Índices para tablas volcadas
