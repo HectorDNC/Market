@@ -123,11 +123,34 @@
                 </div>
             </div>
                 
-                <br>
-                <div class="separador"></div>
+            <br>
+            <div class="separador"></div>
                 <?php
                     endforeach;
                 ?>
+            <div>
+                <div style="width:22.5%; display:inline;" class="text-center" >
+                    <b>Cantidad de Ventas</b>
+                </div>
+                <div style="width:23.5%; display:inline;" class="text-center" >
+                    <span><?= $cantidad; ?></span>
+                </div>
+                <!-- <div style="width:15.5%; display:inline;" class="text-center" >
+                    <span></span>
+                </div> -->
+                <div style="width:15.5%; display:inline;" class="text-center" >
+                    <b>Total</b>
+                </div>
+                <div style="width:18%; display:inline;" class="text-center" >
+                    <span><?= $total ?></span>
+                </div>
+                <div style="width:18%; display:inline;" class="text-center" >
+                    <span><?= $total * $dolar; ?></span>
+                </div>
+            </div>
+                
+            <br>
+            <div class="separador"></div>
             <?php }else{?>
                 <div>
                     <div style="width:18.5%; display:inline;" class="text-center">
@@ -178,19 +201,33 @@
                 <?php
                     endforeach;
                 ?>
+                <div>
+                    <div style="width:18.5%; display:inline;" class="text-center" >
+                        <b>Cantidad de Ventas</b>
+                    </div>
+                    <div style="width:15.5%; display:inline;" class="text-center" >
+                        <span><?= $cantidad ?></span>
+                    </div>
+                    <div style="width:18.5%; display:inline;" class="text-center" >
+                        <b>Total</b>
+                    </div>
+                    <div style="width:18.5%; display:inline;" class="text-center" >
+                        <span><?= $total ?></span>
+                    </div>
+                    <div style="width:18.5%; display:inline;" class="text-center" >
+                        <span><?= $total * $dolar; ?></span>
+                    </div>
+                </div>
+                
+                <br>
+                <div class="separador"></div>
             <?php }?>
             <?php } ?>
             <br> 
                 
         </div>  
         <!-- Fin de Ventas -->
-        <br>
-        <!-- Resumen -->
-        <div class="centrado" style="width: 98%;">
-            <p><b>Cantidad de Ventas: </b><?=$cantidad?></p>
-            <p><b>Monto total de las Ventas: </b><?=$total?> $ - <?=$total*$dolar?> BSS</p>
-        </div>
-        <!-- Fin Resumen -->
+       
         <br>
         <div class="separadorDos"></div>
         <div class="separadorDos"></div>
@@ -248,15 +285,17 @@
                         <b>TOTAL</b>
                     </div>
                     <div style="width:24%; display:inline;" class="text-center" >
-                        <b><?= $cantidadPagos ?></b>
+                        <span><?= $cantidadPagos ?></span>
                     </div>
                     <div style="width:24%; display:inline;" class="text-center" >
-                        <b><?= $totalPagos ?></b>
+                        <span><?= $totalPagos ?></span>
                     </div>
                     <div style="width:24%; display:inline;" class="text-center" >
-                        <b><?= $totalPagos*$dolar ?></b>
+                        <span><?= $totalPagos*$dolar ?></span>
                     </div>
                 </div>
+                <br>
+                <div class="separador"></div>
         </div>
         <?php }?>
         <!--Fin Métodos de Pago  -->
