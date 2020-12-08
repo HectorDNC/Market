@@ -597,7 +597,6 @@ CREATE TABLE `venta_pago` (
 
 CREATE TABLE `asistencia_usuario` (
   `id` int(11) NOT NULL,
-  `descripcion` varchar(50) DEFAULT NULL,
   `usuario_id` int(11) NOT NULL,
   `fecha` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -608,7 +607,6 @@ CREATE TABLE `asistencia_usuario` (
 
 CREATE TABLE `asistencia_empleado` (
   `id` int(11) NOT NULL,
-  `descripcion` varchar(50) DEFAULT NULL,
   `empleado_id` int(11) NOT NULL,
   `fecha` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
