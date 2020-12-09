@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\Empleado;
+use App\Models\Asistencia;
 use App\Traits\Utility;
 use System\Core\Controller;
 use System\Core\View;
@@ -13,6 +14,7 @@ class EmpleadoController extends Controller{
   use Utility;
 
   private $empleado;
+  private $asistencia;
 
   public function __construct() {
     if($_SESSION['rol'] != 1){
@@ -183,6 +185,116 @@ class EmpleadoController extends Controller{
       echo json_encode([
         'titulo' => 'Ocurio un error!',
         'mensaje' => 'No se pudo eliminar el registro',
+        'tipo' => 'error'
+      ]);
+    }
+    
+
+  }
+
+  // Asistencias
+  public function listarAsistencia($fecha){
+    $this->asistencia = new Asistencia;
+    $method = $_SERVER['REQUEST_METHOD'];
+
+    if( $method != 'POST'){
+      http_response_code(404);
+      return false;
+    }
+    
+    $empleados = $this->empleado->listar();
+
+    
+    $asistencias = $this->asistencia->listarAsistenciaEmpleado($fecha);
+    
+    foreach($empleados as $empleado){
+          
+      $empleado->fecha = "Inasistente"; 
+      $empleado->button =      
+          "<a href='". $this->encriptar($empleado->id) ."' class='asistencia btn btn-info' title='Marcar Asistencia'><i class='fas fa-clipboard-check'></i></a>";
+    }
+    foreach($asistencias as $asistencia){
+    
+      foreach($empleados as $empleado){
+        if ($empleado->fecha == "Inasistente" && $empleado->id == $asistencia->empleado_id) {
+          $empleado->fecha = $asistencia->fecha;
+          $empleado->button =      
+            "<a href='". $this->encriptar($asistencia->asistencia_id) ."' class='inasistencia btn btn-warning' title='Marcar Inasistencia'><i class='fas fa-clipboard'></i></a>";
+        }          
+      }
+    }
+    
+    http_response_code(200);
+
+    echo json_encode([
+      'data' => $empleados
+    ]);
+
+  }
+  public function marcarInasistencia($param){
+    $this->asistencia = new Asistencia;
+    $asistencia = new Asistencia;
+    $method = $_SERVER['REQUEST_METHOD'];
+
+    if( $method != 'DELETE'){
+      http_response_code(404);
+      return false;
+    }
+
+    $id = $this->desencriptar($param);
+    $asistencia->setId($id);
+    $result = $this->asistencia->inasistenciaEmpleado($asistencia);
+    if($result){
+
+      http_response_code(200);
+
+      echo json_encode([
+        'titulo' => 'Empleado inasistente!',
+        'mensaje' => "El Empleado ha sido marcado como inasistente",
+        'tipo' => 'success'
+      ]);
+    }else{
+      http_response_code(404);
+
+      echo json_encode([
+        'titulo' => 'Ocurio un error!',
+        'mensaje' => $result,
+        'tipo' => 'error'
+      ]);
+    }
+    
+
+  }
+  public function marcarAsistencia(){
+    $this->asistencia = new Asistencia;
+    $asistencia = new Asistencia;
+    $method = $_SERVER['REQUEST_METHOD'];
+
+    if( $method != 'POST'){
+      http_response_code(404);
+      return false;
+    }
+
+    $id = $this->desencriptar($_POST['id']);
+    $fecha = $_POST['fecha'];
+    $asistencia->setPersona_id($id);
+    $asistencia->setFecha($fecha);
+    $result = $this->asistencia->asistenciaEmpleado($asistencia);
+    if($result){
+
+      http_response_code(200);
+
+      echo json_encode([
+        'titulo' => 'Empleado asistente!',
+        'mensaje' => "El Empleado ha sido marcado como asistente",
+        'tipo' => 'success'
+      ]);
+    }else{
+      http_response_code(404);
+
+      echo json_encode([
+        'titulo' => 'Ocurio un error!',
+        'mensaje' => $result,
         'tipo' => 'error'
       ]);
     }

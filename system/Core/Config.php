@@ -27,5 +27,6 @@ const CODIGO_VECTOR ='1997';
 // define('MODELS_PATH', 'app/Models/'); 
 // define('VIEWS_PATH', 'app/Views/');
 // define('ROOT', $_SERVER['DOCUMENT_ROOT']);
+date_default_timezone_set("America/Caracas");
 
 

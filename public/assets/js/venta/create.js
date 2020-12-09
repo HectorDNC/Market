@@ -29,7 +29,7 @@ $(document).ready(function () {
           toast.addEventListener('mouseenter', Swal.stopTimer)
           toast.addEventListener('mouseleave', Swal.resumeTimer)
         }
-      })
+      });
 
     // Obtener precio del Dolar
     $.ajax({
