@@ -14,23 +14,8 @@ $(document).ready(function() {
             processData: false,
             success: function(response) {
                 console.log(response);
-                // Swal.close();
                 window.location = '/';
                 window.location.reload();
-
-                // if( json.tipo == 'success'){
-
-
-
-
-                // }else{
-                //     Swal.fire(
-                //         json.titulo,
-                //         json.mensaje,
-                //         json.tipo
-                //     );
-                // }
-
             },
             error: (response) => {
                 console.log(response);

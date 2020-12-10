@@ -17,6 +17,17 @@ class Empleado extends Persona{
 
     public function listar(){
         try{
+            $consulta = parent::connect()->prepare("SELECT id, documento, CONCAT(nombre, ' ', apellido) AS nombre, telefono, cargo, estatus, created_at FROM empleados ORDER BY created_at DESC");
+            $consulta->execute();
+            
+            return $consulta->fetchAll(PDO::FETCH_OBJ);
+            
+        } catch (Exception $ex) {
+            die($ex->getMessage());
+        }
+    }
+    public function listarActivos(){
+        try{
             $consulta = parent::connect()->prepare("SELECT id, documento, CONCAT(nombre, ' ', apellido) AS nombre, telefono, cargo, estatus, created_at FROM empleados WHERE estatus='ACTIVO' ORDER BY created_at DESC");
             $consulta->execute();
             

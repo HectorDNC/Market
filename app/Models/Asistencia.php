@@ -110,7 +110,81 @@ class Asistencia extends Model{
             return $ex->getMessage();
         }
     }
-   
+    public function listarAsistenciaUsuario($fecha = NULL)
+    {
+        if ($fecha == NULL) {
+            $fecha = date("Y-m-d");
+        }
+        $desde = $fecha." 00:00:00";
+        $hasta = $fecha." 23:59:59";
+        try{
+            $consulta = parent::connect()->prepare("SELECT u.id, u.documento, 
+            CONCAT(u.nombre, ' ', u.apellido) as nombre, a.id as asistencia_id, a.usuario_id, 
+            Date_format(a.fecha, '%r') as fecha FROM usuarios u LEFT JOIN asistencia_usuario a ON u.id = a.usuario_id
+            WHERE a.fecha BETWEEN '$desde' AND '$hasta'");
+            $consulta->execute();
+            
+            return $consulta->fetchAll(PDO::FETCH_OBJ);
+            
+        } catch (Exception $ex) {
+            die($ex->getMessage());
+        }
+    }
+    public function asistenciaUsuario(Asistencia $asistencia){
+        try{
+            $fechaActual = date("Y-m-d");
+            $id = $asistencia->getPersona_id();
+            $fecha = $asistencia->getFecha();
+            if ($fecha == $fechaActual) {
+                $consulta = parent::connect()->prepare("INSERT INTO asistencia_usuario(usuario_id) "
+                . "VALUES (:usuario_id)");
+            }
+            else{
+                $consulta = parent::connect()->prepare("INSERT INTO asistencia_usuario(usuario_id, fecha) "
+                . "VALUES (:usuario_id, :fecha)");
+                $consulta->bindParam(":fecha", $fecha); 
+            }          
+            $consulta->bindParam(":usuario_id", $id);            
+                      
+            return $consulta->execute();            
+        } catch (Exception $ex) {
+            return $ex->getMessage();
+        }
+    }
+    public function inasistenciaUsuario(Asistencia $asistencia){
+        try{            
+            $sql = "DELETE FROM asistencia_usuario 
+                WHERE id = :id";
+            $consulta = parent::connect()->prepare($sql);
+            
+            $id = $asistencia->getId();
+            $consulta->bindParam(":id", $id);            
+            return $consulta->execute();            
+        } catch (Exception $ex) {
+            return $ex->getMessage();
+        }
+    }
+    
+    public function verificarAsiUsuHoy($id)
+    {
+        $fecha = date('Y-m-d');
+        $desde = $fecha." 00:00:00";
+        $hasta = $fecha." 23:59:59";
+        try{            
+            $sql = "SELECT * FROM asistencia_usuario 
+                WHERE usuario_id = :id AND fecha BETWEEN :desde AND :hasta";
+            $consulta = parent::connect()->prepare($sql);
+            
+            $consulta->bindParam(":id", $id);            
+            $consulta->bindParam(":desde", $desde);            
+            $consulta->bindParam(":hasta", $hasta);            
+            $consulta->execute();   
+            $asi = $consulta->fetch(PDO::FETCH_OBJ);   
+            return $asi;    
+        } catch (Exception $ex) {
+            return $ex->getMessage();
+        }
+    }
 
     
 }

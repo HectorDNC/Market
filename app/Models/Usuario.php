@@ -63,6 +63,26 @@ class Usuario extends Persona{
             die($ex->getMessage());
         }
     }
+    public function listarActivos(){
+        try{
+
+            $user = $_SESSION['usuario'];
+
+            $consulta = parent::connect()->prepare("SELECT u.id, u.documento, CONCAT(u.nombre, ' ', u.apellido) AS nombre, u.usuario, r.nombre AS rol, u.telefono, u.estatus FROM 
+                usuarios u
+                    JOIN
+                roles r
+                    ON r.id = u.rol_id
+                WHERE u.usuario != '$user' AND u.estatus='ACTIVO' ORDER BY u.created_at DESC");
+
+            $consulta->execute();
+            
+            return $consulta->fetchAll(PDO::FETCH_OBJ);
+            
+        } catch (Exception $ex) {
+            die($ex->getMessage());
+        }
+    }
 
     public function registrar(Usuario $usuario){
         try{
@@ -146,7 +166,7 @@ class Usuario extends Persona{
     
     public function checkUser(Usuario $user) {
         try {
-            $query = parent::connect()->prepare("SELECT id, documento, nombre, apellido, email, usuario, estatus, rol_id FROM usuarios WHERE usuario=:usuario AND password=:password");
+            $query = parent::connect()->prepare("SELECT id, documento, nombre, apellido, email, usuario, estatus, rol_id FROM usuarios WHERE estatus='ACTIVO' AND usuario=:usuario AND password=:password");
             
             $query->bindParam(":usuario", $user->usuario);
             $query->bindParam(":password", $user->password);

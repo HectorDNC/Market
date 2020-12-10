@@ -6,6 +6,7 @@ use System\Core\Controller;
 use System\Core\View;
 use App\Models\Usuario;
 use App\Models\Caja;
+use App\Models\Asistencia;
 use App\Traits\Utility;
 
 class LoginController extends Controller{
@@ -14,6 +15,7 @@ class LoginController extends Controller{
 
     private $usuario;
     private $caja;
+    private $asistencia;
 
     public function __construct(){
         $this->usuario = new Usuario();
@@ -45,7 +47,15 @@ class LoginController extends Controller{
         $response = $this->usuario->checkUser($this->usuario);
         
         if($response) {
-
+            $this->asistencia = new Asistencia;
+            $asi = $this->asistencia->verificarAsiUsuHoy($response->id);
+            if (!isset($asi->id)) {
+                $asistencia = new Asistencia;
+                $asistencia->setPersona_id($response->id);
+                $asistencia->setFecha(date('Y-m-d'));
+                $this->asistencia->asistenciaUsuario($asistencia);
+            }
+            
             // var_dump($response);
             // echo $response->documento;
 

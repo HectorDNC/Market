@@ -24,6 +24,33 @@
           </table>
         </div>
     </div>
+    <h2 class="mb-4">Asistencia</h2>
+
+    <div class="card mb-4">
+        <div class="card-header bg-white">
+          <div class="row">
+            <label for="" class="col-form-label col-auto">Fecha: &nbsp;</label>
+            <input type="date" class="form-control col-md-4" id="fechaAsistencia" value="<?=$fecha = date("Y-m-d");?>">
+          </div>
+          
+        </div>
+        <div class="card-body">
+          <table class="table" id="datatableAsistencia">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Cedula/RIF</th>
+                <th scope="col">Nombre y Apellido</th>
+                <th scope="col">Asistencia</th>
+                <th scope="col">Acción</th>
+              </tr>
+            </thead>
+            <tbody>
+                
+            </tbody>
+          </table>
+        </div>
+    </div>
+</div>
 </div>
 
 
@@ -347,5 +374,6 @@
     </div>
 
     <script src="<?= ROOT; ?>public/assets/js/usuario/index.js"></script>
+    <script src="<?= ROOT; ?>public/assets/js/usuario/asistencia.js"></script>
 
 
