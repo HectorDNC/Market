@@ -36,11 +36,14 @@
         echo $alerta;
     }
 ?>
-<div class="container-fluid login position-absolute w-100 h-100">
+<div class="container-fluid login position-absolute w-100 h-100 p-2">
     <div class="row h-100 d-flex justify-content-center align-items-center">
         <div class="col-md-4">
-            <h1 class="text-center mb-4"><?=TITLE?></h1>
-            <div class="card">
+            
+            <div class="card " style="background: #00C853; color:#FFF;">
+                <div class="card-header">
+                    <h1 class="text-center"><?=TITLE?></h1>
+                </div>
                 <div class="card-body">
                     <form id="loginForm">
                         <div class="input-group mb-3">
@@ -56,21 +59,11 @@
                             </div>
                             <input type="password" name="password" class="form-control" placeholder="Contraseña" required>
                         </div>
-
-                        <div class="form-check mb-3">
-                            <!-- <label class="form-check-label">
-                                <input type="checkbox" name="remember" class="form-check-input">
-                                Recuerdame
-                            </label> -->
-                        </div>
-
+                        
                         <div class="row">
                             <div class="col pr-2">
-                                <button type="submit" class="btn btn-block btn-success">Iniciar sesión</button>
+                                <button type="submit" class="btn btn-block btn-dark"> <b>Iniciar sesión</b> </button>
                             </div>
-                            <!-- <div class="col pl-2">
-                                <a class="btn btn-block btn-link" href="#">Recuperar Contraseña</a>
-                            </div> -->
                         </div>
                     </form>
                 </div>
