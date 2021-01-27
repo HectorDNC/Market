@@ -41,7 +41,7 @@
                 <th scope="col">Cedula/RIF</th>
                 <th scope="col">Nombre y Apellido</th>
                 <th scope="col">Asistencia</th>
-                <th scope="col">Acción</th>
+                <!-- <th scope="col">Acción</th> -->
               </tr>
             </thead>
             <tbody>

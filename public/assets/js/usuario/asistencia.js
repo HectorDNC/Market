@@ -16,7 +16,7 @@ let table = $('#datatableAsistencia').DataTable({
         { data: 'documento' },
         { data: "nombre" },
         { data: "fecha" },
-        { data: 'button' }
+        // { data: 'button' }
     ],
 
     language: { 
