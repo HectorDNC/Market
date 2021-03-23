@@ -40,7 +40,7 @@
     <div class="row h-100 d-flex justify-content-center align-items-center">
         <div class="col-md-4">
             
-            <div class="card " style="background: #00C853; color:#FFF;">
+            <div class="card " style="background: linear-gradient(to left, #0178bc 0%, #00bdda 100%); color:#FFF;">
                 <div class="card-header">
                     <h1 class="text-center"><?=TITLE?></h1>
                 </div>

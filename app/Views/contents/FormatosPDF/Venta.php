@@ -84,7 +84,7 @@
                 </tr>
             </tbody>
         </table>
-        <div class="centrado" style="width=100%;">
+        <div class="centrado" style="width:100%;">
             <div style="width:15.5%; display:inline;" class="text-center">
                 <strong>CANTIDAD</strong>
             </div>

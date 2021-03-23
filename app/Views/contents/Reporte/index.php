@@ -8,8 +8,8 @@
                 <form action="<?=ROOT;?>Reporte/reporteVenta" method="POST" enctype="multipart/form-data" id="formularioReporte" target="_blank">
                     <div class="row form-group">
                         <label for="vendedor" class="col-form-label col-md-4 font-weight-bold">Vendedor: </label>
-                        <div class="col-md-8 d-flex align-items-center">
-                            <select class="form-control js-example-basic-single" name="vendedor" id="vendedor" required>
+                        <div class="col-md-8 d-flex align-content-center justify-content-center px-1">
+                            <select class="form-control js-example-basic-single" style="width:100%" name="vendedor" id="vendedor" required>
                                 <option value="0">TODOS</option>
                                 
                                 <?php foreach($usuarios as $usuario):?>
@@ -30,7 +30,7 @@
                         
                     </div>
                     <hr>
-                    <div class="row justify-content-md-center">
+                    <div class="row justify-content-center">
                         <button type="submit" class="btn btn-success"> <i class="fa fa-fw fa-list-alt"></i> Generar Reporte</button>
                     </div>
                 </form>
