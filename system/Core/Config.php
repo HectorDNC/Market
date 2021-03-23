@@ -4,9 +4,9 @@
  */
 define('URI', $_SERVER['REQUEST_URI']);
 define('VIEWS', 'app/Views/');
-define('ROOT', '/Marcket/');
-define('ROOTC', 'localhost/Marcket/');
-define('TITLE', 'MARCKET');
+define('ROOT', '/Market/');
+define('ROOTC', 'localhost/Market/');
+define('TITLE', 'MARKET');
 
 /**
  * Encriptado
