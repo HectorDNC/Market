@@ -10,7 +10,7 @@
         <div class="card-body">
           <div class="pb-1">
             <label for="listadoCategorias">Categorías: &nbsp;</label>
-            <select name="listadoCategorias" id="listadoCategorias" class="js-example-basic-single w-25">
+            <select name="listadoCategorias" id="listadoCategorias" class="js-example-basic-single w-100">
                 <option value="0">TODAS</option>
             </select>
           </div>
@@ -319,7 +319,8 @@
                     <hr>
 
                     <div class="form-row justify-content-center">
-                        <button class="btn btn-success" type="submit">Enviar</button>
+                        <a href="#" class="btn btn-secondary m-2" data-dismiss="modal"><i class="fas fa-arrow-circle-left"></i> Cerrar</a>
+                        <button class="btn btn-success m-2" type="submit">Enviar</button>
                     </div>
                 </form>  
         </div>

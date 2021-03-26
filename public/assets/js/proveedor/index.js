@@ -184,7 +184,7 @@ const actualizarProveedor = (datos) => {
 
 const eliminarProveedor = (id) => {
     $.ajax({
-        type: "DELETE",
+        type: "POST",
         url: GLOBAL.URL+"proveedor/eliminar/" + id,
         success: function (response) {
             const json = JSON.parse(response);
@@ -206,7 +206,7 @@ const eliminarProveedor = (id) => {
 
 const habilitar = (id) => {
     $.ajax({
-        type: "HABILITAR",
+        type: "POST",
         url: GLOBAL.URL+"proveedor/habilitar/" + id,
         success: function (response) {
             const json = JSON.parse(response);

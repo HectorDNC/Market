@@ -41,8 +41,8 @@
         <div class="col-md-4">
             
             <div class="card " style="background: linear-gradient(to left, #0178bc 0%, #00bdda 100%); color:#FFF;">
-                <div class="card-header">
-                    <h1 class="text-center"><?=TITLE?></h1>
+                <div class="card-header d-flex justify-content-center">
+                    <img src="<?= ROOT; ?>public/assets/img/logo.png" alt="homepage" height="60px" class="dark-logo" />
                 </div>
                 <div class="card-body">
                     <form id="loginForm">

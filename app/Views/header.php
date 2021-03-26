@@ -49,7 +49,7 @@
         <!-- ============================================================== -->
         <header class="topbar" data-navbarbg="skin6">
             <nav class="navbar top-navbar navbar-expand-md navbar-dark">
-                <div class="navbar-header" data-logobg="skin6">
+                <div class="navbar-header d-flex" data-logobg="skin6">
                     <!-- ============================================================== -->
                     <!-- Logo -->
                     <!-- ============================================================== -->
@@ -63,18 +63,32 @@
                         </div>
                         <!--End Logo icon -->
                         <!-- Logo text -->
-                       <div class="h-100 pt-2">
+                       <!-- <div class="h-100 pt-2">
                         <h1 style="color:rgba(255,255,255,0.95);"><?=TITLE?></h1>
-                       </div>
+                       </div> -->
                     </a>
+                    
                     <!-- ============================================================== -->
                     <!-- End Logo -->
                     <!-- ============================================================== -->
                     <!-- ============================================================== -->
                     <!-- toggle and nav items -->
                     <!-- ============================================================== -->
-                    <a class="nav-toggler waves-effect waves-light text-dark d-block d-md-none"
-                        href="javascript:void(0)"><i class="fa fa-lg fa-bars ti-menu ti-close"></i></a>
+                   
+                    <div class=" d-block d-md-none">
+                        <ul class="navbar-nav ml-auto">
+                            
+                            <li class="nav-item dropdown">
+                                <a href="#" id="dd_user" class="nav-link dropdown-toggle" data-toggle="dropdown" style="font-size:12px !important;"><i class="fa fa-user"></i> <?= empty($_SESSION['usuario']) ? 'Usuario' : $_SESSION['usuario'] ?> <i class="fa fa-angle-down"></i></a>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dd_user">
+                                    <a href="<?=ROOT?>perfil" class="dropdown-item">Perfil</a>
+                                    <a href="" id="logout" class="dropdown-item logout">Salir</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <a class="nav-toggler waves-effect waves-light text-dark d-block d-md-none text-white"
+                        href="javascript:void(0)"><i class="fa fa-lg fa-bars ti-menu ti-close text-white"></i></a>
                 </div>
                 <!-- ============================================================== -->
                 <!-- End Logo -->
@@ -101,7 +115,7 @@
                                 <a href="#" id="dd_user" class="nav-link dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?= empty($_SESSION['usuario']) ? 'Usuario' : $_SESSION['usuario'] ?> <i class="fa fa-angle-down"></i></a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dd_user">
                                     <a href="<?=ROOT?>perfil" class="dropdown-item">Perfil</a>
-                                    <a href="" id="logout" class="dropdown-item">Salir</a>
+                                    <a href="" id="logout" class="dropdown-item logout">Salir</a>
                                 </div>
                             </li>
                         </ul>

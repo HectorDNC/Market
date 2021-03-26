@@ -228,7 +228,7 @@ $(document).ready(function () {
     
     const eliminarUsuario = (id) => {
         $.ajax({
-            type: "DELETE",
+            type: "POST",
             url: GLOBAL.URL+"Usuario/eliminar/" + id,
             success: function (response) {
                 const json = JSON.parse(response);
@@ -256,7 +256,7 @@ $(document).ready(function () {
     }
     const habilitar = (id) => {
         $.ajax({
-            type: "HABILITAR",
+            type: "POST",
             url: GLOBAL.URL+"usuario/habilitar/" + id,
             success: function (response) {
                 const json = JSON.parse(response);

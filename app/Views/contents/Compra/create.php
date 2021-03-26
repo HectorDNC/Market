@@ -101,7 +101,7 @@
                                     </label>
     
                                     <div class="col-md-6 form-group">
-                                        <select name="proveedor" id="listadoProveedores" class="form-control js-example-basic-single">
+                                        <select name="proveedor" id="listadoProveedores" class="form-control js-example-basic-single w-100">
                                             <option value="">-</option>
 
                                             <?php 
@@ -168,7 +168,7 @@
                                     <label for="categorias" class="col-form-label col-lg-2"><strong>Categoría</strong> </label>
                                     <div class="col-lg-8 form-group">
                                 
-                                        <select id="listadoCategorias" class="form-control js-example-basic-single">
+                                        <select id="listadoCategorias" class="form-control js-example-basic-single w-100">
                                             <option value="0">TODAS</option>
 
                                             <?php 
@@ -191,7 +191,7 @@
                                     <label for="Nombre" class="col-form-label col-lg-2"><strong>Producto</strong> </label>
                                     <div class="col-lg-8 form-group">
                                 
-                                        <select id="listadoProductos" class="form-control js-example-basic-single">
+                                        <select id="listadoProductos" class="form-control js-example-basic-single w-100">
                                             <option value="">-</option>
 
                                             <?php 

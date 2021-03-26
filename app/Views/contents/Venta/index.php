@@ -80,8 +80,8 @@
             </div>
             
             <div class="card-body">
-                <div class="row justify-content-end">
-                    <label for="" class="col-form-label col-2"><strong>Nro Venta:</strong> </label>
+                <div class="row justify-content-start">
+                    <label for="" class="col-form-label col-md-2"><strong>Nro Venta:</strong> </label>
                     <div class="col-md-2">
                         <input type="text" class="form-control-plaintext" id="numero_venta" disabled>
                     </div>

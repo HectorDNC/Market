@@ -263,7 +263,7 @@ $(document).ready(function () {
     
     const eliminarProducto = (id) => {
         $.ajax({
-            type: "DELETE",
+            type: "POST",
             url: GLOBAL.URL+"producto/eliminar/" + id,
             success: function (response) {
                 const json = JSON.parse(response);
@@ -285,7 +285,7 @@ $(document).ready(function () {
 
     const habilitarProducto = (id) => {
         $.ajax({
-            type: "HABILITAR",
+            type: "POST",
             url: GLOBAL.URL+"producto/habilitar/" + id,
             success: function (response) {
                 const json = JSON.parse(response);
@@ -306,7 +306,7 @@ $(document).ready(function () {
     }
     const eliminarTotal = (id) => {
         $.ajax({
-            type: "DELETE",
+            type: "POST",
             url: GLOBAL.URL+"producto/eliminarTotal/" + id,
             success: function (response) {
                 const json = JSON.parse(response);

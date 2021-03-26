@@ -11,7 +11,7 @@
           <table class="table" id="datatable">
             <thead class="thead-dark">
               <tr>
-                <th scope="col">Categoria</th>
+                <th scope="col">Nombre</th>
                 <th scope="col">Precio</th>
                 <th scope="col">Acciones</th>
               </tr>

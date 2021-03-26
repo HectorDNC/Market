@@ -228,7 +228,7 @@ $(document).ready(function () {
     
     const eliminarRol = (id) => {
         $.ajax({
-            type: "DELETE",
+            type: "POST",
             url: GLOBAL.URL+"cliente/eliminar/" + id,
             success: function (response) {
                 const json = JSON.parse(response);

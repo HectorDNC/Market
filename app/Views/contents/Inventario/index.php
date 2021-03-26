@@ -1,11 +1,11 @@
 <div class="content p-4 dataTables_wrapper">
-    <h2 class="mb-4">Resumen</h2>
+    <h2 class="mb-4">Inventario</h2>
 
     <div class="card mb-4">
         <div class="card-body">
           <div class="pb-1">
             <label for="listadoCategorias">Categorías: &nbsp;</label>
-            <select name="listadoCategorias" id="listadoCategorias" class="js-example-basic-single w-25">
+            <select name="listadoCategorias" id="listadoCategorias" class="js-example-basic-single w-100">
                 <option value="0">TODAS</option>
             </select>
           </div>

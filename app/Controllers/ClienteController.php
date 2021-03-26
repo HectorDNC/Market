@@ -153,7 +153,7 @@ class ClienteController extends Controller{
 
     $method = $_SERVER['REQUEST_METHOD'];
 
-    if( $method != 'DELETE'){
+    if( $method != 'POST'){
       http_response_code(404);
       return false;
     }
@@ -185,7 +185,7 @@ class ClienteController extends Controller{
 
     $method = $_SERVER['REQUEST_METHOD'];
 
-    if( $method != 'HABILITAR'){
+    if( $method != 'POST'){
       http_response_code(404);
       return false;
     }

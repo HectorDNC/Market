@@ -192,7 +192,7 @@ const actualizarEmpleado = (datos) => {
 
 const eliminarEmpleado = (id) => {
     $.ajax({
-        type: "DELETE",
+        type: "POST",
         url: GLOBAL.URL+"empleado/eliminar/" + id,
         success: function (response) {
             const json = JSON.parse(response);
@@ -202,6 +202,27 @@ const eliminarEmpleado = (id) => {
                     'El registro ha sido eliminado!',
                     'success'
                   )
+
+                table.ajax.reload();
+            }
+        },
+        error: function (response) {
+            console.log(response);
+        }
+    });
+}
+const habilitar = (id) => {
+    $.ajax({
+        type: "POST",
+        url: GLOBAL.URL+"empleado/habilitar/" + id,
+        success: function (response) {
+            const json = JSON.parse(response);
+            if(json.tipo == 'success'){
+                Swal.fire(
+                    'Activado!',
+                    'El empleado ha sido habilitado!',
+                    'success'
+                    )
 
                 table.ajax.reload();
             }
@@ -275,5 +296,28 @@ $('body').on('click', '.eliminar', function (e) {
       })
     console.log($(this).attr('href'));
 });
+//Activar el registro
+$('body').on('click', '.estatusAnulado', function (e) {
+    e.preventDefault();
+
+    Swal.fire({
+        title: 'Esta Seguro?',
+        text: "El cliente será habilitado en el sistema!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: 'Cancelar',
+        confirmButtonText: 'Si, eliminar!'
+        }).then((result) => {
+        if (result.value) {
+
+            habilitar($(this).attr('href'));
+            
+        }
+        })
+    console.log($(this).attr('href'));
+});
+
 
 });
